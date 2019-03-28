@@ -5,8 +5,9 @@ class User_model extends CI_Model{
         $this->load->database();
     }
     public function activeFriends(){
-        $query = $this->db->query('select username from projectd.users');
-        $result = $query->result_array();
-        return $result;
+        return $this->db->query('select username from projectd.users')->result_array();
+    }
+    public function profile(){
+        return $this->db->query('select * from projectd.users')->result_array();
     }
 }
