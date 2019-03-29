@@ -7,7 +7,7 @@
         <li><a href="#">Friend requests</a></li>
         <li><a href="#">Trending</a></li> 
         <li><a href="#">Explore</a></li>
-        <li><a href="#">Settings</a></li> 
+        <li><a href="<?php echo site_url('user/profile/nam') ?>">Profile</a></li> <!--TODO: make this dynamic-->
         <li><a href="#">How this works</a></li>
         <li><a href="#">About us</a></li>
     </ul> 

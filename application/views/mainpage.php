@@ -1,3 +1,24 @@
+<div id="intro" class="view">
+  <div class="mask rgba-black-strong">
+    <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-md-10">
+          <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">
+            Hello, Dear Newcomer!
+          </h2>
+          <hr class="hr-light">
+          <h4 class="white-text my-4">
+            We provide a platform for arguing on different topics
+          </h4>
+          <button class="btn btn-outline-white waves-effect waves-light">
+            Read more <i class="fa fa-book"></i>
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <main class="mt-5 ">
 <section id="best-features" class="">
           <div class="container ">
