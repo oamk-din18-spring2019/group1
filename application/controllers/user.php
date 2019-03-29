@@ -6,7 +6,10 @@ class User extends CI_Controller{
     }
     public function index(){
         $data['activeFriends'] = $this->User_model->activeFriends();
+        
+        $this->load->view('templates/header');
         $this->load->view('dashboard/dashboard', $data);
+        $this->load->view('templates/footer');
     }
     public function profile($currentUser){
         // if ($currentUser === $logIn){
