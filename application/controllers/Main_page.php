@@ -23,6 +23,7 @@ class Main_page extends CI_Controller {
 		$this->load->view('templates/header');
 		$this->load->view('mainpage');
 		$this->load->view('templates/footer');
+	
 	}
 	public function aboutUs(){
 		$this->load->view('templates/header');

@@ -39,7 +39,8 @@
           </li>
           <li class="nav-item">
             <a href="#gallery" class="nav-link waves-effect wawes-light">News</a>
-        </li> 
+          </li>
+         
         </ul>
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
@@ -54,4 +55,3 @@
       </div>
     </div>
   </nav>
-  
