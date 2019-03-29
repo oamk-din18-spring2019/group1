@@ -39,10 +39,7 @@
           </li>
           <li class="nav-item">
             <a href="#gallery" class="nav-link waves-effect wawes-light">News</a>
-          </li>
-          <li class="nav-item">
-            <a href="#contact" class="nav-link waves-effect wawes-light">Support</a>
-          </li>
+        </li> 
         </ul>
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
