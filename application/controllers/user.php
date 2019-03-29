@@ -9,10 +9,14 @@ class User extends CI_Controller{
         $this->load->view('dashboard/dashboard', $data);
     }
     public function profile($currentUser){
-        if ($currentUser === $logIn){
-            //if the user is opening his/her own page, load page with all the content
-        }else{
-            //if not, open the same page but hide some personal content
-        }
+        // if ($currentUser === $logIn){
+        //     //if the user is opening his/her own page, load page with all the content
+        // }else{
+        //     //if not, open the same page but hide some personal content
+        // }
+        $user = $this->User_model->profile($currentUser);
+        $data['username'] = $user['username'];
+        $data['dateOfEntry'] = $user['DoR'];
+        $this->load->view('profile/profileHeader', $data);
     }
 }
