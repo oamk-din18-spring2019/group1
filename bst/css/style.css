@@ -10,9 +10,10 @@ html,body,header,#intro{
     background: black no-repeat center fixed;
      background-size: 100% 100%;
 }
-footer{
-    background-color: black;
+.black{
+background-color: black;
 }
+
 
 #contact{
     background-color: black;
@@ -45,7 +46,7 @@ nav{
         border-bottom: 1px  solid #35E2DF;
     }
     #intro{
-        background: url(images/black-and-white-car-classic-111.jpg) no-repeat center fixed;
+    background: url(https://images.unsplash.com/photo-1525642351754-db88d9142dee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1764&q=80) no-repeat center fixed;
          
     }
 }
