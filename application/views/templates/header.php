@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome --> 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="<?php echo base_url('bst/css/bootstrap.min.css')?>" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href=" <?php echo base_url('bst/css/mdb.min.css')?>" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="<?php echo base_url('bst/css/style.css')?>" rel="stylesheet">
+</head>
+
+<body>
+  
+
+  <!-- Start your project here-->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+      <div class="container">
+        <a href="#" class="navbar-brand">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle Navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+          <ul class="navbar-nav mr-auto smooth-scroll">
+            <li class="nav-item">
+              <a href="#intro" class="nav-link waves-effect wawes-light">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="#best-features" class="nav-link waves-effect wawes-light">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a href="#examples" class="nav-link waves-effect wawes-light">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a href="#gallery" class="nav-link waves-effect wawes-light">News</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link waves-effect wawes-light">Support</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item">
+              <a href="" class="nav-linkwawes-effect wawes-light">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a href="" class="nav-linkwawes-effect wawes-light">
+                <i class="fab fa-vk"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+    
+    <div id="intro" class="view">
+      <div class="mask rgba-black-strong">
+        <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+          <div class="row d-flex justify-content-center text-center">
+            <div class="col-md-10">
+              <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">
+                Hello, Dear Newcomer!
+              </h2>
+              <hr class="hr-light">
+              <h4 class="white-text my-4">
+                We provide a platform for arguing on different topics
+              </h4>
+              <button class="btn btn-outline-white waves-effect waves-light">
+                Read more <i class="fa fa-book"></i>
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
