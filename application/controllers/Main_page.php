@@ -24,6 +24,13 @@ class Main_page extends CI_Controller {
 		$this->load->view('mainpage');
 		$this->load->view('templates/footer');
 	}
+
+	public function aboutUs(){
+		$this->load->view('templates/header');
+		$this->load->view('aboutUs');
+		$this->load->view('templates/footer');
+	}
+
 	public function login()
 	{
 		$this->load->view('templates/header');
@@ -35,5 +42,6 @@ class Main_page extends CI_Controller {
 		$this->load->view('register');
 		$this->load->view('templates/footer');
 	}
+
 
 }
