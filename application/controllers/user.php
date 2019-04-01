@@ -10,7 +10,15 @@ class User extends CI_Controller{
         $data['page']='user/dashboard';
         $this->load->view('templates/content', $data);
     }
-
+    public function login()
+	{
+		$data['page'] = 'user/login/login';
+		$this->load->view('templates/content', $data);
+	}
+	public function register() {
+		$data['page'] = 'user/login/register';
+		$this->load->view('templates/content', $data);
+	}
     public function profile($currentUser){
         // if ($currentUser === $logIn){
         //     //if the user is opening his/her own page, load page with all the content

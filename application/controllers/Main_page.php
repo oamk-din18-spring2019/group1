@@ -23,14 +23,4 @@ class Main_page extends CI_Controller {
 		$data['page'] = 'mainpage';
 		$this->load->view('templates/content', $data);
 	}
-
-	public function login()
-	{
-		$data['page'] = 'user/login/login';
-		$this->load->view('templates/content', $data);
-	}
-	public function register() {
-		$data['page'] = 'user/login/register';
-		$this->load->view('templates/content', $data);
-	}
 }

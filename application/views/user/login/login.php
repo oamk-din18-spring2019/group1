@@ -44,7 +44,7 @@
 
       <!-- Register -->
       <p>Not a member?
-        <a href="" style="color:#2d72e2;">Register</a>
+        <a href="<?php echo site_url('user/register');?>" style="color:#2d72e2;">Register</a>
       </p>
 
       <!-- Social login -->
