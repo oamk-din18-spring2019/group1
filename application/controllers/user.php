@@ -4,13 +4,13 @@ class User extends CI_Controller{
         parent::__construct();
         $this->load->model('User_model');
     }
+
     public function index(){
         $data['activeFriends'] = $this->User_model->activeFriends();
-        
-        $this->load->view('templates/header');
-        $this->load->view('dashboard/dashboard', $data);
-        $this->load->view('templates/footer');
+        $data['page']='user/dashboard';
+        $this->load->view('templates/content', $data);
     }
+
     public function profile($currentUser){
         // if ($currentUser === $logIn){
         //     //if the user is opening his/her own page, load page with all the content
@@ -20,6 +20,10 @@ class User extends CI_Controller{
         $user = $this->User_model->profile($currentUser);
         $data['username'] = $user['username'];
         $data['dateOfEntry'] = $user['DoR'];
-        $this->load->view('profile/profileHeader', $data);
+        $data['page'] = 'user/profile/profileHeader';
+        $this->load->view('templates/content', $data);
+    }
+    public function getConvos(){
+        
     }
 }
