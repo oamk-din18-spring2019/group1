@@ -1,6 +1,7 @@
 <!-- Nav bar goes here -->
 
-<!-- side bar -->
+<div id=dashboard>
+    <!-- side bar -->
 <div id=sidebar> 
     <ul>
         <li><a href="#">Conversations</a></li>
@@ -34,4 +35,5 @@
         activeFriends.map(f => document.getElementById('activeFriends').innerHTML += `<li>${f.username}</li>`);
     </script>
     </ul>
+</div>
 </div>

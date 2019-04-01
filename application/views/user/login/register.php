@@ -22,7 +22,7 @@
                 <div class="col">
                     <!-- Last name -->
                     <div class="md-form">
-                        <input type="email" id="materialRegisterFormLastName" class="form-control">
+                        <input type="text" id="materialRegisterFormLastName" class="form-control">
                         <label for="materialRegisterFormLastName">Last name</label>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
             -->
 
             <!-- Sign up button -->
-            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign up</button>
 
             <!-- Social register -->
             <p>or sign up with:</p>

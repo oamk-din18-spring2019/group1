@@ -20,29 +20,7 @@ class Main_page extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('templates/header');
-		$this->load->view('mainpage');
-		$this->load->view('templates/footer');
-	
+		$data['page'] = 'mainpage';
+		$this->load->view('templates/content', $data);
 	}
-
-	public function aboutUs(){
-		$this->load->view('templates/header');
-		$this->load->view('aboutUs');
-		$this->load->view('templates/footer');
-	}
-
-	public function login()
-	{
-		$this->load->view('templates/header');
-		$this->load->view('login');
-		$this->load->view('templates/footer');
-	}
-	public function register() {
-		$this->load->view('templates/header');
-		$this->load->view('register');
-		$this->load->view('templates/footer');
-	}
-
-
 }
