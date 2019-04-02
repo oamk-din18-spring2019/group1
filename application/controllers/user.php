@@ -18,7 +18,62 @@ class User extends CI_Controller{
 	public function register() {
 
 		$this->load->view('user/login/register');
-	}
+    } 
+     function add_user()
+    {
+      // $this->load->model("User_model");
+      // print_r($this->input->post());
+      if ($this->input->post('pw1')==$this->input->post('pw2'))
+      {
+      $hashedPassword = password_hash($this->input->post('pw1'), PASSWORD_DEFAULT);
+      $insert_data = array(
+        "username" => $this->input->post('un'),
+        "email" => $this->input->post('em'),
+        "passwd" => $hashedPassword
+      );
+      $result = $this->User_model->add_user($insert_data);
+      if ($result == 1) {
+        $data['message'] = "Registration passed succesful";
+        $data['page'] = 'user/login/login';
+        $this->load->view('templates/content', $data);
+      } else {
+        $data['message'] = "Something went wrong!";
+      }
+     
+    }
+    else{
+        $this->load->view('user/login/register');
+    }
+    }
+    function log_in()
+    {
+      // $this->load->model("User_model");
+  
+      $data['page'] = 'users/sign_in';
+      $this->load->view('templates/content', $data);
+    }
+    function log_in_procedure()
+    {
+      // $this->load->model("User_model");
+      //print_r($this->input->post()); 
+      $givenUsername = $this->input->post('username');
+      $givenPassword = $this->input->post('password');
+      $db_password = $this->User_model->getPassword($givenUsername);
+      echo '<br>' . $db_password . '<br>' . $givenPassword . '<br>' . $givenUsername . '<br>';
+      if (password_verify($givenPassword, $db_password)) {
+        $_SESSION['logged_in'] = true;
+        $_SESSION['username'] = $givenUsername;
+        $data['message'] = "Succesful";
+        $data['page'] = 'users/user_page';
+        $this->load->view('templates/content', $data);
+      } else {
+        $_SESSION['logged_in'] = false;
+        echo "Something went wrong";
+      }
+  
+      // $data['page']='users/';
+      // $this->load->view('templates/content',$data);
+    }
     public function profile($currentUser){
         // if ($currentUser === $logIn){
         //     //if the user is opening his/her own page, load page with all the content

@@ -33,34 +33,27 @@
     <div class="card-body px-lg-5 pt-0">
 
         <!-- Form -->
-        <form class="text-center" style="color: #757575;">
+        <form class="text-center" method="POST"  action="add_user" style="color: #757575;">
 
             <div class="form-row">
                 <div class="col">
                     <!-- First name -->
                     <div class="md-form">
-                        <input type="text" id="materialRegisterFormFirstName" class="form-control">
-                        <label for="materialRegisterFormFirstName">First name</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <!-- Last name -->
-                    <div class="md-form">
-                        <input type="email" id="materialRegisterFormLastName" class="form-control">
-                        <label for="materialRegisterFormLastName">Last name</label>
+                        <input type="text" id="materialRegisterFormFirstName" class="form-control" name="un">
+                        <label for="materialRegisterFormFirstName">Username</label>
                     </div>
                 </div>
             </div>
 
             <!-- E-mail -->
             <div class="md-form mt-0">
-                <input type="email" id="materialRegisterFormEmail" class="form-control">
+                <input type="email" id="materialRegisterFormEmail" class="form-control" name="em">
                 <label for="materialRegisterFormEmail">E-mail</label>
             </div>
 
             <!-- Password -->
             <div class="md-form">
-                <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" name="pw1">
                 <label for="materialRegisterFormPassword">Password</label>
                 <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
                     At least 8 characters and 1 digit
@@ -69,7 +62,7 @@
 
             <!-- Confirm -->
             <div class="md-form">
-                <input type="password" id="materialRegisterFormConfirmPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+                <input type="password" id="materialRegisterFormConfirmPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" name="pw2">
                 <label for="materialRegisterFormConfirmPassword">Confirm Password</label>
             </div>
 
@@ -115,4 +108,11 @@
     </div>
 
 </div>
+<script type="text/javascript" src="<?php echo base_url('bst/js/jquery-3.3.1.min.js')?>"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="<?php echo base_url('bst/js/popper.min.js')?>"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="<?php echo base_url('bst/js/bootstrap.min.js')?>"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="<?php echo base_url('bst/js/mdb.js')?>"></script>
 <!-- Material form register -->
