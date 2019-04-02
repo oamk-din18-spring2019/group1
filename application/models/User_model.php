@@ -11,4 +11,16 @@ class User_model extends CI_Model{
         $query = $this->db->get_where('projectd.users', array('username' => $username));
         return $query->row_array();
     }
+    public function add_user($insert_data){
+        $this->load-> database();
+        $this->db->insert('users',$insert_data);
+        return $this->db->affected_rows();
+      }
+      public function getPassword($givenUsername){
+        $this->db->select('passwd');
+        $this->db->from('users');
+        $this->db->where('username',$givenUsername);
+        return $this->db->get()->row('passwd');
+      }
+
 }

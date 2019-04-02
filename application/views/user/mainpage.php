@@ -76,6 +76,7 @@
          <div class="col-md-3"></div>
         </div>
     </div>
+
     <script>
       //set the effect of how text appear
        let join = document.getElementById('test');
@@ -95,6 +96,8 @@
        }
     </script>
     <div class="text-center"> <button type="button" class="btn btn-elegant btn-lg">Login</button></div>
+    <div class="text-center"> <a type="button" href="<?php echo site_url("user/login")?>" class="btn btn-elegant btn-lg ">Login</a></div>
+
         
        
       </section>

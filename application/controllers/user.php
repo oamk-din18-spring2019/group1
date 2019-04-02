@@ -1,25 +1,79 @@
 <?php
-class User extends CI_Controller{
-    public function __construct(){
+class User extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
         $this->load->model('User_model');
     }
 
-    public function index(){
+    public function index()
+    {
         $data['activeFriends'] = $this->User_model->activeFriends();
-        $data['page']='user/dashboard';
+        $data['page'] = 'user/dashboard';
         $this->load->view('templates/content', $data);
     }
     public function login()
-	{
-		$data['page'] = 'user/login/login';
-		$this->load->view('templates/content', $data);
-	}
-	public function register() {
-		$data['page'] = 'user/login/register';
-		$this->load->view('templates/content', $data);
-	}
-    public function profile($currentUser){
+    {
+        $this->load->view('user/login/login');
+    }
+
+    public function register()
+    {
+        $this->load->view('user/login/register');
+    }
+
+    function add_user()
+    {
+        //Registration function
+        // Checks the passwords to be equal
+        if ($this->input->post('pw1') == $this->input->post('pw2')) {
+            //hash the password and send the information to the database
+                $hashedPassword = password_hash($this->input->post('pw1'), PASSWORD_DEFAULT);
+                $insert_data = array(
+                    "username" => $this->input->post('un'),
+                    "email" => $this->input->post('em'),
+                    "passwd" => $hashedPassword
+                );
+                $result = $this->User_model->add_user($insert_data);
+                if ($result == 1) {
+                    $data['message'] = "Registration passed succesful";
+                    $this->load->view('user/login/login', $data);
+                } else {
+                //checks if the username is unique, but for this we have to change row "username" in db to be unique
+                    $data['message'] = "This username is used already";
+                    $this->load->view('user/login/register', $data);
+                }
+            } else {
+            $data['message'] = "You entered the different passwords";
+            $this->load->view('user/login/register', $data);
+        }
+    }
+
+    function log_in_procedure()
+    {
+    //function for entering the system
+        $givenUsername = $this->input->post('username');
+        $givenPassword = $this->input->post('password');
+        $db_password = $this->User_model->getPassword($givenUsername);
+        //verify the password
+        if (password_verify($givenPassword, $db_password)) {
+            $_SESSION['logged_in'] = true;
+            $_SESSION['username'] = $givenUsername;
+            $data['message'] = "Succesful";
+            $data['page'] = 'user/dashboard';
+            $this->load->view('templates/content', $data);
+        } else {
+            $_SESSION['logged_in'] = false;
+            echo "Something went wrong";
+        }
+
+        // $data['page']='users/';
+        // $this->load->view('templates/content',$data);
+    }
+
+    public function profile($currentUser)
+    {
         // if ($currentUser === $logIn){
         //     //if the user is opening his/her own page, load page with all the content
         // }else{
@@ -31,8 +85,11 @@ class User extends CI_Controller{
         $data['page'] = 'user/profile/profileHeader';
         $this->load->view('templates/content', $data);
     }
-    public function getConvos(){
-        
+
+
+    public function getConvos()
+    { }
+
     }
     public function chat($username){
         $data['username'] = $username;
