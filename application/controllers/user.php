@@ -12,12 +12,12 @@ class User extends CI_Controller{
     }
     public function login()
 	{
-		$data['page'] = 'user/login/login';
-		$this->load->view('templates/content', $data);
+
+		$this->load->view('user/login/login');
 	}
 	public function register() {
-		$data['page'] = 'user/login/register';
-		$this->load->view('templates/content', $data);
+
+		$this->load->view('user/login/register');
 	}
     public function profile($currentUser){
         // if ($currentUser === $logIn){
@@ -32,6 +32,6 @@ class User extends CI_Controller{
         $this->load->view('templates/content', $data);
     }
     public function getConvos(){
-        
+
     }
 }
