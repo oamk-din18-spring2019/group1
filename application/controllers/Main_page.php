@@ -20,7 +20,7 @@ class Main_page extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data['page'] = 'mainpage';
+		$data['page'] = 'user/mainpage';
 		$this->load->view('templates/content', $data);
 	}
 }

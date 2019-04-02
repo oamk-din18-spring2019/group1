@@ -34,4 +34,9 @@ class User extends CI_Controller{
     public function getConvos(){
 
     }
+    public function chat($username){
+        $data['username'] = $username;
+        $this->load->view('user/chat/chat_screen', $data);
+    }
 }
+    
