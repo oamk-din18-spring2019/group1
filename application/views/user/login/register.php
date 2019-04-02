@@ -82,7 +82,7 @@
             -->
 
             <!-- Sign up button -->
-            <button class="btn btn-outline-form btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign up</button>
+            <button class="btn btn-success btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign up</button>
 
             <!-- Social register -->
             <!--
