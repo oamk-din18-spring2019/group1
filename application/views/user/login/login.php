@@ -34,12 +34,12 @@
   <div class="card-body px-lg-5 pt-0">
 
     <!-- Form -->
-    <form class="text-center" style="color: #757575;">
+    <form class="text-center" method="POST" action="log_in_procedure" style="color: #757575;">
 
       <!-- Email -->
       <div class="md-form">
-        <input type="email" id="materialLoginFormEmail" name="email" class="form-control">
-        <label for="materialLoginFormEmail">E-mail</label>
+        <input type="text" id="materialLoginFormEmail" name="username" class="form-control">
+        <label for="materialLoginFormEmail">Username</label>
       </div>
 
       <!-- Password -->
@@ -47,7 +47,11 @@
         <input type="password" id="materialLoginFormPassword" name="password" class="form-control">
         <label for="materialLoginFormPassword">Password</label>
       </div>
-
+      <?php 
+                if(isset($message)){
+                   echo" <div class='col-md-12 text-center text-white bg-info mb-0'>".$message." </div>";
+                };
+                ?>
       <div class="d-flex justify-content-around">
         <div>
           <!-- Remember me -->
