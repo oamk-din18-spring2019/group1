@@ -38,13 +38,13 @@
 
       <!-- Email -->
       <div class="md-form">
-        <input type="email" id="materialLoginFormEmail" class="form-control">
+        <input type="email" id="materialLoginFormEmail" name="email" class="form-control">
         <label for="materialLoginFormEmail">E-mail</label>
       </div>
 
       <!-- Password -->
       <div class="md-form">
-        <input type="password" id="materialLoginFormPassword" class="form-control">
+        <input type="password" id="materialLoginFormPassword" name="password" class="form-control">
         <label for="materialLoginFormPassword">Password</label>
       </div>
 
@@ -93,4 +93,11 @@
   </div>
 
 </div>
+<script type="text/javascript" src="<?php echo base_url('bst/js/jquery-3.3.1.min.js')?>"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="<?php echo base_url('bst/js/popper.min.js')?>"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="<?php echo base_url('bst/js/bootstrap.min.js')?>"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="<?php echo base_url('bst/js/mdb.js')?>"></script>
 <!-- Material form login -->
