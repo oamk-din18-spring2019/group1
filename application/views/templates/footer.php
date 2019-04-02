@@ -23,15 +23,15 @@
       <div class="row mt-3">
         <div class="col-md-3 col-lg-4 col-xl-3 mb-0">
           <h6 class="text-uppercase font-weight-bold">
-           <strong>Our company</strong> 
+           <strong>Our group</strong> 
           </h6>
           <hr class="deep-purple accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere repellat quod dolorem nesciunt aspernatur vero veritatis!</p>
+          <p>This project is based on an idea of a meme, hopefully you enjoy it. Have a nice visit!</p>
 
         </div>
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-0">
           <h6 class="text-uppercase font-weight-bold">
-            <strong>Products</strong>
+            <strong>Group members</strong>
           </h6>
           <hr class="deep-purple accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p> <a href="">Nam</a></p>
@@ -54,7 +54,7 @@
           <hr class="deep-purple accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
              <p> <i class="fas fa-home"></i> Oulu</p>
              <p> <i class="fas fa-home"></i> info@gmail.com</p>
-             <p> <i class="fas fa-home"></i> Something here</p>
+             <p> <i class="fas fa-home"></i> That's it for the information, what else do you want from us? </p>
         </div>
       </div>
     </div>
