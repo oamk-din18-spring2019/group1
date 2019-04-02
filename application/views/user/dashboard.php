@@ -32,7 +32,7 @@
     <ul>
     <script>
         let activeFriends = <?php echo json_encode($activeFriends);?>;
-        activeFriends.map(f => document.getElementById('activeFriends').innerHTML += `<li>${f.username}</li>`);
+        activeFriends.map(f => document.getElementById('activeFriends').innerHTML += `<li><a target=_blank href="<?php echo site_url('user/chat')?>/${f.username}" >${f.username}</a></li>`);
     </script>
     </ul>
 </div>

@@ -1,0 +1,1 @@
+<h1>Debating with <?php echo $username?></h1>
