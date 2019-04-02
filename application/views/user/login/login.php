@@ -65,11 +65,11 @@
       </div>
 
       <!-- Sign in button -->
-      <button class="btn btn-outline-form btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+      <button class="btn btn-success btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
 
       <!-- Register -->
       <p>Not a member?
-        <a href="" style="color:#2d72e2;">Register</a>
+        <a href="<?php echo site_url('user/register'); ?>" style="color:#2d72e2;">Register</a>
       </p>
 
       <!-- Social login
