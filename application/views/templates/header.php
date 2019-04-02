@@ -32,9 +32,6 @@
             <a href="#intro" class="nav-link waves-effect wawes-light">Home</a>
           </li>
           <li class="nav-item">
-            <a href="#best-features" class="nav-link waves-effect wawes-light">Profile</a>
-          </li>
-          <li class="nav-item">
             <a href="#gallery" class="nav-link waves-effect wawes-light">News</a>
           </li>
           <li class="nav-item">

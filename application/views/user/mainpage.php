@@ -46,6 +46,7 @@
               </div>
     
           </section>
+          
           <section id="best-features" class="">
               <div class="container ">
              
@@ -67,13 +68,32 @@
      <div class="col-md-3"></div>
     </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" id=test>
+      <style> .test{display: none; transition-delay: 0.4;}</style>
       <div class="row">   
           <div class="col-md-3"></div>
-         <div class="col-md-6 font-weight-bold text-center pb-2">What are you waiting for? <br> Come join us. It's free, it's fun and it's f*cking educational.</div>
+         <div class="col-md-6 font-weight-bold text-center pb-2">What are you waiting for? <br> Come join us. <span class=test>It's free,</span> <span class=test>it's fun</span> <span class=test>and it's f*cking educational.</span></div>
          <div class="col-md-3"></div>
         </div>
     </div>
+    <script>
+      //set the effect of how text appear
+       let join = document.getElementById('test');
+       let mottos = Array.from(document.getElementsByClassName('test'));
+       window.onscroll = () =>{
+         let i = 0;
+        if(this.scrollY + 925 >= join.offsetTop){
+          var itv = setInterval( () => {
+            if(i<3){
+              mottos[i].style.display = 'inline-block';
+              i++;
+            }else{
+              clearInterval(itv)
+            }
+          } ,800)
+        }
+       }
+    </script>
     <div class="text-center"> <button type="button" class="btn btn-elegant btn-lg">Login</button></div>
         
        
