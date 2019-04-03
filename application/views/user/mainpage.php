@@ -25,7 +25,7 @@
     <section id="best-features" class="">
               <div class="container ">
              
-                  <div class="col-md-3 "> <h1 class="display-7  bottomborder font-weight-bold">Why us?</h1> <br>
+                  <div class="col-md-4 "> <h1 class="display-7  bottomborder font-weight-bold">Why us?</h1> <br>
                   </div>
                   <div class="col-md-12"> <h3 class="pb-5 text-left">Have you ever wanted to talk so bad but had nowhere to go or nobody to talk to?</div>
                     </h3>
@@ -36,7 +36,7 @@
           <section id="examples" class="text-center my-5">
               <div class="container pt-5 text-white">
              <div class="row">
-                  <div class="col-md-6"> <h1 class="display-7  bottomborder font-weight-bold">Why us?</h1> <br>
+                  <div class="col-md-4"> <h1 class="display-7  bottomborder font-weight-bold">Why us?</h1> <br>
                   <div class=""> <h3 class="pb-5 text-left">Have you ever felt so bored that surfing the Internet is just not enough and you want to do something even more nonsense?</div>
                     </h3>
                   </div>
@@ -50,7 +50,7 @@
           <section id="best-features" class="">
               <div class="container ">
              
-                  <div class="col-md-3 "> <h1 class="display-7  bottomborder font-weight-bold">Why us?</h1> <br>
+                  <div class="col-md-4 "> <h1 class="display-7  bottomborder font-weight-bold">Why us?</h1> <br>
                   </div>
                   <div class="col-md-12"> <h3 class="pb-5 text-left">OR are you a debate professional and want a playground to kill time and practice spontaneously?</div>
                     </h3>
@@ -95,7 +95,6 @@
         }
        }
     </script>
-    <div class="text-center"> <button type="button" class="btn btn-elegant btn-lg">Login</button></div>
     <div class="text-center"> <a type="button" href="<?php echo site_url("user/login")?>" class="btn btn-elegant btn-lg ">Login</a></div>
 
         
