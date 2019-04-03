@@ -5,7 +5,6 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('User_model');
-        $this->load->model('Search_model');
     }
 
     public function index()
@@ -84,14 +83,14 @@ class User extends CI_Controller
         // $data['username'] = $user['username'];
         // $data['dateOfEntry'] = $user['DoR'];
         // print_r($_SESSION);
-        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true ){
-
-            $this->load->view('user/profile/profile');
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
+            $data['time'] = $this->User_model->getDate($_SESSION['username']);
+            $this->load->view('user/profile/profile',$data);
         }
         else{
             echo "You are not registred";
         }
-
+      
     }
 
 
@@ -102,12 +101,5 @@ class User extends CI_Controller
         $data['username'] = $username;
         $this->load->view('user/chat/chat_screen', $data);
     }
-
-    # Search engine
-    public function search()
-    {
-        $this->load->view('user/search/search');
-        $data['cari'] = $this->Search_model->cariTest();
-        $this->load->view('user/search/searchresult', $data);
-    }
 }
+    
