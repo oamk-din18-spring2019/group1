@@ -22,5 +22,11 @@ class User_model extends CI_Model{
         $this->db->where('username',$givenUsername);
         return $this->db->get()->row('passwd');
       }
+      public function getDate($name){
+        $this->db->select('passwd');
+        $this->db->from('users');
+        $this->db->where('username',$givenUsername);
+        return $this->db->get()->row('passwd');
+    }
 
 }
