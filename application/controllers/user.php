@@ -61,8 +61,8 @@ class User extends CI_Controller
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $givenUsername;
             $data['message'] = "Succesful";
-            $data['page'] = 'user/dashboard';
-            $this->load->view('templates/content', $data);
+            // $this->load->view('user/profile');
+            header('location:profile');
         } else {
             $_SESSION['logged_in'] = false;
             echo "Something went wrong";
@@ -72,18 +72,25 @@ class User extends CI_Controller
         // $this->load->view('templates/content',$data);
     }
 
-    public function profile($currentUser)
+    public function profile()
     {
         // if ($currentUser === $logIn){
         //     //if the user is opening his/her own page, load page with all the content
         // }else{
         //     //if not, open the same page but hide some personal content
         // }
-        $user = $this->User_model->profile($currentUser);
-        $data['username'] = $user['username'];
-        $data['dateOfEntry'] = $user['DoR'];
-        $data['page'] = 'user/profile/profileHeader';
-        $this->load->view('templates/content', $data);
+        // $user = $this->User_model->profile();
+        // $data['username'] = $user['username'];
+        // $data['dateOfEntry'] = $user['DoR'];
+        // print_r($_SESSION);
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true ){
+
+            $this->load->view('user/profile/profile');
+        }
+        else{
+            echo "You are not registred";
+        }
+      
     }
 
 
