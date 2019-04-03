@@ -62,6 +62,7 @@ class User extends CI_Controller
             $_SESSION['username'] = $givenUsername;
             $data['message'] = "Succesful";
             $data['page'] = 'user/dashboard';
+            $data['activeFriends'] = $this->User_model->activeFriends();
             $this->load->view('templates/content', $data);
         } else {
             $_SESSION['logged_in'] = false;
