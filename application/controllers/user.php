@@ -61,6 +61,7 @@ class User extends CI_Controller
         if (password_verify($givenPassword, $db_password)) {
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $givenUsername;
+            $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $data['message'] = "Succesful";
             // $this->load->view('user/profile');
             header('location:profile');
@@ -85,8 +86,8 @@ class User extends CI_Controller
         // $data['dateOfEntry'] = $user['DoR'];
         // print_r($_SESSION);
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
-            $data['time'] = $this->User_model->getDate($_SESSION['username']);
-            $this->load->view('user/profile/profile',$data);
+            $_SESSION['time'] = $this->User_model->getDate($_SESSION['username']);
+            $this->load->view('user/profile/profile');
         }
         else{
             echo "You are not registred";
@@ -94,15 +95,10 @@ class User extends CI_Controller
 
 
     }
-
-
-    }
-    public function getConvos()
-    { }
-
     public function chat($username){
         $data['username'] = $username;
-        $this->load->view('user/chat/chat_screen', $data);
+        //$this->load->view('user/chat/chat_screen', $data);
+        
     }
 
 
@@ -113,5 +109,34 @@ class User extends CI_Controller
         $this->load->view('user/search/search');
         $data['cari'] = $this->Search_model->cariTest();
         $this->load->view('user/search/searchresult', $data);
+    }
+
+    function settings(){
+        $this -> load -> view ('user/profile/headerProfile');
+        $this -> load -> view("settings/settings");
+        $this -> load -> view ('user/profile/footerProfile');
+    }
+    public function do_upload()
+    {
+            $config['upload_path']          = './images/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 3000;
+            $config['max_width']            = 1024;
+            $config['max_height']           = 1024;
+
+            $this->load->library('upload', $config);
+            echo($this->upload->data('file_name'));
+
+            if ( $this->upload->do_upload('userfile') )
+            {
+                  echo "success!";
+                  $_SESSION['image']=$this->User_model->setUpPicture($_SESSION['username'],$this->upload->data('file_name'));
+                // =data('file_name');
+                redirect('user/profile/profile');
+            }
+            else
+            {
+               echo("error");
+            }
     }
 }

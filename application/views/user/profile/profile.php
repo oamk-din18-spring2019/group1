@@ -4,14 +4,14 @@ Hello  -->
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-6">
-            <img src="https://im0-tub-ru.yandex.net/i?id=f863e4b6e729c52c6d2c53e8428ff71f&n=13&exp=1" alt="avatar">
+            <img class="img-fluid" src="<?php if(isset($_SESSION['image'])&&($_SESSION['image']!='')){ echo base_url("./images/".$_SESSION['image']) ;} else{echo base_url("./images/empty-avatar.jpg");} ?>" alt="avatar">
         </div>
         <div class="col-md-6 text-left">
             <h2>
                 Username:
                 <?php echo $_SESSION["username"] ?> <br>
                 Date of registration:
-                <?php echo $time ?>
+                <?php echo $_SESSION['time'] ?>
 
             </h2>
         </div>
@@ -21,7 +21,7 @@ Hello  -->
 <div class="container ">
     <div class="card-group ">
         <div class="col-md-4">
-            <div class="card h-100">
+            <div class="card ">
                 <!--Размер картинок 748x563-->
                 <i class="fas fa-user-friends fa-5x text-center"></i>
                 <div class="card-body text-center">
@@ -49,7 +49,7 @@ Hello  -->
                 <div class="card-body text-center">
                     <h5 class="card-title">Settings</h5>
                     Change your life here!
-                    <br> <br> <a href="#" class="btn btn-primary text-center">Inexpressible!</a>
+                    <br> <br> <a href="<?php echo site_url("user/settings") ?>" class="btn btn-primary text-center">Inexpressible!</a>
                 </div>
 
             </div>
