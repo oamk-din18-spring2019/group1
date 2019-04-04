@@ -58,6 +58,7 @@ class User extends CI_Controller
         $db_password = $this->User_model->getPassword($givenUsername);
         //verify the password
         if (password_verify($givenPassword, $db_password)) {
+            //session_start();
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $givenUsername;
             $data['message'] = "Succesful";
@@ -87,13 +88,11 @@ class User extends CI_Controller
         $this->load->view('templates/content', $data);
     }
 
-
-    public function getConvos()
-    { }
-
     public function chat($username){
         $data['username'] = $username;
-        $this->load->view('templates/header');
+        $currentUser = $_SESSION['username'];
+        $data['idChat'] = $this->User_model->openConvo($currentUser, $username);
+        //$this->load->view('templates/header');
         $this->load->view('user/chat/chat_screen', $data);
     }
 }

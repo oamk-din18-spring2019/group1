@@ -47,7 +47,7 @@ setInterval(function(){displayChat();},1000);
     });
 });
 </script>
-<h3 class="text-center">Live Chat Room</h3>
+
 <div class="conteiner-fluid">
 <div class="text-center well" id="chatBox">
 <div id="chatDisplay"></div>
