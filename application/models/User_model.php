@@ -31,11 +31,43 @@ class User_model extends CI_Model{
         if($check->row_array() == null){
             $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser2, 'idUser1' => $idUser1));
             if ($check->row_array() == null) {
-                $check = $this->db->insert('projectd.conversations', array('idUser' => $idUser1, 'idUser1' => $idUser2));
-                $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser2, 'idUser1' => $idUser1));
+                $this->db->insert('projectd.conversations', array('idUser' => $idUser1, 'idUser1' => $idUser2));
             }
+            $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser2, 'idUser1' => $idUser1))->row_array();
+            $this->addConvo($check['idChat']);
+            return 'convo opening';
         }
-        return $check->row_array();
+        $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser1, 'idUser1' => $idUser2))->row_array();
+        $this->addConvo( 'c'.$check['idChat'] );
+        return 'convo opening';
+
+    }
+    function addConvo($idChat){
+        $this->load->dbforge();
+        $fields = array(
+            'id' => array(
+                'type' => 'int',
+                'constraint' => '11',
+                'auto_increment' => true,
+                'unique' => true
+            ),
+            'idUser1' => array(
+                'type' => 'tinyint',
+                'constraint' => '2'
+            ),
+            'idUser2' => array(
+                'type' => 'tinyint',
+                'constraint' => '2'
+            ),
+            'content' => array(
+                'type' => 'text',
+            ),
+            'time' => array(
+                'type' => 'datetime'
+            )
+        );
+        $this->dbforge->add_field($fields);
+        $this->dbforge->create_table($idChat, true);
     }
     
 }
