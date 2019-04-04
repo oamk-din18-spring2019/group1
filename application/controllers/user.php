@@ -92,6 +92,10 @@ class User extends CI_Controller
             echo "You are not registred";
         }
 
+
+    }
+
+
     }
     public function getConvos()
     { }
@@ -101,11 +105,13 @@ class User extends CI_Controller
         $this->load->view('user/chat/chat_screen', $data);
     }
 
+
+    # Search engine
+
     public function search()
     {
         $this->load->view('user/search/search');
         $data['cari'] = $this->Search_model->cariTest();
         $this->load->view('user/search/searchresult', $data);
     }
-
 }
