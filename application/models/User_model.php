@@ -28,6 +28,16 @@ class User_model extends CI_Model{
         $this->db->where('username',$name);
         return $this->db->get()->row('DoR');
     }
+    public function getPictureName($name){
+        $this->db->select('picture');
+        $this->db->from('users');
+        $this->db->where('username',$name);
+        return $this->db->get()->row('picture');  
+    }
+    public function setUpPicture($name,$picture){
+        $this->db->query("UPDATE users SET picture = '$picture' WHERE username = '$name'");
+        return ($picture);
+    }
 
 
 }
