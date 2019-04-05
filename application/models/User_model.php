@@ -34,12 +34,12 @@ class User_model extends CI_Model{
                 $this->db->insert('projectd.conversations', array('idUser' => $idUser1, 'idUser1' => $idUser2));
             }
             $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser2, 'idUser1' => $idUser1))->row_array();
-            $this->addConvo($check['idChat']);
-            return 'convo opening';
+            $this->addConvo('c'.$check['idChat']);
+            return 'c'.$check['idChat'];
         }
         $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser1, 'idUser1' => $idUser2))->row_array();
         $this->addConvo( 'c'.$check['idChat'] );
-        return 'convo opening';
+        return 'c'.$check['idChat'];
 
     }
     function addConvo($idChat){
@@ -51,13 +51,9 @@ class User_model extends CI_Model{
                 'auto_increment' => true,
                 'unique' => true
             ),
-            'idUser1' => array(
-                'type' => 'tinyint',
-                'constraint' => '2'
-            ),
-            'idUser2' => array(
-                'type' => 'tinyint',
-                'constraint' => '2'
+            'username' => array(
+                'type' => 'varchar',
+                'constraint' => '255'
             ),
             'content' => array(
                 'type' => 'text',
