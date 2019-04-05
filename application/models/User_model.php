@@ -53,7 +53,7 @@ class User_model extends CI_Model{
         $this->db->select('picture');
         $this->db->from('users');
         $this->db->where('username',$name);
-        return $this->db->get()->row('picture');  
+        return $this->db->get()->row('picture');
     }
     public function setUpPicture($name,$picture){
         $this->db->query("UPDATE users SET picture = '$picture' WHERE username = '$name'");
@@ -61,7 +61,7 @@ class User_model extends CI_Model{
     }
 
 
-    }
+
     function addConvo($idChat){
         $this->load->dbforge();
         $fields = array(
@@ -85,5 +85,4 @@ class User_model extends CI_Model{
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table($idChat, true);
     }
-    
-}
+}  
