@@ -11,13 +11,16 @@ html,body,header,#intro{
      background-size: 100% 100%;
 }
 #gallery {
-    background: black no-repeat center fixed;
+    background:black no-repeat center fixed;
     color: white;
+}
+.white{
+    color: black;
 }
 .black{
 background-color: black;
+color: white;
 }
-
 
 #contact{
     background-color: black;
@@ -26,7 +29,7 @@ background-color: black;
     color: white;
 }
 a{
-    color: white;
+    color: black;
 }
 .bottomborder{
     border-bottom: 10px  solid #35E2DF;
@@ -40,8 +43,8 @@ nav{
     background-color: black;
 }
 .v{
-    background-color: white;
-    color: black;
+  background-color: #35E2DF;
+  color:black;
 }
 .top-nav-collapse
 {

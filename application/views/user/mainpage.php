@@ -95,11 +95,7 @@
         }
        }
     </script>
-    <div class="text-center"> <a type="button" href="<?php echo site_url("LoginRegistration/login")?>" class="btn v  btn-lg ">Login</a></div>
-
-        
-       
+    <div class="text-center"> <a  href="<?php echo site_url("LoginRegistration/login")?>"><button  class="btn waves-effect rounded v ">Login</button></a> </div>       
       </section>
-      <hr class="my-5 hr-light">
-     
+  
     </main>
