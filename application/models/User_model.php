@@ -60,8 +60,6 @@ class User_model extends CI_Model{
         return ($picture);
     }
 
-
-
     function addConvo($idChat){
         $this->load->dbforge();
         $fields = array(
@@ -86,3 +84,4 @@ class User_model extends CI_Model{
         $this->dbforge->create_table($idChat, true);
     }
 }  
+
