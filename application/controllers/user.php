@@ -5,6 +5,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('User_model');
+        $this->load->model('Search_model');
     }
 
     public function index()
@@ -61,39 +62,84 @@ class User extends CI_Controller
             //session_start();
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $givenUsername;
+            $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $data['message'] = "Succesful";
+
             $data['page'] = 'user/dashboard';
             $data['activeFriends'] = $this->User_model->activeFriends();
             $this->load->view('templates/content', $data);
+
+
         } else {
             $_SESSION['logged_in'] = false;
-            echo "Something went wrong";
+            $data['messagePassword']="Wrong password or username";
+            $this->load->view('user/login/login', $data);
         }
 
         // $data['page']='users/';
         // $this->load->view('templates/content',$data);
     }
 
-    public function profile($currentUser)
-    {
-        // if ($currentUser === $logIn){
-        //     //if the user is opening his/her own page, load page with all the content
-        // }else{
-        //     //if not, open the same page but hide some personal content
-        // }
-        $user = $this->User_model->profile($currentUser);
-        $data['username'] = $user['username'];
-        $data['dateOfEntry'] = $user['DoR'];
-        $data['page'] = 'user/profile/profileHeader';
-        $this->load->view('templates/content', $data);
-    }
+   
 
     public function chat($username){
         $data['username'] = $username;
         $currentUser = $_SESSION['username'];
         $data['idChat'] = $this->User_model->openConvo($currentUser, $username);
-        //$this->load->view('templates/header');
         $this->load->view('user/chat/chat_screen', $data);
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
+            $_SESSION['time'] = $this->User_model->getDate($_SESSION['username']);
+            $this->load->view('user/profile/profile');
+        }
+        else{
+            echo "You are not registred";
+        }
+
+
+    }
+    # Search engine
+
+    public function search()
+    {
+        $this->load->view('user/profile/headerProfile');
+        $this->load->view('user/search/search');
+        $data['cari'] = $this->Search_model->cariTest();
+        $this->load->view('user/search/searchresult', $data);
+    }
+
+    function settings(){
+        $this -> load -> view ('user/profile/headerProfile');
+        $this -> load -> view("settings/settings");
+        $this -> load -> view ('user/profile/footerProfile');
+    }
+    public function do_upload()
+    {
+            $config['upload_path']          = './images/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 5000;
+            $config['max_width']            = 2024;
+            $config['max_height']           = 2024;
+
+            $this->load->library('upload', $config);
+            echo($this->upload->data('file_name'));
+
+            if ( $this->upload->do_upload('userfile') )
+            {
+                  echo "success!";
+                  $_SESSION['image']=$this->User_model->setUpPicture($_SESSION['username'],$this->upload->data('file_name'));
+                redirect('user/profile/profile');
+            }
+            else
+            {
+               $data['messageSettings']="The file is too big";
+               $this -> load -> view ('user/profile/headerProfile');
+               $this -> load -> view("settings/settings",$data);
+               $this -> load -> view ('user/profile/footerProfile');
+
+            }
+    }
+    function logout(){
+        $_SESSION['logged_in']=false;
+        redirect(site_url("main_page"));
     }
 }
-    

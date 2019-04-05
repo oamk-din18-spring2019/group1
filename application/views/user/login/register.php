@@ -39,7 +39,7 @@
                     <div class="col">
                         <!-- First name -->
                         <div class="md-form">
-                            <input type="text" id="materialRegisterFormFirstName" class="form-control" name="un">
+                            <input type="text" id="materialRegisterFormFirstName" class="form-control" name="un" required>
                             <label for="materialRegisterFormFirstName">Username</label>
                         </div>
                     </div>
@@ -47,13 +47,13 @@
 
                 <!-- E-mail -->
                 <div class="md-form mt-0">
-                    <input type="email" id="materialRegisterFormEmail" class="form-control" name="em">
+                    <input type="email" id="materialRegisterFormEmail" class="form-control" name="em" required>
                     <label for="materialRegisterFormEmail">E-mail</label>
                 </div>
 
                 <!-- Password -->
                 <div class="md-form">
-                    <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" name="pw1">
+                    <input type="password" required id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" name="pw1">
                     <label for="materialRegisterFormPassword">Password</label>
 
 
@@ -62,7 +62,7 @@
 
                 <!-- Confirm -->
                 <div class="md-form">
-                    <input type="password" id="materialRegisterFormConfirmPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" name="pw2">
+                    <input type="password" id="materialRegisterFormConfirmPassword" required class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" name="pw2">
                     <label for="materialRegisterFormConfirmPassword">Confirm Password</label>
                     <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
                         At least 8 characters and 1 digit
