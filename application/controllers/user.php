@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller
 {
     public function __construct()
@@ -6,14 +7,24 @@ class User extends CI_Controller
         parent::__construct();
         $this->load->model('User_model');
         $this->load->model('Search_model');
+        if (!empty($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
+      } else{
+        //   $this->load->view("user/login/login"); 
+        // redirect("main_page");
+        header('location:access_denied');
+        }
     }
-
+function access_denied(){
+    redirect("LoginRegistration/login");
+}
     public function index()
     {
         $data['activeFriends'] = $this->User_model->activeFriends();
         $data['page'] = 'user/dashboard';
         $this->load->view('templates/content', $data);
     }
+
+
     public function login()
     {
         $this->load->view('user/login/login');
@@ -80,6 +91,7 @@ class User extends CI_Controller
         // $this->load->view('templates/content',$data);
     }
 
+
    
 
     public function chat($username){
@@ -92,7 +104,6 @@ class User extends CI_Controller
             $this->load->view('user/profile/profile');
         }
         else{
-            echo "You are not registred";
         }
 
 
