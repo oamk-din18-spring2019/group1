@@ -70,7 +70,12 @@
 
       <!-- Sign in button -->
       <button class="btn btn-success btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
-
+      <?php 
+                    if (isset($messagePassword)) {
+                        echo " <div class='col-md-12 text-center text-white bg-danger my-3'>" . $messagePassword . " </div>";
+                    };
+                  
+                    ?>
       <!-- Register -->
       <p>Not a member?
         <a href="<?php echo site_url('user/register'); ?>" style="color:#2d72e2;">Register</a>
