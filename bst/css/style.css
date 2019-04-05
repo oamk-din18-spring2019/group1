@@ -10,6 +10,10 @@ html,body,header,#intro{
     background: black no-repeat center fixed;
      background-size: 100% 100%;
 }
+#gallery {
+    background: black no-repeat center fixed;
+    color: white;
+}
 .black{
 background-color: black;
 }
@@ -34,6 +38,10 @@ a{
 }
 nav{
     background-color: black;
+}
+.v{
+    background-color: white;
+    color: black;
 }
 .top-nav-collapse
 {

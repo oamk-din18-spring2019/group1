@@ -57,9 +57,9 @@
 
                 </div>
           </section>
-      <hr class="my-5 hr-light">
+      <hr class="my-3 hr-light">
     
-      <section id="gallery">
+      <section id="gallery" class="py-4">
         <div class="text-center"> <i class="fas fa-laugh-beam display-1"></i></div> <br>
         <div class="container text-center">
           <div class="row  mx-auto">
@@ -76,7 +76,7 @@
          <div class="col-md-3"></div>
         </div>
     </div>
-
+   
     <script>
       //set the effect of how text appear
        let join = document.getElementById('test');
@@ -95,7 +95,7 @@
         }
        }
     </script>
-    <div class="text-center"> <a type="button" href="<?php echo site_url("LoginRegistration/login")?>" class="btn btn-elegant btn-lg ">Login</a></div>
+    <div class="text-center"> <a type="button" href="<?php echo site_url("LoginRegistration/login")?>" class="btn v  btn-lg ">Login</a></div>
 
         
        
