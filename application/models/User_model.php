@@ -14,13 +14,12 @@ class User_model extends CI_Model{
         $this->load-> database();
         $this->db->insert('users',$insert_data);
         return $this->db->affected_rows();
-      }
+    }
     public function getPassword($givenUsername){
         $this->db->select('passwd');
         $this->db->from('users');
         $this->db->where('username',$givenUsername);
         return $this->db->get()->row('passwd');
-
     }
     public function openConvo($username1, $username2){
         //look up id of 2 usernames
@@ -41,9 +40,8 @@ class User_model extends CI_Model{
         $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser1, 'idUser1' => $idUser2))->row_array();
         $this->addConvo( 'c'.$check['idChat'] );
         return 'c'.$check['idChat'];
-
-      }
-      public function getDate($name){
+    }
+    public function getDate($name){
         $this->db->select('DoR');
         $this->db->from('users');
         $this->db->where('username',$name);
@@ -59,7 +57,6 @@ class User_model extends CI_Model{
         $this->db->query("UPDATE users SET picture = '$picture' WHERE username = '$name'");
         return ($picture);
     }
-
     function addConvo($idChat){
         $this->load->dbforge();
         $fields = array(

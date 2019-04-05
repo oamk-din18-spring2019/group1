@@ -1,6 +1,6 @@
 <?php
 include ("./config.php");
-$query = "SELECT * FROM chatroom";
+$query = "SELECT * FROM c4";
 $run = mysqli_query($con,$query);
 while ($row = mysqli_fetch_array($run)){
 ?>
@@ -22,8 +22,8 @@ while ($row = mysqli_fetch_array($run)){
 }
 </style>
 <p>
-<span class="name"> <?php echo $row['name']." :      "; ?></span>
-<span class="message"><?php echo $row['message']; ?></span>
+<span class="name"> <?php echo $row['username']." :      "; ?></span>
+<span class="message"><?php echo $row['content']; ?></span>
 <span class="time text-right"> <?php echo $row['time']; ?></span>
 </p>
  <?php }
