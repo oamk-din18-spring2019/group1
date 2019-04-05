@@ -59,12 +59,17 @@ class User extends CI_Controller
         $db_password = $this->User_model->getPassword($givenUsername);
         //verify the password
         if (password_verify($givenPassword, $db_password)) {
+            //session_start();
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $givenUsername;
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $data['message'] = "Succesful";
-            // $this->load->view('user/profile');
-            header('location:profile');
+
+            $data['page'] = 'user/dashboard';
+            $data['activeFriends'] = $this->User_model->activeFriends();
+            $this->load->view('templates/content', $data);
+
+
         } else {
             $_SESSION['logged_in'] = false;
             $data['messagePassword']="Wrong password or username";
@@ -75,17 +80,13 @@ class User extends CI_Controller
         // $this->load->view('templates/content',$data);
     }
 
-    public function profile()
-    {
-        // if ($currentUser === $logIn){
-        //     //if the user is opening his/her own page, load page with all the content
-        // }else{
-        //     //if not, open the same page but hide some personal content
-        // }
-        // $user = $this->User_model->profile();
-        // $data['username'] = $user['username'];
-        // $data['dateOfEntry'] = $user['DoR'];
-        // print_r($_SESSION);
+   
+
+    public function chat($username){
+        $data['username'] = $username;
+        $currentUser = $_SESSION['username'];
+        $data['idChat'] = $this->User_model->openConvo($currentUser, $username);
+        $this->load->view('user/chat/chat_screen', $data);
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
             $_SESSION['time'] = $this->User_model->getDate($_SESSION['username']);
             $this->load->view('user/profile/profile');
@@ -96,13 +97,6 @@ class User extends CI_Controller
 
 
     }
-    public function chat($username){
-        $data['username'] = $username;
-        //$this->load->view('user/chat/chat_screen', $data);
-
-    }
-
-
     # Search engine
 
     public function search()
