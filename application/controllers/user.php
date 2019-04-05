@@ -80,13 +80,14 @@ class User extends CI_Controller
         // $this->load->view('templates/content',$data);
     }
 
-   
-
     public function chat($username){
         $data['username'] = $username;
         $currentUser = $_SESSION['username'];
         $data['idChat'] = $this->User_model->openConvo($currentUser, $username);
         $this->load->view('user/chat/chat_screen', $data);
+    }
+    
+    public function profile(){
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
             $_SESSION['time'] = $this->User_model->getDate($_SESSION['username']);
             $this->load->view('user/profile/profile');
