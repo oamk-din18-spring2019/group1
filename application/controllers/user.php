@@ -99,7 +99,7 @@ class User extends CI_Controller
     public function chat($username){
         $data['username'] = $username;
         //$this->load->view('user/chat/chat_screen', $data);
-        
+
     }
 
 
@@ -107,6 +107,7 @@ class User extends CI_Controller
 
     public function search()
     {
+        $this->load->view('user/profile/headerProfile');
         $this->load->view('user/search/search');
         $data['cari'] = $this->Search_model->cariTest();
         $this->load->view('user/search/searchresult', $data);
