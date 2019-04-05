@@ -9,7 +9,7 @@ class User extends CI_Controller
         $this->load->model('Search_model');
         if (!empty($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
       } else{
-        //   $this->load->view("user/login/login"); 
+        //   $this->load->view("user/login/login");
         // redirect("main_page");
         header('location:access_denied');
         }
@@ -92,7 +92,7 @@ function access_denied(){
     }
 
 
-   
+
 
     public function chat($username){
         $data['username'] = $username;
@@ -116,6 +116,7 @@ function access_denied(){
         $this->load->view('user/search/search');
         $data['cari'] = $this->Search_model->cariTest();
         $this->load->view('user/search/searchresult', $data);
+        $this->load->view('user/profile/footerProfile');
     }
 
     function settings(){
@@ -123,6 +124,13 @@ function access_denied(){
         $this -> load -> view("settings/settings");
         $this -> load -> view ('user/profile/footerProfile');
     }
+
+    function profile() {
+      $this -> load -> view ('user/profile/headerProfile');
+      $this -> load -> view('user/profile/profile');
+      $this -> load -> view ('user/profile/footerProfile');
+    }
+
     public function do_upload()
     {
             $config['upload_path']          = './images/';
