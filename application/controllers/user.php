@@ -67,7 +67,8 @@ class User extends CI_Controller
             header('location:profile');
         } else {
             $_SESSION['logged_in'] = false;
-            echo "Something went wrong";
+            $data['messagePassword']="Wrong password or username";
+            $this->load->view('user/login/login', $data);
         }
 
         // $data['page']='users/';
@@ -120,9 +121,9 @@ class User extends CI_Controller
     {
             $config['upload_path']          = './images/';
             $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 3000;
-            $config['max_width']            = 1024;
-            $config['max_height']           = 1024;
+            $config['max_size']             = 5000;
+            $config['max_width']            = 2024;
+            $config['max_height']           = 2024;
 
             $this->load->library('upload', $config);
             echo($this->upload->data('file_name'));
@@ -131,12 +132,19 @@ class User extends CI_Controller
             {
                   echo "success!";
                   $_SESSION['image']=$this->User_model->setUpPicture($_SESSION['username'],$this->upload->data('file_name'));
-                // =data('file_name');
                 redirect('user/profile/profile');
             }
             else
             {
-               echo("error");
+               $data['messageSettings']="The file is too big";
+               $this -> load -> view ('user/profile/headerProfile');
+               $this -> load -> view("settings/settings",$data);
+               $this -> load -> view ('user/profile/footerProfile');
+
             }
+    }
+    function logout(){
+        $_SESSION['logged_in']=false;
+        redirect(site_url("main_page"));
     }
 }

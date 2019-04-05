@@ -21,8 +21,9 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#">ProjectD</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Profile</a></li>
+    
+    <ul class="nav navbar-nav float-right">
+      <li class="active"><a href='logout'>Logout</a></li>
     </ul>
   </div>
 </nav>
