@@ -1,4 +1,4 @@
-<?php include("headerProfile.php") ?>
+
 <!-- Your profile is here
 Hello  -->
 <div class="container mt-4">
@@ -57,5 +57,3 @@ Hello  -->
         </div>
     </div>
 </div>
-
-<?php include("footerProfile.php") ?>
