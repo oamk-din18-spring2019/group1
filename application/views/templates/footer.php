@@ -1,25 +1,27 @@
- <footer class="page-footer font-small black pt-0">
-    <div class="white-color">
-      <div class="container">
+ <footer class="page-footer font-small  mt-0">
+    <div class="text-black">
+      <div class="container ">
         <div class="row py-4 d-flex align-items-center">
           <div class="col-md-6 col-lg-5 text-center text-md-left mb-0 mb-md-0">
-            <h6 class="mb-0 white-text "> Get connected with us on social networks!</h6>
+            <h6 class="mb-0 white "> Get connected with us on social networks!</h6>
           </div>
           <div class="col-md-6 col-lg-7 text-center text-md-right">
             <a href="" class="fb-ic ml-0">
-              <i class="fab fa-facebook-f white-text mr-4"></i>
+              <i class="fab fa-facebook-f  mr-4"></i>
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="" class=" ml-0">
+              <i class="fab fa-instagram  mr-4"></i>
             </a>
             <a href="" class="fb-ic ml-0">
-              <i class="fab fa-instagram white-text mr-4"></i>
-            </a>
-            <a href="" class="fb-ic ml-0">
-              <i class="fab fa-github white-text mr-4"></i>
+              <i class="fab fa-github  mr-4"></i>
             </a>
           </div>
         </div>
       </div>
     </div>
-    <div class="container mt-5 mb-0 text-center text-md-left">
+    <div class="black pt-2">
+    <div class="container mt-5 mb-0 text-center text-md-left ">
       <div class="row mt-3">
         <div class="col-md-3 col-lg-4 col-xl-3 mb-0">
           <h6 class="text-uppercase font-weight-bold">
@@ -57,6 +59,7 @@
              <p> <i class="fas fa-home"></i> That's it for the information, what else do you want from us? </p>
         </div>
       </div>
+    </div>
     </div>
   </footer>
   <!-- /Start your project here-->
