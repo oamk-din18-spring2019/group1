@@ -1,5 +1,5 @@
- <footer class="page-footer font-small  mt-0">
-    <div class="text-black">
+ <footer class=" font-small  mt-0">
+    <!-- <div class="text-black">
       <div class="container ">
         <div class="row py-4 d-flex align-items-center">
           <div class="col-md-6 col-lg-5 text-center text-md-left mb-0 mb-md-0">
@@ -19,15 +19,15 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="black pt-2">
+    </div> -->
+    <div class=" pt-2 " >
     <div class="container mt-5 mb-0 text-center text-md-left ">
       <div class="row mt-3">
         <div class="col-md-3 col-lg-4 col-xl-3 mb-0">
           <h6 class="text-uppercase font-weight-bold">
            <strong>Our group</strong> 
           </h6>
-          <hr class="deep-purple accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <hr class="hr-footer accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p>This project is based on an idea of a meme, hopefully you enjoy it. Have a nice visit!</p>
 
         </div>
@@ -35,7 +35,7 @@
           <h6 class="text-uppercase font-weight-bold">
             <strong>Group members</strong>
           </h6>
-          <hr class="deep-purple accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <hr class="hr-footer accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p> <a href="">Nam</a></p>
           <p> <a href="">Dmitrii</a></p>
           <p> <a href="">Nursultan</a></p>
@@ -45,7 +45,7 @@
           <h6 class="text-uppercase font-weight-bold">
             <strong>Links</strong>
           </h6>
-          <hr class="deep-purple accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <hr class="hr-footer accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
           <p> <a href="">Acount</a></p>
           <p> <a href="">Help</a></p>
         </div>
@@ -53,7 +53,7 @@
           <h6 class="text-uppercase font-weight-bold">
            <strong>Contact</strong> 
           </h6>
-          <hr class="deep-purple accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
+          <hr class="hr-footer accent-2 mb-0 mt-0 d-inline-block mx-auto" style="width: 60px;">
              <p> <i class="fas fa-home"></i> Oulu</p>
              <p> <i class="fas fa-home"></i> info@gmail.com</p>
              <p> <i class="fas fa-home"></i> That's it for the information, what else do you want from us? </p>
