@@ -18,8 +18,15 @@ html,body,header,#intro{
     color: black;
 }
 .black{
-background-color: black;
-color: white;
+background-color: white;
+color: black;
+}
+.hr-footer
+{
+    background-color: black;
+}
+.loginButtonText{
+    font-size: 120%;
 }
 
 #contact{
@@ -42,10 +49,11 @@ a{
 nav{
     background-color: black;
 }
-.v{
-  background-color: #35E2DF;
+/* .loginButton{
+  background-color: white;
   color:black;
-}
+  font-size: 130%;
+} */
 .top-nav-collapse
 {
     background-color: black;
