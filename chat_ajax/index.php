@@ -21,12 +21,12 @@ textarea{
 
 
 <script>
-console.log('<?php echo $_GET['idChat'] ?>')
+//console.log('<?php //echo $_GET['idChat'] ?>')
 $(document).ready(function(e){
     function displayChat(){
         $.ajax({
-            url:'displayChat.php',
-            type: 'POST',
+            url:'displayChat.php?idChat=<?php echo $_GET['idChat'] ?>',
+            type: 'GET',
             success: function(data){
                 $("#chatDisplay").html(data);
             }
@@ -37,14 +37,16 @@ $(document).ready(function(e){
 
     $('#sendMessageBtn').click(function(e){
         var message = $("#message").val();
-        var username = '<?php echo $_GET['username'] ?>'
+        var username = '<?php echo $_GET['username'] ?>';
+        var idChat = '<?php echo $_GET['idChat'] ?>'
         $("#myChatForm")[0].reset();
         $.ajax({
             url:'sendChat.php',
-            type:'POST',
+            type:'GET',
             data:{
                 umessage:message,
-                username: username
+                username:username,
+                idChat: idChat,
             }
         });
     });
