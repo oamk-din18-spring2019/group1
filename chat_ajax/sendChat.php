@@ -1,8 +1,8 @@
 <?php
 include("./config.php");
-$uname = $_SESSION['uname'];
+$uname = $_POST['username'];
 $umessage = $_POST['umessage'];
 echo $umessage;
-$query="INSERT INTO c4 (username,content,time) VALUES ('$uname','$umessage',current_time())";
+$query="INSERT INTO ".$idChat." (username,content,time) VALUES ('$uname','$umessage',current_time())";
 $run = mysqli_query($con,$query);
 ?>

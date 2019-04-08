@@ -18,32 +18,34 @@ textarea{
     width:80%;
 }
 </style>
+
+
 <script>
+console.log('<?php echo $_GET['idChat'] ?>')
 $(document).ready(function(e){
     function displayChat(){
+        $.ajax({
+            url:'displayChat.php',
+            type: 'POST',
+            success: function(data){
+                $("#chatDisplay").html(data);
+            }
+        });
+    }
+    displayChat();
+    setInterval(function(){displayChat();},1000);
 
-    
-    $.ajax({
-        url:'displayChat.php',
-        type: 'POST',
-        success: function(data){
-            $("#chatDisplay").html(data);
-        }
-    });
-}
-displayChat();
-setInterval(function(){displayChat();},1000);
     $('#sendMessageBtn').click(function(e){
-        var name = $("#user_name").val();
         var message = $("#message").val();
+        var username = '<?php echo $_GET['username'] ?>'
         $("#myChatForm")[0].reset();
         $.ajax({
             url:'sendChat.php',
             type:'POST',
             data:{
-                umessage:message
+                umessage:message,
+                username: username
             }
-
         });
     });
 });

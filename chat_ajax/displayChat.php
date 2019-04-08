@@ -1,6 +1,6 @@
 <?php
 include ("./config.php");
-$query = "SELECT * FROM c4";
+$query = "SELECT * FROM ".$idChat;
 $run = mysqli_query($con,$query);
 while ($row = mysqli_fetch_array($run)){
 ?>
