@@ -8,6 +8,8 @@
 <script type=text/JavaScript>
     document.getElementById('chatScreen').innerHTML='<object type=text/html data=<?php echo base_url('chat_ajax').'?idChat='.$idChat.'&username='.$_SESSION['username'] ?> ></object>'
     window.onload = () =>{
-        window.location.reload();
+        if ('<?php echo $idChat ?>'=='c') {
+            window.location.reload();
+        }
     }
 </script>
