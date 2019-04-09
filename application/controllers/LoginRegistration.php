@@ -58,7 +58,7 @@ public function login()
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $data['message'] = "Succesful";
             // $this->load->view('user/profile');
-            redirect('User/profile');
+            redirect('User/');
         } else {
             $_SESSION['logged_in'] = false;
             $data['messagePassword']="Wrong password or username";
