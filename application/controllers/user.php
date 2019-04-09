@@ -72,6 +72,14 @@ class User extends CI_Controller
       $this -> load -> view ('user/profile/footerProfile');
     }
 
+
+    function others_profile() {
+      $this -> load -> view ('user/profile/headerProfile');
+      $this -> load -> view('user/others_profile');
+      $this -> load -> view ('user/profile/footerProfile');
+    }
+
+
     public function getCategories()
     {
         $data["categories"] = $this->User_model->getCategories();
@@ -81,7 +89,7 @@ class User extends CI_Controller
     public function chooseCategories()
     {
         $insert_data = array(
-            'idUser' => '1',
+            'idUser' => $this->input->post($_SESSION['idUser']),
             'culture'=> $this->input->post('culture'),
             'science'=> $this->input->post('science'),
             'technology'=> $this->input->post('technology'),
@@ -94,7 +102,7 @@ class User extends CI_Controller
             'history'=> $this->input->post('history')
         );
         $this->User_model->addPreferredCategories($insert_data);
-
+    }
     public function do_upload()
     {
             $config['upload_path']          = './images/';
