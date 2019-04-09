@@ -16,8 +16,6 @@
   <link href="<?php echo base_url('bst/css/style.css')?>" rel="stylesheet">
 </head>
 
-<<<<<<< HEAD
-=======
 <body>
 
   <!-- Start your project here-->
@@ -54,4 +52,3 @@
       </div>
     </div>
   </nav>
->>>>>>> master

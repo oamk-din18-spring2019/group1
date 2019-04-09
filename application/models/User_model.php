@@ -26,26 +26,6 @@ class User_model extends CI_Model{
         $this->db->where('username',$givenUsername);
         return $this->db->get()->row('passwd');
     }
-<<<<<<< HEAD
-    public function getCategories()
-    {
-        return $this->db->list_fields('categories');
-    }
-    public function addPreferredCategories($insertdata)
-    {
-        $this->db->insert('categories', $insertdata);
-        return $this->db->affected_rows();
-    }
-    public function addInterest($interests)
-    {
-        $this->db->
-        $this->db->insert('categories', $interests);
-        return $this->db->affected_rows();
-
-    }
-
-}
-=======
     public function openConvo($username1, $username2){
         //look up id of 2 usernames
         $idUser1 = $this->db->get_where('projectd.users', array('username' => $username1))->row_array()['idUser'];
@@ -105,7 +85,23 @@ class User_model extends CI_Model{
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table($idChat, true);
     }
+    
+    public function getCategories()
+    {
+        return $this->db->list_fields('categories');
+    }
+    public function addPreferredCategories($insertdata)
+    {
+        $this->db->insert('categories', $insertdata);
+        return $this->db->affected_rows();
+    }
+    public function addInterest($interests)
+    {
+        $this->db->
+        $this->db->insert('categories', $interests);
+        return $this->db->affected_rows();
+
+    }
 
     
 }
->>>>>>> master
