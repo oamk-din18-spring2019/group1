@@ -85,7 +85,7 @@ class User_model extends CI_Model{
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table($idChat, true);
     }
-    
+
     public function getCategories()
     {
         return $this->db->list_fields('categories');
@@ -103,14 +103,12 @@ class User_model extends CI_Model{
     }
     public function getIdUser($name)
     {
-        // $this->db->select('idUser');
-        // $this->db->from('users');
-        // $this->db->where('username',$name);
-        // return $this->db->get()->row('idUser');
+      $this->db->select('idUser');
+      $this->db->from('users');
+      $this->db->where('username',$name);
+      return $this->db->get()->row('idUser');
         // return $this->db->query('select idUser from users')->result_array();
-        $data=$this->User_model->profile($name);
-        return $data['idUser'];
     }
 
-    
+
 }
