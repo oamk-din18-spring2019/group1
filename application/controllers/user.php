@@ -14,9 +14,9 @@ class User extends CI_Controller
         header('location:access_denied');
         }
     }
-function access_denied(){
-    redirect("LoginRegistration/login");
-}
+    function access_denied(){
+        redirect("LoginRegistration/login");
+    }
     public function index()
     {
         $data['activeFriends'] = $this->User_model->activeFriends();
@@ -72,6 +72,29 @@ function access_denied(){
       $this -> load -> view ('user/profile/footerProfile');
     }
 
+    public function getCategories()
+    {
+        $data["categories"] = $this->User_model->getCategories();
+        $this->load->view("user/login/questionnaire", $data);
+    }
+
+    public function chooseCategories()
+    {
+        $insert_data = array(
+            'idUser' => '1',
+            'culture'=> $this->input->post('culture'),
+            'science'=> $this->input->post('science'),
+            'technology'=> $this->input->post('technology'),
+            'fashion'=> $this->input->post('fashion'),
+            'lifestyle'=> $this->input->post('lifestyle'),
+            'politics'=> $this->input->post('politics'),
+            'art'=> $this->input->post('art'),
+            'culinary'=> $this->input->post('culinary'),
+            'education'=> $this->input->post('education'),
+            'history'=> $this->input->post('history')
+        );
+        $this->User_model->addPreferredCategories($insert_data);
+
     public function do_upload()
     {
             $config['upload_path']          = './images/';
@@ -103,3 +126,4 @@ function access_denied(){
         redirect(site_url("main_page"));
     }
 }
+        

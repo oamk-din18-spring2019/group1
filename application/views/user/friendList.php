@@ -5,27 +5,21 @@
 <div class="container">
     <h2>Your Friends:</h2>
 </div>
-<div class="container friendList">
-    <table>
-        <?php 
-            foreach ($friends as $row)
-            {
-                echo '<tr>';
-                    echo '<td>'.'<a href="<?php echo site_url(#)"'.$row['username'].'</a>'.'</td>';
-                    echo '<td><a href="'.site_url('#').$row['idUser'].'">DELETE</a></td>';
-                echo '</tr>';
-            }
-        ?>
-    </table>
+<div class="container" id="friendList">
     <ul>
-        <li> <a href=" <?php echo site_url('#'); ?>">Someone</a> </li>
-        <li> <a href=" <?php echo site_url('#'); ?>">Someone1</a> </li>
-        <li> <a href=" <?php echo site_url('#'); ?>">Someone2</a> </li>
-        <li> <a href=" <?php echo site_url('#'); ?>">Someone3</a> </li>
-        <li> <a href=" <?php echo site_url('#'); ?>">Someone4</a> </li>
-        <li> <a href=" <?php echo site_url('#'); ?>">Someone5</a> </li>
+        <script>
+            let friends = <?php echo json_encode($friends);?>;
+            friends.map(f => document.getElementById('friendList').innerHTML += `<li><a target=_blank href="<?php  echo site_url('user/profile/profileHeader')?>/${f.username}" >${f.username}</a></li>`);
+        </script>
     </ul>
-
+</div>
+<div id=activeFriends>
+    <ul>
+    <script>
+        let activeFriends = <?php echo json_encode($activeFriends);?>;
+        activeFriends.map(f => document.getElementById('activeFriends').innerHTML += `<li><a target=_blank href="<?php echo site_url('user/chat')?>/${f.username}" >${f.username}</a></li>`);
+    </script>
+    </ul>
 </div>
 
 <!-- footer -->
