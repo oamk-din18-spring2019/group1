@@ -80,5 +80,6 @@ class User_model extends CI_Model{
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table($idChat, true);
     }
-}  
 
+    
+}
