@@ -64,8 +64,5 @@ public function login()
             $data['messagePassword']="Wrong password or username";
             $this->load->view('user/login/login', $data);
         }
-
-        // $data['page']='users/';
-        // $this->load->view('templates/content',$data);
     }
 }
