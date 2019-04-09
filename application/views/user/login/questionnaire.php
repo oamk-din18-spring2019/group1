@@ -37,25 +37,25 @@
   <div class="card-body px-lg-5 pt-0">
 
     <!-- Form starts-->
-    <form class="text-left" method="POST" action="chooseCategories"> 
+    <form class="text-left" method="POST" action="chooseCategories">
         <?php
             for ($i=1;$i<count($categories); $i++)
               {
-                echo "<div class='custom-control custom-checkbox'>";              
+                echo "<div class='custom-control custom-checkbox'>";
                 echo '<input name="'.$categories[$i].'" id="customCheck" class="custom-control-input" type="hidden" value=0 checked>';
                 echo '<input name="'.$categories[$i].'" id="customCheck'.$i.'" class="custom-control-input" type="checkbox" value=1>';
-                
+
                 echo '<label for="customCheck'.$i.'" class="custom-control-label">'.$categories[$i].'</label> <br>';
                 echo '</div>';
-              }          
+              }
               echo 'current user Id: '.$_SESSION['idUser'];
-        ?> 
+        ?>
         <input type="submit" class="btn btn-success">
     </form>
     <!-- Form ends-->
 
   </div>
-      <!-- <?php 
+      <!-- <?php
       if(isset($message))
       {
          echo" <div class='col-md-12 text-center text-white bg-info mb-0'>".$message." </div>";
