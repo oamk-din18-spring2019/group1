@@ -4,6 +4,11 @@ class User_model extends CI_Model{
         parent::__construct();
         $this->load->database();
     }
+
+    public function friends()
+    {
+        return $this->db->query('select username from projectd.users')->result_array();
+    }
     public function activeFriends(){
         return $this->db->query('select username from projectd.users')->result_array();
     }
@@ -11,4 +16,32 @@ class User_model extends CI_Model{
         $query = $this->db->get_where('projectd.users', array('username' => $username));
         return $query->row_array();
     }
+    public function add_user($insert_data){
+        $this->load-> database();
+        $this->db->insert('users',$insert_data);
+        return $this->db->affected_rows();
+    }
+    public function getPassword($givenUsername){
+        $this->db->select('passwd');
+        $this->db->from('users');
+        $this->db->where('username',$givenUsername);
+        return $this->db->get()->row('passwd');
+    }
+    public function getCategories()
+    {
+        return $this->db->list_fields('categories');
+    }
+    public function addPreferredCategories($insertdata)
+    {
+        $this->db->insert('categories', $insertdata);
+        return $this->db->affected_rows();
+    }
+    public function addInterest($interests)
+    {
+        $this->db->
+        $this->db->insert('categories', $interests);
+        return $this->db->affected_rows();
+
+    }
+
 }
