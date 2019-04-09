@@ -23,14 +23,14 @@ function access_denied(){
         $data['page'] = 'user/dashboard';
         $this->load->view('templates/content', $data);
     }
-  
+
     public function chat($username){
         $data['username'] = $username;
         $currentUser = $_SESSION['username'];
         $data['idChat'] = $this->User_model->openConvo($currentUser, $username);
         $this->load->view('user/chat/chat_screen', $data);
     }
-    
+
      # Search engine
 
     public function search()
@@ -46,6 +46,24 @@ function access_denied(){
         $this -> load -> view ('user/profile/headerProfile');
         $this -> load -> view("settings/settings");
         $this -> load -> view ('user/profile/footerProfile');
+    }
+
+    public function changePassword() {
+      $this -> load -> view ('user/profile/headerProfile');
+      $this -> load -> view('settings/changePassword');
+      $this -> load -> view ('user/profile/footerProfile');
+    }
+
+    public function ch_Passwd() {
+        if ($this->input->post('new_password')==$this->input->post('confirm_password')){
+          $hashedPassword = password_hash($this->input->post('new_password'), PASSWORD_DEFAULT);
+          $update_data = array(
+            "passwd" => $hashedPassword
+          );
+        $this->db->update('users',$update_data);
+        redirect('user/profile');
+      }
+      else {redirect('user/profile');}
     }
 
     function profile() {
