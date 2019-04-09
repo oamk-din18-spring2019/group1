@@ -94,7 +94,7 @@ class User extends CI_Controller
             'history'=> $this->input->post('history')
         );
         $this->User_model->addPreferredCategories($insert_data);
-
+      }
     public function do_upload()
     {
             $config['upload_path']          = './images/';
