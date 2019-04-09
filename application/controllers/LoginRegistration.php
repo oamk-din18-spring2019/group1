@@ -54,10 +54,10 @@ public function login()
         //verify the password
         if (password_verify($givenPassword, $db_password)) {
             $_SESSION['logged_in'] = true;
-            $_SESSION['idUser'] = $this->User_model->getIdUser($givenUsername);
             $_SESSION['username'] = $givenUsername;
             $_SESSION['time']= $this->User_model->getDate($givenUsername);
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
+            $_SESSION['idUser']=$this->User_model->getIdUser($givenUsername);
             $data['message'] = "Succesful";
             // $this->load->view('user/profile');
             redirect('User/profile');
