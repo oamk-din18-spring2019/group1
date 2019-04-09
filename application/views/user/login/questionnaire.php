@@ -37,8 +37,8 @@
   <div class="card-body px-lg-5 pt-0">
 
     <!-- Form starts-->
-    <form class="text-left" method="POST" action="chooseCategories" style=""> 
-          <?php
+    <form class="text-left" method="POST" action="chooseCategories"> 
+        <?php
             for ($i=1;$i<count($categories); $i++)
               {
                 echo "<div class='custom-control custom-checkbox'>";              
@@ -48,7 +48,8 @@
                 echo '<label for="customCheck'.$i.'" class="custom-control-label">'.$categories[$i].'</label> <br>';
                 echo '</div>';
               }          
-          ?> 
+              echo 'current user Id: '.$_SESSION['idUser'];
+        ?> 
         <input type="submit" class="btn btn-success">
     </form>
     <!-- Form ends-->
