@@ -72,6 +72,14 @@ class User extends CI_Controller
       $this -> load -> view ('user/profile/footerProfile');
     }
 
+
+    function others_profile() {
+      $this -> load -> view ('user/profile/headerProfile');
+      $this -> load -> view('user/others_profile');
+      $this -> load -> view ('user/profile/footerProfile');
+    }
+
+
     public function getCategories()
     {
         $data["categories"] = $this->User_model->getCategories();
