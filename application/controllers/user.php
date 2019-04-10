@@ -19,7 +19,7 @@ class User extends CI_Controller
     }
     public function index()
     {
-        $data['activeFriends'] = $this->User_model->activeFriends();
+        $data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
         $data['page'] = 'user/dashboard';
         $this->load->view('templates/content', $data);
     }
@@ -131,7 +131,7 @@ class User extends CI_Controller
     }
 
     public function test(){
-      $data['test'] = $this->User_model->verifyCookie('Nam', '3jUoTDwucv');
+      $data['test'] = $this->User_model->verifyCookie($_COOKIE['username'], $_COOKIE['verification']);
       $this->load->view('test', $data);
     }
 }

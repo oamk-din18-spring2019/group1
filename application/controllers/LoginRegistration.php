@@ -8,7 +8,7 @@ class LoginRegistration extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Search_model');
     }
-public function login()
+    public function login()
     {
         $this->load->view('user/login/login');
     }
@@ -63,12 +63,11 @@ public function login()
             //check if user wants to automatically log in 
             if ($this->input->post('rememberMe') == 'on'){
                 $veriKey = $this->generateKey();
-                setcookie('username', $_SESSION['username'], time() + 365*24*60*60);
-                setcookie('key', $veriKey, time() + 365*24*60*60);
+                $this->input->set_cookie('username', $_SESSION['username'], 365*24*60*60);
+                $this->input->set_cookie('verification', $veriKey, 365+24*60*60);
                 $this->User_model->addCookie($_SESSION['username'], $veriKey);
-                redirect('user');
             }
-            //redirect('User/getCategories');
+            redirect('user');
 
         } else {
             $_SESSION['logged_in'] = false;
@@ -78,6 +77,8 @@ public function login()
     }
     function logout(){
         $_SESSION['logged_in']=false;
+        delete_cookie('username');
+        delete_cookie('verification');
         $this->User_model->removeCookie($_SESSION['username']);
         redirect(site_url("main_page"));
     }
