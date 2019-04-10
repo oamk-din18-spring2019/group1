@@ -117,7 +117,8 @@ class User_model extends CI_Model{
     public function removeCookie($username){
         $this->db->query("delete from projectd.sessions where username='$username'");
     }
-    public function verifyCookie(){
-        
+    public function verifyCookie($username, $key){
+        $result = $this->db->query("select verification from projectd.sessions where username = '$username'");
+        return $result->result()[0]->verification === $key ? 'true' : 'false';
     }
 }

@@ -20,6 +20,10 @@ class Main_page extends CI_Controller {
 	 */
 	public function index()
 	{
+		//check the cookie first
+		//if it matches with the one stored in the server, load the dashboard
+		
+		//if not, load the main page
 		$data['page'] = 'user/mainpage';
 		$this->load->view('templates/content', $data);
 	}

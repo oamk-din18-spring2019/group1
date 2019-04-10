@@ -106,29 +106,33 @@ class User extends CI_Controller
     }
     public function do_upload()
     {
-            $config['upload_path']          = './images/';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 5000;
-            $config['max_width']            = 2024;
-            $config['max_height']           = 2024;
+      $config['upload_path']          = './images/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 5000;
+      $config['max_width']            = 2024;
+      $config['max_height']           = 2024;
 
-            $this->load->library('upload', $config);
-            echo($this->upload->data('file_name'));
+      $this->load->library('upload', $config);
+      echo($this->upload->data('file_name'));
 
-            if ( $this->upload->do_upload('userfile') )
-            {
-                  echo "success!";
-                  $_SESSION['image']=$this->User_model->setUpPicture($_SESSION['username'],$this->upload->data('file_name'));
-                redirect('user/profile/profile');
-            }
-            else
-            {
-               $data['messageSettings']="The file is too big";
-               $this -> load -> view ('user/profile/headerProfile');
-               $this -> load -> view("settings/settings",$data);
-               $this -> load -> view ('user/profile/footerProfile');
+      if ( $this->upload->do_upload('userfile') )
+      {
+            echo "success!";
+            $_SESSION['image']=$this->User_model->setUpPicture($_SESSION['username'],$this->upload->data('file_name'));
+          redirect('user/profile/profile');
+      }
+      else
+      {
+          $data['messageSettings']="The file is too big";
+          $this -> load -> view ('user/profile/headerProfile');
+          $this -> load -> view("settings/settings",$data);
+          $this -> load -> view ('user/profile/footerProfile');
+      }
+    }
 
-            }
+    public function test(){
+      $data['test'] = $this->User_model->verifyCookie('Nam', '3jUoTDwucv');
+      $this->load->view('test', $data);
     }
 }
         
