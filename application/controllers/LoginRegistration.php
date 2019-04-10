@@ -60,14 +60,13 @@ public function login()
             $_SESSION['idUser']=$this->User_model->getIdUser($givenUsername);
             $data['message'] = "Succesful";
             // $this->load->view('user/profile');
+
             redirect('User/getCategories');
+
         } else {
             $_SESSION['logged_in'] = false;
             $data['messagePassword']="Wrong password or username";
             $this->load->view('user/login/login', $data);
         }
-
-        // $data['page']='users/';
-        // $this->load->view('templates/content',$data);
     }
 }
