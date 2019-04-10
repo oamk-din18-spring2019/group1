@@ -63,9 +63,16 @@ public function login()
             $_SESSION['admin']=$admin;
             $data['message'] = "Succesful";
             // $this->load->view('user/profile');
-            if ($admin==false) {redirect('User/getCategories');}
-            if ($admin==true) {redirect('user/admin');}
 
+            if ($admin==false) {
+              if (  $this->User_model->getPreferredCategories($_SESSION['idUser'])){
+                  redirect('User/index');
+              } else {
+                  redirect('User/getCategories');
+              }
+            }
+            if ($admin==true) {redirect('user/admin');}
+   
         } else {
             $_SESSION['logged_in'] = false;
             if ($active==false) {
