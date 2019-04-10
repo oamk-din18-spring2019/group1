@@ -20,6 +20,7 @@
       background-size: 100% 100%;
     }
   </style>
+  
 </head>
 
 <body>
@@ -69,4 +70,6 @@
   <script type="text/javascript" src="<?php echo base_url('bst/js/bootstrap.min.js')?>"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="<?php echo base_url('bst/js/mdb.js')?>"></script>
+  
+
 <!-- Material form login -->

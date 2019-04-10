@@ -107,8 +107,13 @@ class User_model extends CI_Model{
         $this->db->from('users');
         $this->db->where('username',$name);
         return $this->db->get()->row('idUser');
-        // return $this->db->query('select idUser from users')->result_array();
     }
+    public function getPreferredCategories($id)
+    {
+        return $this->db->query("select * from categories where idUser=$id")->result_array();
+    }
+
+    
 
 
 }

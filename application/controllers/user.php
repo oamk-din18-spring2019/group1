@@ -21,7 +21,11 @@ class User extends CI_Controller
     {
         $data['activeFriends'] = $this->User_model->activeFriends();
         $data['page'] = 'user/dashboard';
+        $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+        $data["categories"] = $this->User_model->getCategories();
         $this->load->view('templates/content', $data);
+       
+        // $this->load->view('User/index', $data);
     }
 
     public function chat($username){
@@ -88,8 +92,11 @@ class User extends CI_Controller
 
     public function chooseCategories()
     {
-
-        $insert_data = array(
+        //$preferredCategories = getPreferredCategories($_SESSION['idUser']);
+        //$filteredCategories = array_filter($preferredCategories, NULL);
+        // if ( $preferredCategories )
+        // {
+          $insert_data = array(
             'idUser' => $_SESSION['idUser'],
             'culture'=> $this->input->post('culture'),
             'science'=> $this->input->post('science'),
@@ -101,9 +108,16 @@ class User extends CI_Controller
             'culinary'=> $this->input->post('culinary'),
             'education'=> $this->input->post('education'),
             'history'=> $this->input->post('history')
-        );
+          );
+        // }
         $this->User_model->addPreferredCategories($insert_data);
         redirect('User/index');
+    }
+    public function showPreferredCategories()
+    {
+        $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+        $data["categories"] = $this->User_model->getCategories();
+        $this->load->view('User/index', $data);
     }
     public function do_upload()
     {
