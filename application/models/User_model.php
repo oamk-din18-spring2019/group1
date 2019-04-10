@@ -103,10 +103,10 @@ class User_model extends CI_Model{
     }
     public function getIdUser($name)
     {
-      $this->db->select('idUser');
-      $this->db->from('users');
-      $this->db->where('username',$name);
-      return $this->db->get()->row('idUser');
+        $this->db->select('idUser');
+        $this->db->from('users');
+        $this->db->where('username',$name);
+        return $this->db->get()->row('idUser');
         // return $this->db->query('select idUser from users')->result_array();
     }
 
