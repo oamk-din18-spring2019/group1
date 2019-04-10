@@ -3,6 +3,11 @@ class User_model extends CI_Model{
     public function __construct(){
         parent::__construct();
     }
+
+    public function friends()
+    {
+        return $this->db->query('select username from projectd.users')->result_array();
+    }
     public function activeFriends(){
         return $this->db->query('select username from projectd.users')->result_array();
     }
@@ -80,5 +85,30 @@ class User_model extends CI_Model{
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table($idChat, true);
     }
-}  
 
+    public function getCategories()
+    {
+        return $this->db->list_fields('categories');
+    }
+    public function addPreferredCategories($insertdata)
+    {
+        $this->db->insert('categories', $insertdata);
+        return $this->db->affected_rows();
+    }
+    public function addInterest($interests)
+    {
+        $this->db->
+        $this->db->insert('categories', $interests);
+        return $this->db->affected_rows();
+    }
+    public function getIdUser($name)
+    {
+        $this->db->select('idUser');
+        $this->db->from('users');
+        $this->db->where('username',$name);
+        return $this->db->get()->row('idUser');
+        // return $this->db->query('select idUser from users')->result_array();
+    }
+
+
+}
