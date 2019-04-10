@@ -48,7 +48,6 @@
                 echo '<label for="customCheck'.$i.'" class="custom-control-label">'.$categories[$i].'</label> <br>';
                 echo '</div>';
               }
-              echo 'current user Id: '.$_SESSION['idUser'];
         ?>
         <input type="submit" class="btn btn-success">
     </form>
