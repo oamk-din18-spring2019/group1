@@ -110,5 +110,14 @@ class User_model extends CI_Model{
         // return $this->db->query('select idUser from users')->result_array();
     }
 
+    //cookie-related functions
+    public function addCookie($username, $key){
+        $this->db->insert('projectd.sessions', array('username' => $username, 'verification' => $key));
+    }
+    public function removeCookie(){
 
+    }
+    public function verifyCookie(){
+        
+    }
 }

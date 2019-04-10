@@ -59,9 +59,16 @@ public function login()
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $_SESSION['idUser']=$this->User_model->getIdUser($givenUsername);
             $data['message'] = "Succesful";
-            // $this->load->view('user/profile');
 
-            redirect('User/getCategories');
+            //check if user wants to automatically log in 
+            if ($this->input->post('rememberMe') == 'on'){
+                $veriKey = $this->generateKey();
+                setcookie('username', $_SESSION['username'], time() + 365*24*60*60);
+                setcookie('key', $veriKey, time() + 365*24*60*60);
+                $this->User_model->addCookie($_SESSION['username'], $veriKey);
+                redirect('user');
+            }
+            //redirect('User/getCategories');
 
         } else {
             $_SESSION['logged_in'] = false;
@@ -69,4 +76,19 @@ public function login()
             $this->load->view('user/login/login', $data);
         }
     }
+    function logout(){
+        $_SESSION['logged_in']=false;
+        redirect(site_url("main_page"));
+    }
+
+    public function generateKey(){
+      //this will be a 10-character long string for cookie verification
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $charactersLength = strlen($characters);
+      $key = '';
+      for ($i = 0; $i < 10; $i++) {
+          $key .= $characters[rand(0, $charactersLength - 1)];
+      }
+      return $key;
+  }
 }

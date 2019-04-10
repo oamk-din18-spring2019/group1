@@ -130,9 +130,5 @@ class User extends CI_Controller
 
             }
     }
-    function logout(){
-        $_SESSION['logged_in']=false;
-        redirect(site_url("main_page"));
-    }
 }
         

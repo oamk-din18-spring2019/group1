@@ -66,7 +66,7 @@
         <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
           <a class="dropdown-item" href="#">Some Action</a>
           <a class="dropdown-item" href="<?php echo site_url('user/settings'); ?>">Settings</a>
-          <a class="dropdown-item" href="<?php echo site_url('user/logout') ?>">Log out</a>
+          <a class="dropdown-item" href="<?php echo site_url('LoginRegistration/logout') ?>">Log out</a>
         </div>
       </li>
     </ul>
