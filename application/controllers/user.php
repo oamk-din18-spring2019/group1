@@ -134,5 +134,16 @@ class User extends CI_Controller
         $_SESSION['logged_in']=false;
         redirect(site_url("main_page"));
     }
+
+    public function admin() {
+      $this -> load -> view ('user/admin/adminHeader');
+      $this -> load -> view('user/admin/admin');
+      $this -> load -> view ('user/admin/adminFooter');
+    }
+
+    public function ban() {
+      $this -> load -> view ('user/admin/adminHeader');
+      $this -> load -> view('user/admin/ban');
+      $this -> load -> view ('user/admin/adminFooter');
+    }
 }
-        
