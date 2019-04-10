@@ -51,21 +51,29 @@ public function login()
         $givenUsername = $this->input->post('username');
         $givenPassword = $this->input->post('password');
         $db_password = $this->User_model->getPassword($givenUsername);
+        $active = $this->User_model->getActive($givenUsername);
+        $admin = $this->User_model->getAdmin($givenUsername);
         //verify the password
-        if (password_verify($givenPassword, $db_password)) {
+        if (password_verify($givenPassword, $db_password)&&$active==true) {
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $givenUsername;
             $_SESSION['time']= $this->User_model->getDate($givenUsername);
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $_SESSION['idUser']=$this->User_model->getIdUser($givenUsername);
+            $_SESSION['admin']=$admin;
             $data['message'] = "Succesful";
             // $this->load->view('user/profile');
-
-            redirect('User/getCategories');
+            if ($admin==false) {redirect('User/getCategories');}
+            if ($admin==true) {redirect('user/admin');}
 
         } else {
             $_SESSION['logged_in'] = false;
-            $data['messagePassword']="Wrong password or username";
+            if ($active==false) {
+              $data['messagePassword']="You are banned!";
+            }
+            else {
+              $data['messagePassword']="Wrong password or username";
+            }
             $this->load->view('user/login/login', $data);
         }
     }

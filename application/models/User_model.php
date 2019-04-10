@@ -9,6 +9,22 @@ class User_model extends CI_Model{
         return $this->db->query('select * from projectd.users')->result_array();
     }
 
+    public function getActive($name)
+    {
+      $this->db->select('active');
+      $this->db->from('users');
+      $this->db->where('username',$name);
+      return $this->db->get()->row('active');
+    }
+
+    public function getAdmin($name)
+    {
+      $this->db->select('admin');
+      $this->db->from('users');
+      $this->db->where('username',$name);
+      return $this->db->get()->row('admin');
+    }
+
     public function friends()
     {
         return $this->db->query('select username from projectd.users')->result_array();
@@ -114,6 +130,6 @@ class User_model extends CI_Model{
         return $this->db->get()->row('idUser');
         // return $this->db->query('select idUser from users')->result_array();
     }
-
+    
 
 }
