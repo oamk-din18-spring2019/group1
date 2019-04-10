@@ -61,8 +61,12 @@ public function login()
             $data['message'] = "Succesful";
             // $this->load->view('user/profile');
 
-            redirect('User/getCategories');
-
+            if (  $this->User_model->getPreferredCategories($_SESSION['idUser'])){
+                redirect('User/index');
+            } else {
+                redirect('User/getCategories');
+            }
+            
         } else {
             $_SESSION['logged_in'] = false;
             $data['messagePassword']="Wrong password or username";
