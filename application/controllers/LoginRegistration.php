@@ -60,6 +60,7 @@ public function login()
             $_SESSION['idUser']=$this->User_model->getIdUser($givenUsername);
             $data['message'] = "Succesful";
             // $this->load->view('user/profile');
+
             if (  $this->User_model->getPreferredCategories($_SESSION['idUser'])){
                 redirect('User/index');
             } else {
@@ -71,8 +72,5 @@ public function login()
             $data['messagePassword']="Wrong password or username";
             $this->load->view('user/login/login', $data);
         }
-
-        // $data['page']='users/';
-        // $this->load->view('templates/content',$data);
     }
 }

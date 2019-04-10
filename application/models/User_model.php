@@ -4,6 +4,11 @@ class User_model extends CI_Model{
         parent::__construct();
     }
 
+    public function getUsersTable()
+    {
+        return $this->db->query('select * from projectd.users')->result_array();
+    }
+
     public function friends()
     {
         return $this->db->query('select username from projectd.users')->result_array();
