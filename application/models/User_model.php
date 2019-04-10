@@ -114,8 +114,8 @@ class User_model extends CI_Model{
     public function addCookie($username, $key){
         $this->db->insert('projectd.sessions', array('username' => $username, 'verification' => $key));
     }
-    public function removeCookie(){
-
+    public function removeCookie($username){
+        $this->db->query("delete from projectd.sessions where username='$username'");
     }
     public function verifyCookie(){
         

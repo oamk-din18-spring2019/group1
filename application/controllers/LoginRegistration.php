@@ -78,6 +78,7 @@ public function login()
     }
     function logout(){
         $_SESSION['logged_in']=false;
+        $this->User_model->removeCookie($_SESSION['username']);
         redirect(site_url("main_page"));
     }
 
