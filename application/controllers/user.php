@@ -103,6 +103,7 @@ class User extends CI_Controller
             'history'=> $this->input->post('history')
         );
         $this->User_model->addPreferredCategories($insert_data);
+        redirect('User/index');
     }
     public function do_upload()
     {
