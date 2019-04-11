@@ -8,7 +8,31 @@ class LoginRegistration extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Search_model');
     }
-public function login()
+
+    public function index(){
+        //check the cookie first
+        //if it matches with the one stored in the server, load the dashboard
+        $currentUser = get_cookie('username');
+        $key = $this->input->cookie('verification');
+        
+        if ($this->User_model->verifyCookie($currentUser, $key)){
+            //do the log in procedure
+            $_SESSION['logged_in'] = true;
+            $_SESSION['username'] = $currentUser;
+            $_SESSION['time']= $this->User_model->getDate($currentUser);
+            $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
+            $_SESSION['idUser']=$this->User_model->getIdUser($currentUser);
+            
+            $data['page'] = 'user/dashboard';
+        }
+        else{
+            //if not, load the main page
+            $data['page'] = 'user/mainpage';
+        }
+        $this->load->view('templates/content', $data);
+    }
+
+    public function login()
     {
         $this->load->view('user/login/login');
     }
@@ -72,18 +96,24 @@ public function login()
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $_SESSION['idUser']=$this->User_model->getIdUser($givenUsername);
             $_SESSION['admin']=$admin;
-            $data['message'] = "Succesful";
-            // $this->load->view('user/profile');
-
+          
+            //check if user wants to automatically log in 
+            if ($this->input->post('rememberMe') == 'on'){
+                $veriKey = $this->generateKey();
+                $this->input->set_cookie('username', $_SESSION['username'], 365*24*60*60);
+                $this->input->set_cookie('verification', $veriKey, 365*24*60*60);
+                $this->User_model->addCookie($_SESSION['username'], $veriKey);
+            }
+            
+            //check if user logs in as admin
             if ($admin==false) {
               if (  $this->User_model->getPreferredCategories($_SESSION['idUser'])){
                   redirect('User/index');
               } else {
                   redirect('User/getCategories');
               }
-            }
-            if ($admin==true) {redirect('user/admin');}
-   
+            } else {redirect('user/admin');}
+
         } else {
             $_SESSION['logged_in'] = false;
             if ($active==false) {
@@ -93,6 +123,25 @@ public function login()
               $data['messagePassword']="Wrong password or username";
             }
             $this->load->view('user/login/login', $data);
-        }
+        } 
     }
+  
+    function logout(){
+        $_SESSION['logged_in']=false;
+        delete_cookie('username');
+        delete_cookie('verification');
+        $this->User_model->removeCookie($_SESSION['username']);
+        redirect(site_url("LoginRegistration/index"));
+    }
+
+    public function generateKey(){
+      //this will be a 10-character long string for cookie verification
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $charactersLength = strlen($characters);
+      $key = '';
+      for ($i = 0; $i < 10; $i++) {
+          $key .= $characters[rand(0, $charactersLength - 1)];
+      }
+      return $key;
+  }
 }

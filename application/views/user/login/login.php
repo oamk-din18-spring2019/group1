@@ -47,21 +47,18 @@
         <input type="password" id="materialLoginFormPassword" name="password" class="form-control">
         <label for="materialLoginFormPassword">Password</label>
       </div>
+
+      <!-- Remember me -->
+      <div class="md-form">
+        <input type="checkbox" id="materialLoginFormRememberMe" name="rememberMe" class="form-control">Remember me
+      </div>
       <?php 
                 if(isset($message)){
                    echo" <div class='col-md-12 text-center text-white bg-info mb-0'>".$message." </div>";
                 };
                 ?>
       <div class="d-flex justify-content-around">
-        <div>
-          <!-- Remember me -->
-          <!--
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
-            <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
-          </div>
-          -->
-        </div>
+      
         <div>
         </div>
       </div>

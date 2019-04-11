@@ -9,8 +9,7 @@ class User extends CI_Controller
         $this->load->model('Search_model');
         if (!empty($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
       } else{
-        //   $this->load->view("user/login/login");
-        // redirect("main_page");
+
         header('location:access_denied');
         }
     }
@@ -19,7 +18,7 @@ class User extends CI_Controller
     }
     public function index()
     {
-        $data['activeFriends'] = $this->User_model->activeFriends();
+        $data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
         $data['page'] = 'user/dashboard';
         $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
         $data["categories"] = $this->User_model->getCategories();
@@ -121,33 +120,28 @@ class User extends CI_Controller
     }
     public function do_upload()
     {
-            $config['upload_path']          = './images/';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 5000;
-            $config['max_width']            = 2024;
-            $config['max_height']           = 2024;
+      $config['upload_path']          = './images/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 5000;
+      $config['max_width']            = 2024;
+      $config['max_height']           = 2024;
 
-            $this->load->library('upload', $config);
-            echo($this->upload->data('file_name'));
+      $this->load->library('upload', $config);
+      echo($this->upload->data('file_name'));
 
-            if ( $this->upload->do_upload('userfile') )
-            {
-                  echo "success!";
-                  $_SESSION['image']=$this->User_model->setUpPicture($_SESSION['username'],$this->upload->data('file_name'));
-                redirect('user/profile/profile');
-            }
-            else
-            {
-               $data['messageSettings']="The file is too big";
-               $this -> load -> view ('user/profile/headerProfile');
-               $this -> load -> view("settings/settings",$data);
-               $this -> load -> view ('user/profile/footerProfile');
-
-            }
-    }
-    function logout(){
-        $_SESSION['logged_in']=false;
-        redirect(site_url("main_page"));
+      if ( $this->upload->do_upload('userfile') )
+      {
+            echo "success!";
+            $_SESSION['image']=$this->User_model->setUpPicture($_SESSION['username'],$this->upload->data('file_name'));
+          redirect('user/profile/profile');
+      }
+      else
+      {
+          $data['messageSettings']="The file is too big";
+          $this -> load -> view ('user/profile/headerProfile');
+          $this -> load -> view("settings/settings",$data);
+          $this -> load -> view ('user/profile/footerProfile');
+      }
     }
 
     public function admin() {
