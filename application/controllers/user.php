@@ -169,4 +169,14 @@ class User extends CI_Controller
       $this->db->update('users',$update_data);
       redirect('user/ban');
     }
+    public function answerTheQuestion($category){
+      $data['category']=$category;
+      $data['question'] = $this-> User_model->findCategoryQuestion($category);
+      // $this -> load -> view ('templates/navbarDashboard');
+     $this-> load-> view('user/argument/answer',$data);
+     $this -> load -> view ('templates/footer');
+    }
+    public function getAnswer($answer){
+      echo $this->input->post('defaultExampleRadios');
+    }
 }
