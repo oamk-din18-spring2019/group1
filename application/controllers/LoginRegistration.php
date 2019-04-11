@@ -54,6 +54,11 @@ class LoginRegistration extends CI_Controller
                 $data['message'] = "'".$this->input->post('un')."' username has already taken";
                 $this->load->view('user/login/register', $data);
             } 
+            else if ( $this->User_model->emailChecker($this->input->post('em')) == $this->input->post('em') )
+            {
+                $data['message'] = "The user with this email exists alredy";
+                $this->load->view('user/login/login', $data);
+            }
             else 
             {
                 $hashedPassword = password_hash($this->input->post('pw1'), PASSWORD_DEFAULT);
