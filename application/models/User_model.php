@@ -130,11 +130,21 @@ class User_model extends CI_Model{
         return $this->db->get()->row('idUser');
     }
 
+    //cookie-related functions
+    public function addCookie($username, $key){
+        $this->db->insert('projectd.sessions', array('username' => $username, 'verification' => $key));
+    }
+    public function removeCookie($username){
+        $this->db->query("delete from projectd.sessions where username='$username'");
+    }
+    public function verifyCookie($username, $key){
+        if ($username === null || $key === null) return false;
+        $result = $this->db->query("select verification from projectd.sessions where username = '$username'");
+        return $result->result()[0]->verification === $key ? true : false;
+    }
+
     public function getPreferredCategories($id)
     {
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
-
-    
-
 }
