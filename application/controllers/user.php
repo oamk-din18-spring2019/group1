@@ -168,7 +168,7 @@ class User extends CI_Controller
      $this-> load-> view('user/argument/answer',$data);
      $this -> load -> view ('templates/footer');
     }
-    public function getAnswer(){
+    public function getAnswer($answer){
       echo $this->input->post('defaultExampleRadios');
     }
 }

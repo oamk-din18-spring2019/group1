@@ -124,7 +124,7 @@ class User_model extends CI_Model{
         //
         // This system returns random question from motions 
         // $numberOfRows=$this->db->get()->row('COUNT(*)');  
-         return $arrayOfMotions=$this->db->query("SELECT content from motions where category='$category' group by content;")->result_array(); 
+         return $arrayOfMotions=$this->db->query("SELECT idMotion,content from motions where category='$category' group by content;")->result_array(); 
         // return( $arrayOfMotions[rand(0,$numberOfRows-1)]['content']);
         //
         
