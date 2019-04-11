@@ -118,10 +118,18 @@ class User_model extends CI_Model{
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
     public function findCategoryQuestion($category){
-        $this->db->select('content');
+        $this->db->select('COUNT(*)');
         $this->db->from('motions');
         $this->db->where('category',$category);
-        return $this->db->get()->row('content');
+        $numberOfRows=$this->db->get()->row('COUNT(*)');
+        // return $this->db->get()->row('content');
+        // $numberOfRows=$this->db->query("SELECT COUNT(*) FROM motions where category='$category'");
+        // $numberOfRows+=0;
+           $arrayOfMotions=$this->db->query("SELECT content from motions where category='$category' group by content;")->result_array(); 
+        return( $arrayOfMotions[rand(0,$numberOfRows-1)]['content']);
+        // return $numberOfRows;
+        // $rowNumber= rand(1,$numberOfRows);
+        
     }
 
     
