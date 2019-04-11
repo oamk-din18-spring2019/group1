@@ -8,6 +8,30 @@ class LoginRegistration extends CI_Controller
         $this->load->model('User_model');
         $this->load->model('Search_model');
     }
+
+    public function index(){
+        //check the cookie first
+		//if it matches with the one stored in the server, load the dashboard
+		$currentUser = $this->input->cookie('username');
+        $key = $this->input->cookie('verification');
+        
+		if ($this->User_model->verifyCookie($currentUser, $key)){
+			//do the log in procedure
+			$_SESSION['logged_in'] = true;
+            $_SESSION['username'] = $currentUser;
+            $_SESSION['time']= $this->User_model->getDate($currentUser);
+            $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
+			$_SESSION['idUser']=$this->User_model->getIdUser($currentUser);
+			
+			$data['page'] = 'user/dashboard';
+		}
+		else{
+            //if not, load the main page
+            $data['page'] = 'user/mainpage';
+		}
+        $this->load->view('templates/content', $data);
+    }
+
     public function login()
     {
         $this->load->view('user/login/login');
