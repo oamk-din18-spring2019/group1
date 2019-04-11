@@ -161,4 +161,14 @@ class User extends CI_Controller
       $this -> load -> view('user/admin/ban');
       $this -> load -> view ('user/admin/adminFooter');
     }
+    public function answerTheQuestion($category){
+      $data['category']=$category;
+      $data['question'] = $this-> User_model->findCategoryQuestion($category);
+      // $this -> load -> view ('templates/navbarDashboard');
+     $this-> load-> view('user/argument/answer',$data);
+     $this -> load -> view ('templates/footer');
+    }
+    public function getAnswer(){
+      echo $this->input->post('defaultExampleRadios');
+    }
 }

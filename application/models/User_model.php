@@ -117,6 +117,12 @@ class User_model extends CI_Model{
     {
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
+    public function findCategoryQuestion($category){
+        $this->db->select('content');
+        $this->db->from('motions');
+        $this->db->where('category',$category);
+        return $this->db->get()->row('content');
+    }
 
     
 
