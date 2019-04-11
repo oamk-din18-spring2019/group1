@@ -151,14 +151,38 @@ class User extends CI_Controller
     }
 
     public function admin() {
-      $this -> load -> view ('user/admin/adminHeader');
-      $this -> load -> view('user/admin/admin');
-      $this -> load -> view ('user/admin/adminFooter');
+      if ($_SESSION['admin']==true) {
+        $this -> load -> view ('user/admin/adminHeader');
+        $this -> load -> view('user/admin/admin');
+        $this -> load -> view ('user/admin/adminFooter');
+      }
+      else{
+        redirect(site_url('user/profile'));
+      }
     }
 
     public function ban() {
-      $this -> load -> view ('user/admin/adminHeader');
-      $this -> load -> view('user/admin/ban');
-      $this -> load -> view ('user/admin/adminFooter');
+      if ($_SESSION['admin']==true) {
+        $this -> load -> view ('user/admin/adminHeader');
+        $this -> load -> view('user/admin/ban');
+        $this -> load -> view ('user/admin/adminFooter');
+      }
+      else{
+        redirect(site_url('user/profile'));
+      }
+    }
+
+    public function ban_user() {
+      $name=$_GET['username'];
+      $active = $this->User_model->getActive($name);
+      if ($active == true) {
+        $update_data = array("active" => false);
+      }
+      else {
+        $update_data = array("active" => true);
+      }
+      $this->db->where('username', $name);
+      $this->db->update('users',$update_data);
+      redirect('user/ban');
     }
 }
