@@ -41,6 +41,13 @@ class User_model extends CI_Model{
         $this->db->insert('users',$insert_data);
         return $this->db->affected_rows();
     }
+    public function usernameChecker($username)
+    {
+        $this->db->select('username');
+        $this->db->from('users');
+        $this->db->where('username', $username);
+        return $this->db->get()->row('username');
+    }
     public function getPassword($givenUsername){
         $this->db->select('passwd');
         $this->db->from('users');
