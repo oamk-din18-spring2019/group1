@@ -20,7 +20,11 @@ class User extends CI_Controller
     {
         $data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
         $data['page'] = 'user/dashboard';
+        $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+        $data["categories"] = $this->User_model->getCategories();
         $this->load->view('templates/content', $data);
+       
+        // $this->load->view('User/index', $data);
     }
 
     public function chat($username){
@@ -87,8 +91,11 @@ class User extends CI_Controller
 
     public function chooseCategories()
     {
-
-        $insert_data = array(
+        //$preferredCategories = getPreferredCategories($_SESSION['idUser']);
+        //$filteredCategories = array_filter($preferredCategories, NULL);
+        // if ( $preferredCategories )
+        // {
+          $insert_data = array(
             'idUser' => $_SESSION['idUser'],
             'culture'=> $this->input->post('culture'),
             'science'=> $this->input->post('science'),
@@ -100,8 +107,16 @@ class User extends CI_Controller
             'culinary'=> $this->input->post('culinary'),
             'education'=> $this->input->post('education'),
             'history'=> $this->input->post('history')
-        );
+          );
+        // }
         $this->User_model->addPreferredCategories($insert_data);
+        redirect('User/index');
+    }
+    public function showPreferredCategories()
+    {
+        $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+        $data["categories"] = $this->User_model->getCategories();
+        $this->load->view('User/index', $data);
     }
     public function do_upload()
     {
@@ -128,5 +143,40 @@ class User extends CI_Controller
           $this -> load -> view ('user/profile/footerProfile');
       }
     }
+
+    public function admin() {
+      if ($_SESSION['admin']==true) {
+        $this -> load -> view ('user/admin/adminHeader');
+        $this -> load -> view('user/admin/admin');
+        $this -> load -> view ('user/admin/adminFooter');
+      }
+      else{
+        redirect(site_url('user/profile'));
+      }
+    }
+
+    public function ban() {
+      if ($_SESSION['admin']==true) {
+        $this -> load -> view ('user/admin/adminHeader');
+        $this -> load -> view('user/admin/ban');
+        $this -> load -> view ('user/admin/adminFooter');
+      }
+      else{
+        redirect(site_url('user/profile'));
+      }
+    }
+
+    public function ban_user() {
+      $name=$_GET['username'];
+      $active = $this->User_model->getActive($name);
+      if ($active == true) {
+        $update_data = array("active" => false);
+      }
+      else {
+        $update_data = array("active" => true);
+      }
+      $this->db->where('username', $name);
+      $this->db->update('users',$update_data);
+      redirect('user/ban');
+    }
 }
-        

@@ -14,6 +14,30 @@
     </ul> 
 </div>
 
+<div id="preferredCategories">
+    <?php
+        $chosenCategories=array();
+        for ($i=1; $i<count($categories); $i++)
+        {
+            for ($k=0; $k<count($preferredCategories); $k++)
+            {
+                if ($preferredCategories[0][$categories[$i]]==1)
+                {
+                    // echo $categories[$i];
+                    array_push($chosenCategories,$categories[$i]);
+                }
+            }
+        }
+        print_r($chosenCategories);
+
+        
+        // for ()
+        // {
+
+        // }
+    ?>
+</div>
+
 <!-- news feed in the middle -->
 <div id=newsfeed>
     <div>
