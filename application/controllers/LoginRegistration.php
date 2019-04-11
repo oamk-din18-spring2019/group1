@@ -11,24 +11,24 @@ class LoginRegistration extends CI_Controller
 
     public function index(){
         //check the cookie first
-		//if it matches with the one stored in the server, load the dashboard
-		$currentUser = $this->input->cookie('username');
+        //if it matches with the one stored in the server, load the dashboard
+        $currentUser = get_cookie('username');
         $key = $this->input->cookie('verification');
         
-		if ($this->User_model->verifyCookie($currentUser, $key)){
-			//do the log in procedure
-			$_SESSION['logged_in'] = true;
+        if ($this->User_model->verifyCookie($currentUser, $key)){
+            //do the log in procedure
+            $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $currentUser;
             $_SESSION['time']= $this->User_model->getDate($currentUser);
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
-			$_SESSION['idUser']=$this->User_model->getIdUser($currentUser);
-			
-			$data['page'] = 'user/dashboard';
-		}
-		else{
+            $_SESSION['idUser']=$this->User_model->getIdUser($currentUser);
+            
+            $data['page'] = 'user/dashboard';
+        }
+        else{
             //if not, load the main page
             $data['page'] = 'user/mainpage';
-		}
+        }
         $this->load->view('templates/content', $data);
     }
 
@@ -48,22 +48,22 @@ class LoginRegistration extends CI_Controller
         // Checks the passwords to be equal
         if ($this->input->post('pw1') == $this->input->post('pw2')) {
             //hash the password and send the information to the database
-                $hashedPassword = password_hash($this->input->post('pw1'), PASSWORD_DEFAULT);
-                $insert_data = array(
-                    "username" => $this->input->post('un'),
-                    "email" => $this->input->post('em'),
-                    "passwd" => $hashedPassword
-                );
-                $result = $this->User_model->add_user($insert_data);
-                if ($result == 1) {
-                    $data['message'] = "Registration passed succesful";
-                    $this->load->view('user/login/login', $data);
-                } else {
-                //checks if the username is unique, but for this we have to change row "username" in db to be unique
-                    $data['message'] = "This username is used already";
-                    $this->load->view('user/login/register', $data);
-                }
+            $hashedPassword = password_hash($this->input->post('pw1'), PASSWORD_DEFAULT);
+            $insert_data = array(
+                "username" => $this->input->post('un'),
+                "email" => $this->input->post('em'),
+                "passwd" => $hashedPassword
+            );
+            $result = $this->User_model->add_user($insert_data);
+            if ($result == 1) {
+                $data['message'] = "Registration passed succesful";
+                $this->load->view('user/login/login', $data);
             } else {
+                //checks if the username is unique, but for this we have to change row "username" in db to be unique
+                $data['message'] = "This username is used already";
+                $this->load->view('user/login/register', $data);
+            }
+        } else {
             $data['message'] = "You entered the different passwords";
             $this->load->view('user/login/register', $data);
         }
@@ -82,29 +82,27 @@ class LoginRegistration extends CI_Controller
             $_SESSION['time']= $this->User_model->getDate($givenUsername);
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $_SESSION['idUser']=$this->User_model->getIdUser($givenUsername);
-            $data['message'] = "Succesful";
-
             //check if user wants to automatically log in 
             if ($this->input->post('rememberMe') == 'on'){
                 $veriKey = $this->generateKey();
                 $this->input->set_cookie('username', $_SESSION['username'], 365*24*60*60);
-                $this->input->set_cookie('verification', $veriKey, 365+24*60*60);
+                $this->input->set_cookie('verification', $veriKey, 365*24*60*60);
                 $this->User_model->addCookie($_SESSION['username'], $veriKey);
             }
             redirect('user');
-
         } else {
             $_SESSION['logged_in'] = false;
             $data['messagePassword']="Wrong password or username";
             $this->load->view('user/login/login', $data);
         }
+        
     }
     function logout(){
         $_SESSION['logged_in']=false;
         delete_cookie('username');
         delete_cookie('verification');
         $this->User_model->removeCookie($_SESSION['username']);
-        redirect(site_url("main_page"));
+        redirect(site_url("LoginRegistration/index"));
     }
 
     public function generateKey(){

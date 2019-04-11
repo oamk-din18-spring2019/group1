@@ -9,8 +9,7 @@ class User extends CI_Controller
         $this->load->model('Search_model');
         if (!empty($_SESSION['logged_in']) && $_SESSION['logged_in']==true){
       } else{
-        //   $this->load->view("user/login/login");
-        // redirect("main_page");
+
         header('location:access_denied');
         }
     }
@@ -128,11 +127,6 @@ class User extends CI_Controller
           $this -> load -> view("settings/settings",$data);
           $this -> load -> view ('user/profile/footerProfile');
       }
-    }
-
-    public function test(){
-      $data['test'] = $this->User_model->verifyCookie($_COOKIE['username'], $_COOKIE['verification']);
-      $this->load->view('test', $data);
     }
 }
         
