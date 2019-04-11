@@ -9,6 +9,22 @@ class User_model extends CI_Model{
         return $this->db->query('select * from projectd.users')->result_array();
     }
 
+    public function getActive($name)
+    {
+      $this->db->select('active');
+      $this->db->from('users');
+      $this->db->where('username',$name);
+      return $this->db->get()->row('active');
+    }
+
+    public function getAdmin($name)
+    {
+      $this->db->select('admin');
+      $this->db->from('users');
+      $this->db->where('username',$name);
+      return $this->db->get()->row('admin');
+    }
+
     public function friends()
     {
         return $this->db->query('select username from projectd.users')->result_array();
@@ -24,6 +40,13 @@ class User_model extends CI_Model{
         $this->load-> database();
         $this->db->insert('users',$insert_data);
         return $this->db->affected_rows();
+    }
+    public function usernameChecker($username)
+    {
+        $this->db->select('username');
+        $this->db->from('users');
+        $this->db->where('username', $username);
+        return $this->db->get()->row('username');
     }
     public function getPassword($givenUsername){
         $this->db->select('passwd');
@@ -113,11 +136,25 @@ class User_model extends CI_Model{
         $this->db->where('username',$name);
         return $this->db->get()->row('idUser');
     }
+
+    //cookie-related functions
+    public function addCookie($username, $key){
+        $this->db->insert('projectd.sessions', array('username' => $username, 'verification' => $key));
+    }
+    public function removeCookie($username){
+        $this->db->query("delete from projectd.sessions where username='$username'");
+    }
+    public function verifyCookie($username, $key){
+        if ($username === null || $key === null) return false;
+        $result = $this->db->query("select verification from projectd.sessions where username = '$username'");
+        return $result->result()[0]->verification === $key ? true : false;
+    }
+
     public function getPreferredCategories($id)
     {
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
-    public function findCategoryQuestion($category){
+      public function findCategoryQuestion($category){
         $this->db->select('');
         $this->db->from('motions');
         $this->db->where('category',$category);
@@ -133,6 +170,4 @@ class User_model extends CI_Model{
     }
 
     
-
-
 }

@@ -53,10 +53,8 @@
 
                 <!-- Password -->
                 <div class="md-form">
-                    <input type="password" required id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" name="pw1">
+                    <input type="password" required id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" name="pw1" onkeyup="passwordChecker()">
                     <label for="materialRegisterFormPassword">Password</label>
-
-
                 </div>
 
 
@@ -64,27 +62,18 @@
                 <div class="md-form">
                     <input type="password" id="materialRegisterFormConfirmPassword" required class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" name="pw2">
                     <label for="materialRegisterFormConfirmPassword">Confirm Password</label>
-                    <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                        At least 8 characters and 1 digit
-                    </small>
-                    <?php 
+                    <?php
                     if (isset($message)) {
                         echo " <div class='col-md-12 text-center text-white bg-danger'>" . $message . " </div>";
                     };
                     ?>
-
+                    <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-1">
+                        At least 8 characters and 1 digit
+                    </small>
                 </div>
-
-                <!-- Newsletter -->
-                <!--
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="materialRegisterFormNewsletter">
-                <label class="form-check-label" for="materialRegisterFormNewsletter">Subscribe to our newsletter</label>
-            </div>
-            -->
-
+        
                 <!-- Sign up button -->
-                <button class="btn btn-success btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign up</button>
+                <button id="signUp" class="btn btn-success btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" disabled>Sign up</button>
             </form>
             <!-- Social register -->
             <!--
@@ -124,4 +113,25 @@
     <script type="text/javascript" src="<?php echo base_url('bst/js/bootstrap.min.js') ?>"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="<?php echo base_url('bst/js/mdb.js') ?>"></script>
-    <!-- Material form register --> 
+    <!-- Material form register -->
+    <script>
+        var myInput = document.getElementById("materialRegisterFormPassword");
+        var button = document.getElementById("signUp")
+        var passingCharacters = /[A-Za-z]/g;
+        var numbers = /[0-9]/g;
+        function passwordChecker()
+        {
+            if (myInput.value.length >= 8 && myInput.value.match(passingCharacters) && myInput.value.match(numbers) )
+            {
+                button.disabled = false;
+                document.getElementById("materialRegisterFormPasswordHelpBlock").innerHTML = "That's right, what a good boy you are";
+                document.getElementById("materialRegisterFormPasswordHelpBlock").className = "form-text text-muted mb-1" ;
+            }
+            else 
+            {
+                document.getElementById("materialRegisterFormPasswordHelpBlock").className = "col-md-4 text-center text-white bg-danger";
+                document.getElementById("materialRegisterFormPasswordHelpBlock").innerHTML = "At least 8 characters and 1 digit";
+            }
+        }
+        
+    </script>

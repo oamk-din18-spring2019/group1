@@ -76,20 +76,21 @@
       var inputs = document.querySelectorAll(".checkbox");
       var button = document.getElementById("BoxSelect");
       console.log(inputs);
-      inputs.forEach(input=>{
-        input.onclick=function(){
-          for (let i = 0; i < inputs.length; i++) {
-            if (inputs[i].checked) {
-              button.disabled = false;
-              return 0;
-            }
-
+      inputs.forEach(input=>
+      {
+          input.onclick=function()
+          {
+              for (let i = 0; i < inputs.length; i++) 
+              {
+                  if (inputs[i].checked) 
+                  {
+                      button.disabled = false;
+                      return 0;
+                  }
+              }
+              button.disabled = true;
           }
-
-          button.disabled = true;
-          
-        }
-        });
+      });
 
   </script>
 
