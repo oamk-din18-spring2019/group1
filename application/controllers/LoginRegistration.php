@@ -46,28 +46,39 @@ class LoginRegistration extends CI_Controller
     {
         //Registration function
         // Checks the passwords to be equal
-        if ($this->input->post('pw1') == $this->input->post('pw2')) {
+        if ($this->input->post('pw1') == $this->input->post('pw2')) 
+        {
             //hash the password and send the information to the database
-            $hashedPassword = password_hash($this->input->post('pw1'), PASSWORD_DEFAULT);
-            $insert_data = array(
-                "username" => $this->input->post('un'),
-                "email" => $this->input->post('em'),
-                "passwd" => $hashedPassword
-            );
-            $result = $this->User_model->add_user($insert_data);
-            if ($result == 1) {
-                $data['message'] = "Registration passed succesful";
-                $this->load->view('user/login/login', $data);
-            } else {
-                //checks if the username is unique, but for this we have to change row "username" in db to be unique
-                $data['message'] = "This username is used already";
+            if ( $this->User_model->usernameChecker($this->input->post('un')) == $this->input->post('un'))
+            {
+                $data['message'] = "'".$this->input->post('un')."' username has already taken";
                 $this->load->view('user/login/register', $data);
+            } 
+            else 
+            {
+                $hashedPassword = password_hash($this->input->post('pw1'), PASSWORD_DEFAULT);
+                $insert_data = array(
+                    "username" => $this->input->post('un'),
+                    "email" => $this->input->post('em'),
+                    "passwd" => $hashedPassword
+                );
+                $result = $this->User_model->add_user($insert_data);
+                if ($result == 1) 
+                {
+                    $data['message'] = "Registration passed succesful";
+                    $this->load->view('user/login/login', $data);
+                    $checkingName = $this->User_model->usernameChecker($insert_data["username"]);
+                    echo $checkingName;
+                } 
             }
-        } else {
+        } 
+        else 
+        {
             $data['message'] = "You entered the different passwords";
             $this->load->view('user/login/register', $data);
         }
     }
+        
 
     function log_in_procedure()
     {
