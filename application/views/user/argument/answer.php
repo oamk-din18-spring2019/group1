@@ -6,7 +6,7 @@ echo "You choosed " . $category . " <br>";
 for ($i=0;$i<count($question);$i++){
 echo $question[$i]['content'];
 echo '<br>';
-echo "<form class='text-left' method='POST' action=".site_url('user/getAnswer/').$question[$i]['idMotion'].">
+echo "<form class='text-left' method='POST' action=".site_url('Motion/getAnswer/').$question[$i]['idMotion'].">
 <input type='submit' class='btn btn-success' id='BoxSelect' value='Submit'>
     <div class='custom-control custom-radio'>
         <input type='radio' class='custom-control-input' id='defaultChecked' value=1 name='defaultExampleRadios' checked>

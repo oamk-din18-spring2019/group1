@@ -169,18 +169,4 @@ class User extends CI_Controller
       $this->db->update('users',$update_data);
       redirect('user/ban');
     }
-    public function answerTheQuestion($category){
-      $data['category']=$category;
-      $data['question'] = $this-> User_model->findCategoryQuestion($category);
-      // $this -> load -> view ('templates/navbarDashboard');
-     $this-> load-> view('user/argument/answer',$data);
-     $this -> load -> view ('templates/footer');
-    }
-    public function getAnswer($answer){
-      $opinion=$this->input->post('defaultExampleRadios');
-      $this->User_model->addOpinion($answer,$_SESSION['idUser'],$opinion);
-      header("Location: ".$_SERVER['HTTP_REFERER']);
-      // redirect('user/answerTheQuestion/')
-      // addOpinion($idMotion,$idUser,$opinion)
-    }
 }
