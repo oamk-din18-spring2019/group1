@@ -3,7 +3,7 @@
   <!-- Start your project here-->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
-      <a href="#" class="navbar-brand">Navbar</a>
+      <a href="#" class="navbar-brand text-weight-bolder">Project D</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
         aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle Navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,14 +22,14 @@
         </ul>
           <div class="text-center">
             <a href="<?php echo site_url("LoginRegistration/login")?>" class=""> 
-              <button  class="btn-sm btn waves-effect wawes-light">
+              <button  class="btn-sm btn waves-effect wawes-light px-3">
                 <div class="loginButtonText">Login</div>
               </button>
             </a> 
           </div>
           <div class="text-center">
             <a href="<?php echo site_url("LoginRegistration/register")?>" class=""> 
-              <button  class="btn-sm btn btn-outline-white">
+              <button  class="btn-sm btn btn-outline-white px-3">
                 <div class="loginButtonText">Sign Up</div>
               </button>
             </a> 
