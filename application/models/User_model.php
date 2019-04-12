@@ -161,9 +161,15 @@ class User_model extends CI_Model{
         //
         // This system returns random question from motions 
         // $numberOfRows=$this->db->get()->row('COUNT(*)');  
-         return $this->db->query("SELECT idMotion,content from motions where category='$category' group by content;")->result_array(); 
+        
+         return $this->db->query("SELECT motions.idMotion,category,content,if(agree=0 or agree=1,agree,null) as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion where (agree is null and(category='$category')) ; 
+         ")->result_array(); 
         // return( $arrayOfMotions[rand(0,$numberOfRows-1)]['content']);
         //
+    }
+    public function showAnsweredMotions($category){
+        return $this->db->query("SELECT motions.idMotion,category,content,if(agree=0 or agree=1,agree,null) as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion where (agree is not null and(category='$category')) order by agree ;
+        ")->result_array(); 
     }
     public function addOpinion($idMotion,$idUser,$opinion){
         $this->db->query("INSERT INTO `opinions` (`id`, `idMotion`, `idUser`, `Agree`) VALUES (NULL, '$idMotion', '$idUser', '$opinion')");
