@@ -23,18 +23,19 @@ class LoginRegistration extends CI_Controller
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $_SESSION['idUser']=$this->User_model->getIdUser($currentUser);
             
-            $data['page'] = 'user/dashboard';
+            redirect('user');
         }
         else{
             //if not, load the main page
             $data['page'] = 'user/mainpage';
+            $this->load->view('templates/content', $data);
         }
-        $this->load->view('templates/content', $data);
     }
 
     public function login()
     {
-        $this->load->view('user/login/login');
+        if($_SESSION['logged_in']==false || empty($_SESSION['logged_in'])) $this->load->view('user/login/login');
+        else redirect('user');
     }
 
     public function register()
@@ -54,6 +55,11 @@ class LoginRegistration extends CI_Controller
                 $data['message'] = "'".$this->input->post('un')."' username has already taken";
                 $this->load->view('user/login/register', $data);
             } 
+            else if ( $this->User_model->emailChecker($this->input->post('em')) == $this->input->post('em') )
+            {
+                $data['message'] = "The user with this email exists alredy";
+                $this->load->view('user/login/login', $data);
+            }
             else 
             {
                 $hashedPassword = password_hash($this->input->post('pw1'), PASSWORD_DEFAULT);

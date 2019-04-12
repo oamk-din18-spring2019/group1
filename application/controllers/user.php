@@ -20,7 +20,9 @@ class User extends CI_Controller
       $data['page'] = 'user/dashboard';
       $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
       $data["categories"] = $this->User_model->getCategories();
-      $this->load->view('templates/content', $data);
+      $this->load->view('user/profile/headerProfile');
+      $this->load->view('user/dashboard', $data);
+      $this->load->view('user/profile/footerProfile');
     }
 
     public function chat($username){
@@ -41,9 +43,9 @@ class User extends CI_Controller
     }
 
     function settings(){
-      $this -> load -> view ('user/profile/headerProfile');
+      $this -> load -> view('user/profile/headerProfile');
       $this -> load -> view("settings/settings");
-      $this -> load -> view ('user/profile/footerProfile');
+      $this -> load -> view('user/profile/footerProfile');
     }
 
     public function changePassword() {
@@ -197,4 +199,5 @@ class User extends CI_Controller
       }
       redirect(site_url('user/others_profile?username=').$this->User_model->getUsername($id));
     }
+
 }

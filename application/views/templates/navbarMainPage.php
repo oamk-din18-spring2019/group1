@@ -3,7 +3,7 @@
   <!-- Start your project here-->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
-      <a href="#" class="navbar-brand">Navbar</a>
+      <a href="#" class="navbar-brand text-weight-bolder">Project D</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
         aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle Navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,26 +14,27 @@
             <a href="#intro" class="nav-link waves-effect wawes-light">Home</a>
           </li>
           <li class="nav-item">
-            <a href="#best-features" class="nav-link waves-effect wawes-light">Blog</a>
+            <a href="#best-features" class="nav-link waves-effect wawes-light">Best features</a>
           </li>
           <li class="nav-item">
-            <a href="#examples" class="nav-link waves-effect wawes-light">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a href="#gallery" class="nav-link waves-effect wawes-light">News</a>
-          </li>
-         
-        </ul>
-        <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a href="" class="nav-linkwawes-effect wawes-light">
-              <i class="fab fa-youtube"></i>
-            </a>
-            <a href="" class="nav-linkwawes-effect wawes-light">
-              <i class="fab fa-vk"></i>
-            </a>
+            <a href="#examples" class="nav-link waves-effect wawes-light">Examples</a>
           </li>
         </ul>
+          <div class="text-center">
+            <a href="<?php echo site_url("LoginRegistration/login")?>" class=""> 
+              <button  class="btn-sm btn waves-effect wawes-light px-3">
+                <div class="loginButtonText">Login</div>
+              </button>
+            </a> 
+          </div>
+          <div class="text-center">
+            <a href="<?php echo site_url("LoginRegistration/register")?>" class=""> 
+              <button  class="btn-sm btn btn-outline-white px-3">
+                <div class="loginButtonText">Sign Up</div>
+              </button>
+            </a> 
+          </div>       
+
       </div>
     </div>
   </nav>

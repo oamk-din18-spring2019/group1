@@ -30,9 +30,10 @@
         }
         // <a href="'.site_url('students/show_delete/').$row['idStudents'].'">DELETE</a></td>';
         foreach ($chosenCategories as $value){
-            echo '<td> <li><a href="'.site_url('user/answerTheQuestion/').$value.'">'.$value.'</a></li>';
+            echo '<td> <li><a href="'.site_url('Motion/answerTheQuestion/').$value.'">'.$value.'</a></li>';
         }
-        // print_r($chosenCategories);
+
+        print_r($chosenCategories);
 
         
         // for ()
