@@ -154,4 +154,20 @@ class User_model extends CI_Model{
     {
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
+      public function findCategoryQuestion($category){
+        $this->db->select('');
+        $this->db->from('motions');
+        $this->db->where('category',$category);
+        //
+        // This system returns random question from motions 
+        // $numberOfRows=$this->db->get()->row('COUNT(*)');  
+         return $arrayOfMotions=$this->db->query("SELECT idMotion,content from motions where category='$category' group by content;")->result_array(); 
+        // return( $arrayOfMotions[rand(0,$numberOfRows-1)]['content']);
+        //
+        
+
+        
+    }
+
+    
 }

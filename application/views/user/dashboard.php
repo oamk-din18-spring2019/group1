@@ -15,6 +15,7 @@
 </div>
 
 <div id="preferredCategories">
+<ul>
     <?php
         $chosenCategories=array();
         for ($i=1; $i<count($categories); $i++)
@@ -23,12 +24,15 @@
             {
                 if ($preferredCategories[0][$categories[$i]]==1)
                 {
-                    // echo $categories[$i];
                     array_push($chosenCategories,$categories[$i]);
                 }
             }
         }
-        print_r($chosenCategories);
+        // <a href="'.site_url('students/show_delete/').$row['idStudents'].'">DELETE</a></td>';
+        foreach ($chosenCategories as $value){
+            echo '<td> <li><a href="'.site_url('user/answerTheQuestion/').$value.'">'.$value.'</a></li>';
+        }
+        // print_r($chosenCategories);
 
         
         // for ()
@@ -36,6 +40,7 @@
 
         // }
     ?>
+    </ul>
 </div>
 
 <!-- news feed in the middle -->
@@ -60,4 +65,5 @@
     </script>
     </ul>
 </div>
+
 </div>

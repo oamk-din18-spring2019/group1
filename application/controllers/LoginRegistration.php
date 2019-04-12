@@ -135,13 +135,13 @@ class LoginRegistration extends CI_Controller
     }
 
     public function generateKey(){
-      //this will be a 10-character long string for cookie verification
-      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      $charactersLength = strlen($characters);
-      $key = '';
-      for ($i = 0; $i < 10; $i++) {
-          $key .= $characters[rand(0, $charactersLength - 1)];
-      }
-      return $key;
-  }
+        //this will be a 10-character long string for cookie verification
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $key = '';
+        for ($i = 0; $i < 10; $i++) {
+            $key .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $key;
+    }
 }
