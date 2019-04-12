@@ -23,13 +23,13 @@ class LoginRegistration extends CI_Controller
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $_SESSION['idUser']=$this->User_model->getIdUser($currentUser);
             
-            $data['page'] = 'user/dashboard';
+            redirect('user');
         }
         else{
             //if not, load the main page
             $data['page'] = 'user/mainpage';
+            $this->load->view('templates/content', $data);
         }
-        $this->load->view('templates/content', $data);
     }
 
     public function login()
