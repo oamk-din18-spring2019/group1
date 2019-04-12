@@ -49,8 +49,9 @@
       </div>
 
       <!-- Remember me -->
-      <div class="md-form">
-        <input type="checkbox" id="materialLoginFormRememberMe" name="rememberMe" class="form-control">Remember me
+      <div class="custom-control custom-checkbox ">
+        <input type="checkbox" id="customCheck1" name="rememberMe" class="custom-control-input">
+        <label  class="custom-control-label" for="customCheck1">Remember me</label> 
       </div>
       <?php 
                 if(isset($message)){
@@ -73,7 +74,7 @@
                     ?>
       <!-- Register -->
       <p>Not a member?
-        <a href="<?php echo site_url('LoginRegistration/register'); ?>" style="color:#2d72e2;">Register</a>
+        <a href="<?php echo site_url('LoginRegistration/register'); ?>" style="color:#2d72e2;">Sign Up</a>
       </p>
 
       <!-- Social login

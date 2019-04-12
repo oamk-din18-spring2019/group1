@@ -96,7 +96,7 @@
        }
     </script>
     <div class="text-center"><a  href="<?php echo site_url("LoginRegistration/register")?>" class=""> 
-      <button  class="btn btn-success waves-effect rounded loginButton ">
+      <button  class="btn btn-lg btn-success waves-effect rounded loginButton ">
         <div class="loginButtonText">Sign Up</div>
       </button></a> 
     </div>
