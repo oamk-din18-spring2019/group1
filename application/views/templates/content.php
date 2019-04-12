@@ -1,6 +1,5 @@
 <?php
-$this->load->view('templates/header');
-$this->load->view('templates/navbarMainPage');
+$this->load->view('user/profile/headerProfile');
 $this->load->view($page);
 $this->load->view('templates/footer');
 ?>

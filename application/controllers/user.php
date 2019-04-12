@@ -169,6 +169,13 @@ class User extends CI_Controller
       $this->db->update('users',$update_data);
       redirect('user/ban');
     }
+
+    public function following() {
+      $this -> load -> view ('user/profile/headerProfile');
+      $this -> load -> view('user/following/following');
+      $this -> load -> view ('user/profile/footerProfile');
+    }
+
     public function answerTheQuestion($category){
       $data['category']=$category;
       $data['question'] = $this-> User_model->findCategoryQuestion($category);
@@ -178,5 +185,16 @@ class User extends CI_Controller
     }
     public function getAnswer($answer){
       echo $this->input->post('defaultExampleRadios');
+    }
+
+    public function toggleFollow() {
+      $id=$_POST['id'];
+      if ($this->User_model->checkIfFollowing($id)) {
+        $this->User_model->unfollow($id);
+      }
+      else {
+        $this->User_model->follow($id);
+      }
+      redirect(site_url('user/others_profile?username=').$this->User_model->getUsername($id));
     }
 }
