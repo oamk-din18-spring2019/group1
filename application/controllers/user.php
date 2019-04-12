@@ -177,6 +177,10 @@ class User extends CI_Controller
      $this -> load -> view ('templates/footer');
     }
     public function getAnswer($answer){
-      echo $this->input->post('defaultExampleRadios');
+      $opinion=$this->input->post('defaultExampleRadios');
+      $this->User_model->addOpinion($answer,$_SESSION['idUser'],$opinion);
+      header("Location: ".$_SERVER['HTTP_REFERER']);
+      // redirect('user/answerTheQuestion/')
+      // addOpinion($idMotion,$idUser,$opinion)
     }
 }
