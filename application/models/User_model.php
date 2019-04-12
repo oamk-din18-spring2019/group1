@@ -48,6 +48,13 @@ class User_model extends CI_Model{
         $this->db->where('username', $username);
         return $this->db->get()->row('username');
     }
+    public function emailChecker($email)
+    {
+        $this->db->select('email');
+        $this->db->from('users');
+        $this->db->where('email', $email);
+        return $this->db->get()->row('email');
+    }
     public function getPassword($givenUsername){
         $this->db->select('passwd');
         $this->db->from('users');
