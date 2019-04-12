@@ -32,7 +32,8 @@
         foreach ($chosenCategories as $value){
             echo '<td> <li><a href="'.site_url('Motion/answerTheQuestion/').$value.'">'.$value.'</a></li>';
         }
-        // print_r($chosenCategories);
+
+        print_r($chosenCategories);
 
         
         // for ()

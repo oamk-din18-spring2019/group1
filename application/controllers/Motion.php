@@ -12,6 +12,7 @@ class Motion extends CI_Controller{
     public function answerTheQuestion($category){
         $data['category']=$category;
         $data['question'] = $this-> User_model->findCategoryQuestion($category);
+        $data['answeredMotions']=$this-> User_model->showAnsweredMotions($category);
         // $this -> load -> view ('templates/navbarDashboard');
        $this-> load-> view('user/argument/answer',$data);
        $this -> load -> view ('templates/footer');
