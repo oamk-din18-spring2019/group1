@@ -2,7 +2,7 @@
 <div class="container mt-4">
     <div class="row">
     <div class="col-md-1"></div>
-        <div class="col-md-4 col-sm-4">
+        <div class="col-md-4 col-sm-4 text-center">
             <img class="img-fluid rounded z-depth-1 my-3" src="
             <?php
               $data=$this->User_model->profile($_GET['username']);
@@ -14,6 +14,27 @@
               }
             ?>
               " alt="avatar">
+              <div class="row justify-content-center">
+                <div class="col-auto border border-dark rounded-pill rgba-stylish-light ">
+                  <?php if($this->User_model->checkIfFollowing($data['idUser'])) {
+                    echo '<i class="fas fa-check"></i>&nbsp;Following';
+                  }
+                  else {
+                    echo '<i class="fas fa-times"></i>&nbsp;Not following';
+                  }
+                  ?>
+                </div>
+              </div>
+              <form class="" action="<?php echo site_url("user/toggleFollow");?>" method="post">
+                <input type="number" name="id" value="<?php echo $data['idUser']; ?>" hidden>
+                <input type="submit" name="" value="
+                <?php
+                if($this->User_model->checkIfFollowing($data['idUser'])) {echo 'Click to unfollow';}
+                else {echo 'Click to follow';}
+                ?>"
+                class="btn btn-sm mt-2" style="color:black;">
+              </form>
+
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6 text-left mt-4">

@@ -9,6 +9,19 @@ class User_model extends CI_Model{
         return $this->db->query('select * from projectd.users')->result_array();
     }
 
+    public function getUserInfo($id)
+    {
+        return $this->db->query('select * from projectd.users where idUser='.$id)->row();
+    }
+
+    public function getUsername($id)
+    {
+      $this->db->select('username');
+      $this->db->from('users');
+      $this->db->where('idUser',$id);
+      return $this->db->get()->row('username');
+    }
+
     public function getActive($name)
     {
       $this->db->select('active');
@@ -23,6 +36,15 @@ class User_model extends CI_Model{
       $this->db->from('users');
       $this->db->where('username',$name);
       return $this->db->get()->row('admin');
+    }
+
+    public function getFollowing($name)
+    {
+      $this->db->select('following');
+      $this->db->from('users');
+      $this->db->where('username',$name);
+      $user=$this->db->get()->row();
+      return explode(', ',$user->following);
     }
 
     public function friends()
@@ -166,6 +188,7 @@ class User_model extends CI_Model{
         $this->db->from('motions');
         $this->db->where('category',$category);
         //
+
         // This system returns random question from motions 
         // $numberOfRows=$this->db->get()->row('COUNT(*)');  
         
@@ -180,7 +203,35 @@ class User_model extends CI_Model{
     }
     public function addOpinion($idMotion,$idUser,$opinion){
         $this->db->query("INSERT INTO `opinions` (`id`, `idMotion`, `idUser`, `Agree`) VALUES (NULL, '$idMotion', '$idUser', '$opinion')");
+
     }
 
-    
+    public function checkIfFollowing($id) {
+      $following=$this->User_model->getFollowing($_SESSION['username']);
+      $result=false;
+      foreach ($following as $key ) {
+        if ($key==$id) {$result=true;}
+      }
+      return $result;
+    }
+
+    public function follow($id) {
+      $following=$this->User_model->getFollowing($_SESSION['username']);
+      array_push($following,$id);
+      $update_data = array(
+        "following" => implode(", ",$following)
+      );
+      $this->db->where('username', $_SESSION['username']);
+      $this->db->update('users',$update_data);
+    }
+
+    public function unfollow($id) {
+      $following=$this->User_model->getFollowing($_SESSION['username']);
+      array_splice($following,array_search($id,$following));
+      $update_data = array(
+        "following" => implode(", ",$following)
+      );
+      $this->db->where('username', $_SESSION['username']);
+      $this->db->update('users',$update_data);
+    }
 }

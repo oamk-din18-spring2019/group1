@@ -40,6 +40,11 @@
       <li class="nav-item">
         <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/search'); ?>">Search</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?php echo site_url('/user/following'); ?>">Following
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
       <li class="nav-item dropdown ">
         <a class="nav-link dropdown-toggle waves-effect wawes-light" id="navbarDropdownMenuLink-555" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">Dropdown
