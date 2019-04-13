@@ -34,7 +34,7 @@ class LoginRegistration extends CI_Controller
 
     public function login()
     {
-        if($_SESSION['logged_in']==false || empty($_SESSION['logged_in'])) $this->load->view('user/login/login');
+        if( empty($_SESSION['logged_in']) || $_SESSION['logged_in']==false) $this->load->view('user/login/login');
         else redirect('user');
     }
 
