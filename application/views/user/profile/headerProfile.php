@@ -30,9 +30,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/index'); ?>">Dashboard
-          <span class="sr-only">(current)</span>
-        </a>
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/index'); ?>">Dashboard</a>
       </li>
       <li class="nav-item">
         <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/profile'); ?>">Profile</a>
@@ -41,9 +39,7 @@
         <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/search'); ?>">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/following'); ?>">Following
-          <span class="sr-only">(current)</span>
-        </a>
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/following'); ?>">Following</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
