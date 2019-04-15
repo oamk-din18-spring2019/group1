@@ -30,35 +30,25 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo site_url('user/admin'); ?>">Admin
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/admin'); ?>">Admin
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link " href="">#</a>
+      <li class="nav-item ">
+        <a class="nav-link waves-effect wawes-light " href="">#</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">#</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">Dropdown
-        </a>
-        <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+        <a class="nav-link waves-effect wawes-light" href="">#</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
         <a class="nav-link waves-effect waves-light">1
-          <i class="fas fa-envelope"></i>
+          <i class="fas fa-envelope waves-effect wawes-light"></i>
         </a>
       </li>
       <li class="nav-item avatar dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
+        <a class="nav-link dropdown-toggle waves-effect wawes-light" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
           <img src="<?php if(isset($_SESSION['image'])&&($_SESSION['image']!='')){ echo base_url("./images/".$_SESSION['image']) ;} else{echo base_url("./images/empty-avatar.jpg");} ?>"
           class="rounded-circle z-depth-0 " alt="avatar image" style="width:25px; height:25px;">

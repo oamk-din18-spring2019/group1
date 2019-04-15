@@ -61,7 +61,7 @@ class LoginRegistration extends CI_Controller
             } 
             else if ( $this->User_model->emailChecker($this->input->post('em')) == $this->input->post('em') )
             {
-                $data['message'] = "The user with this email exists alredy";
+                $data['message'] = " <div class='col-md-12 text-center text-white bg- mb-0'> The user with this email exists alredy";
                 $this->load->view('user/login/login', $data);
             }
             else 
@@ -75,7 +75,7 @@ class LoginRegistration extends CI_Controller
                 $result = $this->User_model->add_user($insert_data);
                 if ($result == 1) 
                 {
-                    $data['message'] = "Registration passed succesful";
+                    $data['message'] = " <div class='col-md-12 text-center text-white bg-info mb-0'>Registration passed succesful";
                     $this->load->view('user/login/login', $data);
                     $checkingName = $this->User_model->usernameChecker($insert_data["username"]);
                     echo $checkingName;

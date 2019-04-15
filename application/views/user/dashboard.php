@@ -4,13 +4,12 @@
     <!-- side bar -->
 <div id=sidebar> 
     <ul>
-        <li><a href="#">Conversations</a></li>
-        <li><a href="#">Friend requests</a></li>
-        <li><a href="#">Trending</a></li> 
-        <li><a href="#">Explore</a></li>
-        <li><a href="<?php echo site_url('user/profile/nam') ?>">Profile</a></li> <!--TODO: make this dynamic-->
-        <li><a href="#">How this works</a></li>
-        <li><a href="#">About us</a></li>
+        <!-- <li><a href="#">Conversations</a></li> -->
+        <!-- <li><a href="#">Friend requests</a></li> -->
+        <!-- <li><a href="#">Trending</a></li>  -->
+        <!-- <li><a href="#">Explore</a></li> -->
+        <!-- <li><a href="<?php echo site_url('user/profile/nam') ?>">Profile</a></li> TODO: make this dynamic -->
+        <!-- <li><a href="#">About us</a></li> -->
     </ul> 
 </div>
 
@@ -33,38 +32,26 @@
             echo '<td> <li><a href="'.site_url('Motion/answerTheQuestion/').$value.'">'.$value.'</a></li>';
         }
 
-        print_r($chosenCategories);
-
-        
-        // for ()
-        // {
-
-        // }
+        // print_r($chosenCategories);
     ?>
     </ul>
 </div>
 
 <!-- news feed in the middle -->
-<div id=newsfeed>
-    <div>
-        <img src="" alt="icon goes here"> <p>Pepsi is better than Cocacola because it has less sugar</p>
-    </div>
-    <div>
-        <img src="" alt="icon goes here"> <p>You have a new match request pending!</p>
-    </div>
-    <div>
-        <img src="" alt="icon goes here"> <p> <b>Update 1.01 notes: </b> <ul><li>Add users</li><li>Put something new</li></ul></p>
+<div id=newsfeed class="container newsfeed px-5">
+    <div class="container">
+        
     </div>
 </div>
 
 <!-- online friends -->
-<div id=activeFriends>
+<!-- <div id=activeFriends>
     <ul>
     <script>
-        let activeFriends = <?php echo json_encode($activeFriends);?>;
-        activeFriends.map(f => document.getElementById('activeFriends').innerHTML += `<li><a target=_blank href="<?php echo site_url('user/chat')?>/${f.username}" >${f.username}</a></li>`);
+        // let activeFriends = <?php echo json_encode($activeFriends);?>;
+        // activeFriends.map(f => document.getElementById('activeFriends').innerHTML += `<li><a target=_blank href="<?php echo site_url('user/chat')?>/${f.username}" >${f.username}</a></li>`);
     </script>
     </ul>
-</div>
+</div> -->
 
 </div>

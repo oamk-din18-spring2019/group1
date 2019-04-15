@@ -70,7 +70,7 @@ nav{
     }
     #intro{
     background: url(https://images.unsplash.com/photo-1525642351754-db88d9142dee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1764&q=80) no-repeat center fixed;
-         
+
     }
 }
 .map-container{
@@ -90,5 +90,4 @@ nav{
     {
         height: 300px;
     }
-  
 }
