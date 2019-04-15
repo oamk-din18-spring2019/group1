@@ -14,8 +14,12 @@ class LoginRegistration extends CI_Controller
         //if it matches with the one stored in the server, load the dashboard
         $currentUser = get_cookie('username');
         $key = $this->input->cookie('verification');
-        
-        if ($this->User_model->verifyCookie($currentUser, $key)){
+
+        //check if the current session is logged_in or not
+        if($_SESSION['logged_in'] == true){
+            redirect('user');
+        }
+        else if ($this->User_model->verifyCookie($currentUser, $key)){
             //do the log in procedure
             $_SESSION['logged_in'] = true;
             $_SESSION['username'] = $currentUser;
