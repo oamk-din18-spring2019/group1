@@ -63,7 +63,7 @@ $(document).ready(function(e){
 <textarea name="message" id="message" cols="30" rows="2" id="message" placeholder="Enter your message"></textarea> <br>
 <script>
     addEventListener('keypress', e => {
-        if(e.keyCode === 13) $('#sendMessageBtn').click();
+        if(e.keyCode === 13 && !e.shiftKey) $('#sendMessageBtn').click();
     })
 </script>
 <button type="button" class="btn btn-success btn-lg" id="sendMessageBtn"> Send message</button>
