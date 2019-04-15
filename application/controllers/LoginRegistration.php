@@ -16,7 +16,7 @@ class LoginRegistration extends CI_Controller
         $key = $this->input->cookie('verification');
 
         //check if the current session is logged_in or not
-        if($_SESSION['logged_in'] == true){
+        if( !empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == true){
             redirect('user');
         }
         else if ($this->User_model->verifyCookie($currentUser, $key)){
