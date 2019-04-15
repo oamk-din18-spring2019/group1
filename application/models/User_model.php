@@ -127,7 +127,16 @@ class User_model extends CI_Model{
     }
     public function showConvos($currentUser){
     //show list of ongoing conversations
-        
+        $result1 = $this->db->query("select idChat, username2 from conversations where username1='$currentUser'")->result_array();
+        $result2 = $this->db->query("select idChat, username1 from conversations where username2='$currentUser'")->result_array();
+        $chatList = array();
+        foreach($result1 as $row){
+            array_push($chatList, $row);
+        }
+        foreach($result2 as $row){
+            array_push($chatList, $row);
+        }
+        return $chatList;
     }
     public function getDate($name){
         $this->db->select('DoR');
