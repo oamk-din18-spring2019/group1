@@ -68,7 +68,7 @@
                     };
                     ?>
                     <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-1">
-                        At least 8 characters and 1 digit
+                        The password has to be at least 8 characters long with at least 1 digit 
                     </small>
                 </div>
         
@@ -130,7 +130,7 @@
             else 
             {
                 document.getElementById("materialRegisterFormPasswordHelpBlock").className = "col-md-4 text-center text-white bg-danger";
-                document.getElementById("materialRegisterFormPasswordHelpBlock").innerHTML = "At least 8 characters and 1 digit";
+                document.getElementById("materialRegisterFormPasswordHelpBlock").innerHTML = "                        The password has to be at least 8 characters long with at least 1 digit";
             }
         }
         

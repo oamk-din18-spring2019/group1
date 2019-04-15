@@ -55,7 +55,7 @@
       </div>
       <?php 
                 if(isset($message)){
-                   echo" <div class='col-md-12 text-center text-white bg-info mb-0'>".$message." </div>";
+                   echo"".$message." </div>";
                 };
                 ?>
       <div class="d-flex justify-content-around">
