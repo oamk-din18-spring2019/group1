@@ -83,43 +83,26 @@ class User_model extends CI_Model{
         $this->db->where('username',$givenUsername);
         return $this->db->get()->row('passwd');
     }
-    public function openConvo($username1, $username2){
-        //look up id of 2 usernames
-        $idUser1 = $this->db->get_where('projectd.users', array('username' => $username1))->row_array()['idUser'];
-        $idUser2 = $this->db->get_where('projectd.users', array('username' => $username2))->row_array()['idUser'];
 
+    //conversation-related function
+    public function openConversation($username1, $username2){
         //check if the conversation exists or not
-        $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser1, 'idUser1' => $idUser2));
+        $check = $this->db->get_where('projectd.conversations', array('username1' => $username1, 'username2' => $username2));
         if($check->row_array() == null){
-            $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser2, 'idUser1' => $idUser1));
+            $check = $this->db->get_where('projectd.conversations', array('username1' => $username2, 'username2' => $username1));
             if ($check->row_array() == null) {
-                $this->db->insert('projectd.conversations', array('idUser' => $idUser1, 'idUser1' => $idUser2));
+                $this->db->insert('projectd.conversations', array('username1' => $username1, 'username2' => $username2));
             }
-            $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser2, 'idUser1' => $idUser1))->row_array();
-            $this->addConvo('c'.$check['idChat']);
+            $check = $this->db->get_where('projectd.conversations', array('username1' => $username2, 'username2' => $username1))->row_array();
+            $this->addConversation('c'.$check['idChat']);
+            //returns id of the conversation
             return 'c'.$check['idChat'];
         }
-        $check = $this->db->get_where('projectd.conversations', array('idUser' => $idUser1, 'idUser1' => $idUser2))->row_array();
-        $this->addConvo( 'c'.$check['idChat'] );
+        $check = $this->db->get_where('projectd.conversations', array('username1' => $username1, 'username2' => $username2))->row_array();
+        $this->addConversation( 'c'.$check['idChat'] );
         return 'c'.$check['idChat'];
     }
-    public function getDate($name){
-        $this->db->select('DoR');
-        $this->db->from('users');
-        $this->db->where('username',$name);
-        return $this->db->get()->row('DoR');
-    }
-    public function getPictureName($name){
-        $this->db->select('picture');
-        $this->db->from('users');
-        $this->db->where('username',$name);
-        return $this->db->get()->row('picture');
-    }
-    public function setUpPicture($name,$picture){
-        $this->db->query("UPDATE users SET picture = '$picture' WHERE username = '$name'");
-        return ($picture);
-    }
-    function addConvo($idChat){
+    function addConversation($idChat){
         $this->load->dbforge();
         $fields = array(
             'id' => array(
@@ -141,6 +124,35 @@ class User_model extends CI_Model{
         );
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table($idChat, true);
+    }
+    public function showConversations($currentUser){
+    //show list of ongoing conversations
+        $result1 = $this->db->query("select username2 from conversations where username1='$currentUser'")->result_array();
+        $result2 = $this->db->query("select username1 from conversations where username2='$currentUser'")->result_array();
+        $chatList = array();
+        foreach($result1 as $row){
+            array_push($chatList, $row['username2']);
+        }
+        foreach($result2 as $row){
+            array_push($chatList, $row['username1']);
+        }
+        return $chatList;
+    }
+    public function getDate($name){
+        $this->db->select('DoR');
+        $this->db->from('users');
+        $this->db->where('username',$name);
+        return $this->db->get()->row('DoR');
+    }
+    public function getPictureName($name){
+        $this->db->select('picture');
+        $this->db->from('users');
+        $this->db->where('username',$name);
+        return $this->db->get()->row('picture');
+    }
+    public function setUpPicture($name,$picture){
+        $this->db->query("UPDATE users SET picture = '$picture' WHERE username = '$name'");
+        return ($picture);
     }
 
     public function getCategories()
@@ -254,3 +266,4 @@ class User_model extends CI_Model{
       return $exists;
     }
 }
+
