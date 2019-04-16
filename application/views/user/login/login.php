@@ -55,7 +55,7 @@
       </div>
       <?php 
                 if(isset($message)){
-                   echo"".$message." </div>";
+                   echo $message;
                 };
                 ?>
       <div class="d-flex justify-content-around">

@@ -22,7 +22,10 @@
 <div class="container mt-0">
 <!--Navbar -->
 <nav class="w-100 mb-1 navbar navbar-expand-lg navbar-dark black lighten-1">
-  <a class="navbar-brand font-weight-bolder" href="<?php echo site_url('user/index'); ?>">Project D</a>
+  <!-- <a class="navbar-brand font-weight-bolder" href="<?php echo site_url('user/index'); ?>">Project D</a> -->
+  <a href="<?php echo site_url('user/index'); ?>">
+    <img src="<?php echo base_url('./images/projectDLogo.png'); ?>" width="70" height="70" alt="" >
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
     aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -30,9 +33,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/index'); ?>">Dashboard
-          <span class="sr-only">(current)</span>
-        </a>
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/index'); ?>">Dashboard</a>
       </li>
       <li class="nav-item">
         <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/profile'); ?>">Profile</a>
@@ -41,9 +42,7 @@
         <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/search'); ?>">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/following'); ?>">Following
-          <span class="sr-only">(current)</span>
-        </a>
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/following'); ?>">Following</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">

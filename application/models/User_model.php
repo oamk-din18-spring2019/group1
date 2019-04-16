@@ -183,6 +183,7 @@ class User_model extends CI_Model{
     {
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
+
       public function findCategoryQuestion($category,$idUser){
         //
         // This system returns random question from motions 
@@ -190,6 +191,7 @@ class User_model extends CI_Model{
          return $this->db->query(" SELECT motions.idMotion,opinions.idUser,category,content,if(agree=0 or agree=1,agree,null) 
          as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
          left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and category='$category' and agree is  null;")->result_array(); 
+
         // return( $arrayOfMotions[rand(0,$numberOfRows-1)]['content']);
         //
     }
