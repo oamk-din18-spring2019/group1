@@ -37,7 +37,7 @@
             <a href="#examples" class="nav-link waves-effect wawes-light">Examples</a>
           </li>
         </ul>
-        <?php  if (empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == false) {
+        <?php  if (empty($_SESSION['logged_in']) || $_SESSION['logged_in'] == false) {
           echo
             '<div class="text-center">
               <a href="'.site_url("LoginRegistration/login").'" class="">
