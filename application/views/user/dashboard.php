@@ -44,14 +44,6 @@
     </div>
 </div>
 
-<!-- online friends -->
-<!-- <div id=activeFriends>
-    <ul>
-    <script>
-        // let activeFriends = <?php echo json_encode($activeFriends);?>;
-        // activeFriends.map(f => document.getElementById('activeFriends').innerHTML += `<li><a target=_blank href="<?php echo site_url('user/chat')?>/${f.username}" >${f.username}</a></li>`);
-    </script>
-    </ul>
-</div> -->
-
+<!-- temp link to test chat screen -->
+<a href="<?php echo site_url('user/chat'); ?>"></a>
 </div>
