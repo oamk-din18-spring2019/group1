@@ -126,6 +126,9 @@ class User extends CI_Controller
       $config['max_width']            = 2024;
       $config['max_height']           = 2024;
 
+      // Get name of old picture
+      $oldPicture=$this->User_model->getUserInfo($_SESSION['idUser'])->picture;
+
       $this->load->library('upload', $config);
       echo($this->upload->data('file_name'));
 
@@ -133,6 +136,8 @@ class User extends CI_Controller
       {
         echo "success!";
         $_SESSION['image']=$this->User_model->setUpPicture($_SESSION['username'],$this->upload->data('file_name'));
+        // Delete old picture
+        $this->User_model->deleteOldPicture($oldPicture);
         redirect('user/profile/profile');
       }
       else

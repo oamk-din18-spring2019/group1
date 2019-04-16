@@ -119,6 +119,9 @@ class User_model extends CI_Model{
         $this->db->query("UPDATE users SET picture = '$picture' WHERE username = '$name'");
         return ($picture);
     }
+    public function deleteOldPicture($picture) {
+      if ($picture!=NULL) {unlink("images/".$picture);}
+    }
     function addConvo($idChat){
         $this->load->dbforge();
         $fields = array(
@@ -185,19 +188,19 @@ class User_model extends CI_Model{
     }
       public function findCategoryQuestion($category,$idUser){
         //
-        // This system returns random question from motions 
-        // $numberOfRows=$this->db->get()->row('COUNT(*)');  
-         return $this->db->query(" SELECT motions.idMotion,opinions.idUser,category,content,if(agree=0 or agree=1,agree,null) 
-         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
-         left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and category='$category' and agree is  null;")->result_array(); 
+        // This system returns random question from motions
+        // $numberOfRows=$this->db->get()->row('COUNT(*)');
+         return $this->db->query(" SELECT motions.idMotion,opinions.idUser,category,content,if(agree=0 or agree=1,agree,null)
+         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion
+         left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and category='$category' and agree is  null;")->result_array();
 
         // return( $arrayOfMotions[rand(0,$numberOfRows-1)]['content']);
         //
     }
     public function showAnsweredMotions($category,$idUser){
-        return $this->db->query(" SELECT motions.idMotion,opinions.idUser,category,content,if(agree=0 or agree=1,agree,null) 
-        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
-        left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and category='$category' and agree is not null;")->result_array(); 
+        return $this->db->query(" SELECT motions.idMotion,opinions.idUser,category,content,if(agree=0 or agree=1,agree,null)
+        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion
+        left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and category='$category' and agree is not null;")->result_array();
     }
     public function addOpinion($idMotion,$idUser,$opinion){
         $this->db->query(" UPDATE `opinions` SET  `Agree` = '$opinion' WHERE `idMotion` = '$idMotion' and `idUser` = '$idUser'");
@@ -205,8 +208,8 @@ class User_model extends CI_Model{
     }
     public function  setOpinionsToNull($category,$idUser){
         $categoriesArray= array();
-        $categoriesArray=$this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null) 
-        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+        $categoriesArray=$this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null)
+        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion
         left join users on users.idUser=opinions.idUser where category='$category';")->result_array();
           for($i=0;$i<count($categoriesArray);$i++){
             $motion=$categoriesArray[$i]['idMotion'];
