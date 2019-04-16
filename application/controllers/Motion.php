@@ -11,8 +11,8 @@ class Motion extends CI_Controller{
     }
     public function answerTheQuestion($category){
         $data['category']=$category;
-        $data['question'] = $this-> User_model->findCategoryQuestion($category);
-        $data['answeredMotions']=$this-> User_model->showAnsweredMotions($category);
+        $data['question'] = $this-> User_model->findCategoryQuestion($category,$_SESSION['idUser']);
+        $data['answeredMotions']=$this-> User_model->showAnsweredMotions($category,$_SESSION['idUser']);
         // $this -> load -> view ('templates/navbarDashboard');
         $this-> load-> view('user/profile/headerProfile');
         $this-> load-> view('user/argument/answer',$data);
@@ -21,7 +21,8 @@ class Motion extends CI_Controller{
       }
     public function getAnswer($answer){
     $opinion=$this->input->post('defaultExampleRadios');
-    $this->User_model->addOpinion($answer,$_SESSION['idUser'],$opinion);
+     $this->User_model->addOpinion($answer,$_SESSION['idUser'],$opinion);
+    print_r($opinion);
     header("Location: ".$_SERVER['HTTP_REFERER']);
     // redirect('user/answerTheQuestion/')
     // addOpinion($idMotion,$idUser,$opinion)
