@@ -195,27 +195,37 @@ class User_model extends CI_Model{
     {
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
-      public function findCategoryQuestion($category){
-        $this->db->select('');
-        $this->db->from('motions');
-        $this->db->where('category',$category);
+      public function findCategoryQuestion($category,$idUser){
         //
-
         // This system returns random question from motions 
         // $numberOfRows=$this->db->get()->row('COUNT(*)');  
-        
-         return $this->db->query("SELECT motions.idMotion,category,content,if(agree=0 or agree=1,agree,null) as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion where (agree is null and(category='$category')) ; 
-         ")->result_array(); 
+         return $this->db->query(" SELECT motions.idMotion,opinions.idUser,category,content,if(agree=0 or agree=1,agree,null) 
+         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+         left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and category='$category' and agree is  null;")->result_array(); 
+
         // return( $arrayOfMotions[rand(0,$numberOfRows-1)]['content']);
         //
     }
-    public function showAnsweredMotions($category){
-        return $this->db->query("SELECT motions.idMotion,category,content,if(agree=0 or agree=1,agree,null) as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion where (agree is not null and(category='$category')) order by agree ;
-        ")->result_array(); 
+    public function showAnsweredMotions($category,$idUser){
+        return $this->db->query(" SELECT motions.idMotion,opinions.idUser,category,content,if(agree=0 or agree=1,agree,null) 
+        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+        left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and category='$category' and agree is not null;")->result_array(); 
     }
     public function addOpinion($idMotion,$idUser,$opinion){
-        $this->db->query("INSERT INTO `opinions` (`id`, `idMotion`, `idUser`, `Agree`) VALUES (NULL, '$idMotion', '$idUser', '$opinion')");
+        $this->db->query(" UPDATE `opinions` SET  `Agree` = '$opinion' WHERE `idMotion` = '$idMotion' and `idUser` = '$idUser'");
 
+    }
+    public function  setOpinionsToNull($category,$idUser){
+        $categoriesArray= array();
+        $categoriesArray=$this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null) 
+        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+        left join users on users.idUser=opinions.idUser where category='$category';")->result_array();
+          for($i=0;$i<count($categoriesArray);$i++){
+            $motion=$categoriesArray[$i]['idMotion'];
+            $categoriesArray[$i]['agree']=null;
+            $this->db->query("INSERT INTO `opinions` (`id`, `idMotion`, `idUser`, `Agree`) VALUES (NULL, '$motion', '$idUser', null)");
+     }
+        return $categoriesArray;
     }
 
     public function checkIfFollowing($id) {
@@ -245,6 +255,15 @@ class User_model extends CI_Model{
       );
       $this->db->where('username', $_SESSION['username']);
       $this->db->update('users',$update_data);
+    }
+
+    public function checkIfUsernameExists($name) {
+      $exists=false;
+      $this->db->select('username');
+      $this->db->from('users');
+      $this->db->where('username',$name);
+      if ($this->db->get()->row('username')!=NULL) {$exists=true;}
+      return $exists;
     }
 }
 
