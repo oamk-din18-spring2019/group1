@@ -16,20 +16,13 @@ class User extends CI_Controller
     }
     public function index()
     {
-      $data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
+      //$data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
       $data['page'] = 'user/dashboard';
       $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
       $data["categories"] = $this->User_model->getCategories();
       $this->load->view('user/profile/headerProfile');
       $this->load->view('user/dashboard', $data);
       $this->load->view('user/profile/footerProfile');
-    }
-
-    public function chat($username){
-      $data['username'] = $username;
-      $currentUser = $_SESSION['username'];
-      $data['idChat'] = $this->User_model->openConvo($currentUser, $username);
-      $this->load->view('user/chat/chat_screen', $data);
     }
 
      # Search engine
@@ -213,4 +206,18 @@ class User extends CI_Controller
       redirect(site_url('user/others_profile?username=').$this->User_model->getUsername($id));
     }
 
+    //chat-related functions
+    public function allConversations($currentUser){
+      $data['test'] = array_unique($this->User_model->showConversations($currentUser));
+      $this->load->view('user/chat/chat_list', $data);
+    }
+    public function chat($username){
+      $data['username'] = $username;
+      $currentUser = $_SESSION['username'];
+      $data['idChat'] = $this->User_model->openConversation($currentUser, $username);
+      $this->load->view('user/chat/chat_screen', $data);
+    }
+    public function social(){
+      $this->load->view('user/chat/messenger');;
+    }
 }
