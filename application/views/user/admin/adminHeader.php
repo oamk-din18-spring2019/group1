@@ -44,7 +44,7 @@
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
         <a class="nav-link waves-effect waves-light">1
-          <i class="fas fa-envelope waves-effect wawes-light"></i>
+          <i class="fas fa-envelope"></i>
         </a>
       </li>
       <li class="nav-item avatar dropdown">

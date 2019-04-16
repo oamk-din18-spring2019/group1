@@ -57,7 +57,7 @@ class LoginRegistration extends CI_Controller
             } 
             else if ( $this->User_model->emailChecker($this->input->post('em')) == $this->input->post('em') )
             {
-                $data['message'] = " <div class='col-md-12 text-center text-white bg- mb-0'> The user with this email exists alredy";
+                $data['message'] = " <div class='col-md-12 text-center text-white bg-danger mb-0'> The user with this email exists alredy</div>";
                 $this->load->view('user/login/login', $data);
             }
             else 
