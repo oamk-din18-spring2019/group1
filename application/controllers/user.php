@@ -105,12 +105,12 @@ class User extends CI_Controller
       $idUser=$_SESSION['idUser'];
       foreach ($insert_data as $key => $value){
         if ($key!='idUser'){
-          echo "<br>";
-        print_r($this->User_model->setOpinionsToNull($key,$idUser));
+        $this->User_model->setOpinionsToNull($key,$idUser);
         }
       }
+     // $categoriesArray=$this->User_model->setOpinionsToNull($key,$idUser);
       $this->User_model->addPreferredCategories($insert_data);
-      // redirect('User/index');
+       redirect('User/index');
     }
     public function showPreferredCategories()
     {
