@@ -215,20 +215,32 @@ class User_model extends CI_Model{
         left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and category='$category' and agree is not null;")->result_array();
     }
     public function addOpinion($idMotion,$idUser,$opinion){
-        $this->db->query(" UPDATE `opinions` SET  `Agree` = '$opinion' WHERE `idMotion` = '$idMotion' and `idUser` = '$idUser'");
+        $this->db->query("UPDATE `opinions` SET  `Agree` = '$opinion' WHERE `idMotion` = '$idMotion' and `idUser` = '$idUser'");
 
     }
     public function  setOpinionsToNull($category,$idUser){
         $categoriesArray= array();
-        $categoriesArray=$this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null)
-        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion
-        left join users on users.idUser=opinions.idUser where category='$category';")->result_array();
+
+        $users=array();
+        $users=$this->db->query("select idUser from users")->result_array();
+        $firstUserId=$users[0]['idUser'];
+       if (isset($users[1])){
+        $categoriesArray=$this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null) 
+        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+        left join users on users.idUser=opinions.idUser where category='$category' and opinions.idUser=$firstUserId;")->result_array();  
+       } else {
+        $categoriesArray=$this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null) 
+        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+        left join users on users.idUser=opinions.idUser where category='$category'")->result_array();
+       }
+                
+
           for($i=0;$i<count($categoriesArray);$i++){
             $motion=$categoriesArray[$i]['idMotion'];
             $categoriesArray[$i]['agree']=null;
             $this->db->query("INSERT INTO `opinions` (`id`, `idMotion`, `idUser`, `Agree`) VALUES (NULL, '$motion', '$idUser', null)");
      }
-        return $categoriesArray;
+        return $firstUserId;
     }
 
     public function checkIfFollowing($id) {
