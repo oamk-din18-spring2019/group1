@@ -195,8 +195,8 @@ class User extends CI_Controller
 
     //chat-related functions
     public function allConversations($currentUser){
-      $data['test'] =array_unique($this->User_model->showConversations($currentUser));
-      $this->load->view('test', $data);
+      $data['test'] = array_unique($this->User_model->showConversations($currentUser));
+      $this->load->view('user/chat/chat_list', $data);
     }
     public function chat($username){
       $data['username'] = $username;
@@ -204,5 +204,7 @@ class User extends CI_Controller
       $data['idChat'] = $this->User_model->openConversation($currentUser, $username);
       $this->load->view('user/chat/chat_screen', $data);
     }
-
+    public function social(){
+      $this->load->view('user/chat/messenger');;
+    }
 }

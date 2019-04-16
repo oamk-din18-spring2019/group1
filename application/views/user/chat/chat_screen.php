@@ -4,8 +4,6 @@
 <H1><?php echo $_SESSION['username']; ?></H1>
 <h1><?php echo $idChat ?></h1>
 
-<div id=chatList ></div>
-
 <div id=chatScreen width=100%></div>
 
 <script type=text/JavaScript>
