@@ -194,14 +194,14 @@ class User extends CI_Controller
     }
 
     //chat-related functions
-    public function allConvos($currentUser){
-      $data['test'] = $this->User_model->showConvos($currentUser);
+    public function allConversations($currentUser){
+      $data['test'] =array_unique($this->User_model->showConversations($currentUser));
       $this->load->view('test', $data);
     }
     public function chat($username){
       $data['username'] = $username;
       $currentUser = $_SESSION['username'];
-      $data['idChat'] = $this->User_model->openConvo($currentUser, $username);
+      $data['idChat'] = $this->User_model->openConversation($currentUser, $username);
       $this->load->view('user/chat/chat_screen', $data);
     }
 
