@@ -101,8 +101,16 @@ class User extends CI_Controller
         'education'=> $this->input->post('education'),
         'history'=> $this->input->post('history')
       );
+      print_r($insert_data);
+      $idUser=$_SESSION['idUser'];
+      foreach ($insert_data as $key => $value){
+        if ($key!='idUser'){
+        $this->User_model->setOpinionsToNull($key,$idUser);
+        }
+      }
+     // $categoriesArray=$this->User_model->setOpinionsToNull($key,$idUser);
       $this->User_model->addPreferredCategories($insert_data);
-      redirect('User/index');
+       redirect('User/index');
     }
     public function showPreferredCategories()
     {
