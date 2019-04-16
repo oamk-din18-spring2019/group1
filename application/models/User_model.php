@@ -183,7 +183,6 @@ class User_model extends CI_Model{
     {
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
-
       public function findCategoryQuestion($category,$idUser){
         //
         // This system returns random question from motions 
@@ -244,5 +243,14 @@ class User_model extends CI_Model{
       );
       $this->db->where('username', $_SESSION['username']);
       $this->db->update('users',$update_data);
+    }
+
+    public function checkIfUsernameExists($name) {
+      $exists=false;
+      $this->db->select('username');
+      $this->db->from('users');
+      $this->db->where('username',$name);
+      if ($this->db->get()->row('username')!=NULL) {$exists=true;}
+      return $exists;
     }
 }
