@@ -102,13 +102,6 @@ class User_model extends CI_Model{
         $this->addConversation( 'c'.$check['idChat'] );
         return 'c'.$check['idChat'];
     }
-
-    public function getDate($name){
-        $this->db->select('DoR');
-        $this->db->from('users');
-        $this->db->where('username',$name);
-        return $this->db->get()->row('DoR');
-    }
     public function getPictureName($name){
         $this->db->select('picture');
         $this->db->from('users');
@@ -122,7 +115,7 @@ class User_model extends CI_Model{
     public function deleteOldPicture($picture) {
       if ($picture!=NULL) {unlink("images/".$picture);}
     }
-  
+
     function addConversation($idChat){
         $this->load->dbforge();
         $fields = array(
@@ -165,17 +158,6 @@ class User_model extends CI_Model{
         $this->db->where('username',$name);
         return $this->db->get()->row('DoR');
     }
-    public function getPictureName($name){
-        $this->db->select('picture');
-        $this->db->from('users');
-        $this->db->where('username',$name);
-        return $this->db->get()->row('picture');
-    }
-    public function setUpPicture($name,$picture){
-        $this->db->query("UPDATE users SET picture = '$picture' WHERE username = '$name'");
-        return ($picture);
-    }
-
     public function getCategories()
     {
         return $this->db->list_fields('categories');
@@ -287,4 +269,3 @@ class User_model extends CI_Model{
       return $exists;
     }
 }
-
