@@ -14,7 +14,7 @@ class LoginRegistration extends CI_Controller
         //if it matches with the one stored in the server, load the dashboard
         $currentUser = get_cookie('username');
         $key = $this->input->cookie('verification');
-        
+
         if ($this->User_model->verifyCookie($currentUser, $key)){
             //do the log in procedure
             $_SESSION['logged_in'] = true;
@@ -22,7 +22,7 @@ class LoginRegistration extends CI_Controller
             $_SESSION['time']= $this->User_model->getDate($currentUser);
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $_SESSION['idUser']=$this->User_model->getIdUser($currentUser);
-            
+
             redirect('user');
         }
         else{
@@ -47,20 +47,20 @@ class LoginRegistration extends CI_Controller
     {
         //Registration function
         // Checks the passwords to be equal
-        if ($this->input->post('pw1') == $this->input->post('pw2')) 
+        if ($this->input->post('pw1') == $this->input->post('pw2'))
         {
             //hash the password and send the information to the database
             if ( $this->User_model->usernameChecker($this->input->post('un')) == $this->input->post('un'))
             {
                 $data['message'] = "'".$this->input->post('un')."' username has already taken";
                 $this->load->view('user/login/register', $data);
-            } 
+            }
             else if ( $this->User_model->emailChecker($this->input->post('em')) == $this->input->post('em') )
             {
                 $data['message'] = " <div class='col-md-12 text-center text-white bg- mb-0'> The user with this email exists alredy";
                 $this->load->view('user/login/login', $data);
             }
-            else 
+            else
             {
                 $hashedPassword = password_hash($this->input->post('pw1'), PASSWORD_DEFAULT);
                 $insert_data = array(
@@ -69,22 +69,22 @@ class LoginRegistration extends CI_Controller
                     "passwd" => $hashedPassword
                 );
                 $result = $this->User_model->add_user($insert_data);
-                if ($result == 1) 
+                if ($result == 1)
                 {
                     $data['message'] = " <div class='col-md-12 text-center text-white bg-info mb-0'>Registration passed succesful";
                     $this->load->view('user/login/login', $data);
                     $checkingName = $this->User_model->usernameChecker($insert_data["username"]);
                     echo $checkingName;
-                } 
+                }
             }
-        } 
-        else 
+        }
+        else
         {
             $data['message'] = "You entered the different passwords";
             $this->load->view('user/login/register', $data);
         }
     }
-        
+
 
     function log_in_procedure()
     {
@@ -102,15 +102,15 @@ class LoginRegistration extends CI_Controller
             $_SESSION['image']=$this->User_model->getPictureName($_SESSION['username']);
             $_SESSION['idUser']=$this->User_model->getIdUser($givenUsername);
             $_SESSION['admin']=$admin;
-          
-            //check if user wants to automatically log in 
+
+            //check if user wants to automatically log in
             if ($this->input->post('rememberMe') == 'on'){
                 $veriKey = $this->generateKey();
                 $this->input->set_cookie('username', $_SESSION['username'], 365*24*60*60);
                 $this->input->set_cookie('verification', $veriKey, 365*24*60*60);
                 $this->User_model->addCookie($_SESSION['username'], $veriKey);
             }
-            
+
             //check if user logs in as admin
             if ($admin==false) {
               if (  $this->User_model->getPreferredCategories($_SESSION['idUser'])){
@@ -122,16 +122,17 @@ class LoginRegistration extends CI_Controller
 
         } else {
             $_SESSION['logged_in'] = false;
-            if ($active==false) {
+            $exists=$this->User_model->checkIfUsernameExists($givenUsername);
+            if ($exists==true&&$active==false) {
               $data['messagePassword']="You are banned!";
             }
             else {
               $data['messagePassword']="Wrong password or username";
             }
             $this->load->view('user/login/login', $data);
-        } 
+        }
     }
-  
+
     function logout(){
         $_SESSION['logged_in']=false;
         delete_cookie('username');

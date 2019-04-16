@@ -30,12 +30,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/admin'); ?>">Admin
-          <span class="sr-only">(current)</span>
-        </a>
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/admin'); ?>">Admin</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link waves-effect wawes-light " href="">#</a>
+        <a class="nav-link waves-effect wawes-light " href="<?php echo site_url('user/ban'); ?>">Ban</a>
       </li>
       <li class="nav-item">
         <a class="nav-link waves-effect wawes-light" href="">#</a>
@@ -56,7 +54,7 @@
         <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
           <a class="dropdown-item" href="#">Some Action</a>
           <a class="dropdown-item" href="<?php echo site_url('user/settings'); ?>">Settings</a>
-          <a class="dropdown-item" href="<?php echo site_url('user/logout') ?>">Log out</a>
+          <a class="dropdown-item" href="<?php echo site_url('LoginRegistration/logout') ?>">Log out</a>
         </div>
       </li>
     </ul>
