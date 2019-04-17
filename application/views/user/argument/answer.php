@@ -6,8 +6,8 @@ if( $question)
 {
     echo '<div class="container px-5 ">';
         echo '<div class="row">';
-            echo '<div class="col-8 mx-auto">';
-                echo "<h2 class='mt-4'>You chose " . $category . "</h2> <br>";
+            echo '<div class="col-9 mx-auto my-5">';
+                echo "<h2 class=''>Motions on " . $category . "</h2> <br>";
                 for ($i=0;$i<count($question);$i++){
                     echo '<div class="card my-4">';
                         echo '<div class="card-body px-4 mx-3">';
@@ -20,11 +20,11 @@ if( $question)
                                     echo "<label class='custom-control-label' for='defaultChecked".$i."'>Yes, I agree<label>";
                                 echo "</div>";
                                 echo "<div class='custom-control custom-radio'>";
-                                    echo "<input type='radio' class='custom-control-input' id='defaultUnchecked".$i."'      value='0'                    name='defaultExampleRadios'>";
+                                    echo "<input type='radio' class='custom-control-input' id='defaultUnchecked".$i."'      value='0' name='defaultExampleRadios'>";
                                     echo "<label class='custom-control-label' for='defaultUnchecked".$i."'>No, I disagree</     label>";
                                 echo "</div>";
                                 // echo "<div class='float-left'>";
-                                    echo "<input type='submit' class='btn btn-success text-right' id='BoxSelect'        value='Submit'>";
+                                    echo "<button type='submit' class='btn btn-outline-dark rounded waves-effect' id='BoxSelect'        value='Submit'>Submit</button>";
                                 // echo "</div>";
                             echo "</form>";
                         echo '</div>';
@@ -32,26 +32,38 @@ if( $question)
                 }
             echo '</div>';
         echo '</div>';
-    echo '</div>';
+    // echo '</div>';
 
 } else {
     echo " <h2>You answered all the questions</h2>";
 }
 
-echo '<div class="container px-5>';
+// echo '<div class="container px-5>';
     echo '<div class="row">';
-        echo '<div class="col-8 mx-auto mb-4">';
+        echo '<div class="col-9 text-center mx-auto mb-4">';
             if ($answeredMotions){
-                echo  " <h2>Your answers:</h2> <br> ";
+                echo "<h2 class='text-left'>Your answers:</h2> <br> ";
+                echo "<hr>";
                 for ($i=0;$i<count($answeredMotions);$i++){
-                    echo $answeredMotions[$i]['content'].': ';
+                    echo '<h4><strong>'.$answeredMotions[$i]['content'].':</strong></h4> ';
                     if ($answeredMotions[$i]['agree']==1){
-                        echo 'I agree <br>';
-                        echo '<a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">GO</a><br>';
+                        echo '<div class="col-12">';
+                             echo '<h5 class="text-success pt-4">You agree</h5> <br>';
+                        echo '</div>';
+                        echo '<div class="w-100"></div>';
+                        echo '<div class="col-12">';
+                            echo '<a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'"><button type="button" class="btn btn-lg btn-outline-dark"><h6 class="mb-0">Argue</h6></button></a><br>';
+                        echo '</div>';
                     } else {
-                        echo 'I disagree <br>';
-                        echo '<a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">GO</a><br>';
+                        echo '<div class="col-12">';
+                            echo '<h5 class="text-danger pt-4">You disagree</h5> <br>';
+                        echo '</div>';
+                        echo '<div class="w-100"></div>';
+                        echo '<div class="col-12">';
+                            echo '<a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'"><button type="button" class="btn btn-lg btn-outline-dark"><h6 class="mb-0">Argue</h6></button></a><br>';
+                        echo '</div>';
                     }
+                    echo '<hr>';
                 };
             }
         echo '</div>';
