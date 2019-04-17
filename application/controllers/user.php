@@ -222,8 +222,9 @@ class User extends CI_Controller
       }
     }
     public function social($username=null){
+      $data=$username;
       $this -> load -> view ('user/profile/headerProfile');
-      $this->load->view('user/chat/messenger', $data);;
+      $this->load->view('user/chat/messenger', $data);
       $this -> load -> view ('user/profile/footerProfile');
     }
 }
