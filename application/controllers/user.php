@@ -185,7 +185,7 @@ class User extends CI_Controller
     }
 
     public function answerTheQuestion($category){
-      $data['category']=$category;
+      $data['category']= $category;
       $data['question'] = $this-> User_model->findCategoryQuestion($category);
       // $this -> load -> view ('templates/navbarDashboard');
      $this-> load-> view('user/argument/answer',$data);
