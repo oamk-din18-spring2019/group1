@@ -185,7 +185,7 @@ class User extends CI_Controller
     }
 
     public function answerTheQuestion($category){
-      $data['category']=$category;
+      $data['category']= $category;
       $data['question'] = $this-> User_model->findCategoryQuestion($category);
       // $this -> load -> view ('templates/navbarDashboard');
      $this-> load-> view('user/argument/answer',$data);
@@ -211,15 +211,19 @@ class User extends CI_Controller
       $data['test'] = array_unique($this->User_model->showConversations($currentUser));
       $this->load->view('user/chat/chat_list', $data);
     }
-    public function chat($username){
-      $data['username'] = $username;
-      $currentUser = $_SESSION['username'];
-      $data['idChat'] = $this->User_model->openConversation($currentUser, $username);
-      $this->load->view('user/chat/chat_screen', $data);
+    public function chat($username=null){
+      if ($username == null){
+        $this->load->view('user/chat/default');
+      }else{
+        $data['username'] = $username;
+        $currentUser = $_SESSION['username'];
+        $data['idChat'] = $this->User_model->openConversation($currentUser, $username);
+        $this->load->view('user/chat/chat_screen', $data);
+      }
     }
-    public function social(){
+    public function social($username=null){
       $this -> load -> view ('user/profile/headerProfile');
-      $this-> load -> view('user/chat/messenger');
+      $this->load->view('user/chat/messenger', $data);;
       $this -> load -> view ('user/profile/footerProfile');
     }
 }

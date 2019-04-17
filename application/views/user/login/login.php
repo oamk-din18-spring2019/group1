@@ -24,7 +24,8 @@
 
 <body>
 <!-- Material form login -->
-<div class="card centered mt-4 rounded-30 " style="width:40%; margin:auto;">
+<div class="container-fluid col-lg-5 col-md-8 col-sm-12">
+<div class="card centered mt-4 rounded-30 " >
 
   <h5 class="card-header white-text text-center py-4" style="background-color:black;">
     <strong>Sign in</strong>
@@ -93,6 +94,7 @@
       </a>
       -->
     </form>
+  </div>
     <!-- Form -->
 
   </div>

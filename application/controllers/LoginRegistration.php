@@ -74,11 +74,9 @@ class LoginRegistration extends CI_Controller
                 $result = $this->User_model->add_user($insert_data);
                 if ($result == 1)
                 {
-                    $data['message'] = " <div class='col-md-12 text-center text-white bg-info mb-0'>Registration passed succesful";
+                    $data['message'] = " <div class='col-md-12 text-center text-white bg-info mb-0'>Registration passed succesfully </div>";
                     $this->load->view('user/login/login', $data);
-                    $checkingName = $this->User_model->usernameChecker($insert_data["username"]);
-                    echo $checkingName;
-                }
+                } 
             }
         }
         else
