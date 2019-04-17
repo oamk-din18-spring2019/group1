@@ -6,7 +6,7 @@ class Motion extends CI_Controller{
       parent::__construct();
       $this->load->model('User_model');
       if (empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == false){
-        header('location:User/access_denied');
+      redirect('user/access_denied');
       }
     }
     public function answerTheQuestion($category){

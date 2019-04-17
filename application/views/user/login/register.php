@@ -24,13 +24,14 @@
 
 <body>
     <!-- Material form register -->
-    <div class="card centered mt-4 rounded-30" style="width:40%; margin:auto;">
+    <div class="container-fluid col-lg-5 col-md-8 col-sm-12">
+    <div class="card centered mt-4 rounded-30" >
         <h5 class="card-header white-text text-center py-4" style="background-color:black;">
             <strong>Sign up</strong>
         </h5>
 
         <!--Card content-->
-        <div class="card-body px-lg-5 pt-0">
+        <div class=" card-body px-sm-5  pt-0">
 
             <!-- Form -->
             <form class="text-center" method="POST" action="add_user" style="color: #757575;">
@@ -135,3 +136,4 @@
         }
         
     </script>
+    </div>
