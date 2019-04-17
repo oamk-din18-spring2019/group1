@@ -24,7 +24,7 @@
 <nav class="w-100 mb-1 navbar navbar-expand-lg navbar-dark black lighten-1">
   <!-- <a class="navbar-brand font-weight-bolder" href="<?php echo site_url('user/index'); ?>">Project D</a> -->
   <a href="<?php echo site_url('user/index'); ?>">
-    <img src="<?php echo base_url('./images/projectDLogo.png'); ?>" width="70" height="70" alt="" >
+    <img src="<?php echo base_url('./images/projectDLogo.png'); ?>" width="50" height="50" alt="" >
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
     aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
