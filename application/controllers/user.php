@@ -8,7 +8,7 @@ class User extends CI_Controller
       $this->load->model('User_model');
       $this->load->model('Search_model');
       if (empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == false){
-        redirect('user/access_denied');
+        header('location:access_denied');
       }
     }
     function access_denied(){
