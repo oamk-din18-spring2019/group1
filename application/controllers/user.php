@@ -211,13 +211,18 @@ class User extends CI_Controller
       $data['test'] = array_unique($this->User_model->showConversations($currentUser));
       $this->load->view('user/chat/chat_list', $data);
     }
-    public function chat($username){
-      $data['username'] = $username;
-      $currentUser = $_SESSION['username'];
-      $data['idChat'] = $this->User_model->openConversation($currentUser, $username);
-      $this->load->view('user/chat/chat_screen', $data);
+    public function chat($username=null){
+      if ($username == null){
+        $this->load->view('user/chat/default');
+      }else{
+        $data['username'] = $username;
+        $currentUser = $_SESSION['username'];
+        $data['idChat'] = $this->User_model->openConversation($currentUser, $username);
+        $this->load->view('user/chat/chat_screen', $data);
+      }
     }
-    public function social(){
-      $this->load->view('user/chat/messenger');;
+    public function social($username=null){
+      $data['username'] = $username;
+      $this->load->view('user/chat/messenger', $data);;
     }
 }
