@@ -27,4 +27,14 @@ class Motion extends CI_Controller{
     // redirect('user/answerTheQuestion/')
     // addOpinion($idMotion,$idUser,$opinion)
     }
+    public function listOfOpponents($idMotion){
+      $data['opponents']=array();
+      $data['opponents']=$this->User_model->findOpponents($idMotion,$_SESSION['idUser']);
+     
+      $this-> load-> view('user/profile/headerProfile');
+        $this-> load-> view('user/argument/listOfOpponents',$data);
+        $this-> load-> view('user/profile/footerProfile');
+      
+
+    }
 }

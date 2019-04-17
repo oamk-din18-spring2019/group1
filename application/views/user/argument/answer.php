@@ -23,14 +23,17 @@ if( $question)
 } else {
     echo " <h2>You answered all the questions</h2>";
 }
+// print_r ($question);
 if ($answeredMotions){
     echo  " <h2>Your answers:</h2> <br> ";
     for ($i=0;$i<count($answeredMotions);$i++){
         echo $answeredMotions[$i]['content'].': ';
-        if ($answeredMotions[$i]['agree']=1){
-            echo 'I agree <br>';
+        if ($answeredMotions[$i]['agree']==1){
+            echo 'I agree ';
+            echo '<a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">GO</a><br>';
         } else {
-            echo ' I disagree <br>';
+            echo ' I disagree ';
+            echo '<a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">GO</a><br>';
         }
     };
 }
