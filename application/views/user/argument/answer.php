@@ -37,6 +37,7 @@ if( $question)
 } else {
     echo " <h2>You answered all the questions</h2>";
 }
+
 echo '<div class="container px-5>';
     echo '<div class="row">';
         echo '<div class="col-8 mx-auto mb-4">';
@@ -46,12 +47,15 @@ echo '<div class="container px-5>';
                     echo $answeredMotions[$i]['content'].': ';
                     if ($answeredMotions[$i]['agree']==1){
                         echo 'I agree <br>';
+                        echo '<a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">GO</a><br>';
                     } else {
                         echo 'I disagree <br>';
+                        echo '<a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">GO</a><br>';
                     }
                 };
             }
         echo '</div>';
     echo '</div>';
 echo '</div>';
+
 ?>

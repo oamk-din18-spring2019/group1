@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Project D</title>
-  <!-- Font Awesome --> 
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
   <!-- Bootstrap core CSS -->
   <link href="<?php echo base_url('bst/css/bootstrap.min.css')?>" rel="stylesheet">
@@ -37,21 +37,39 @@
             <a href="#examples" class="nav-link waves-effect wawes-light">Examples</a>
           </li>
         </ul>
-          <div class="text-center">
-            <a href="<?php echo site_url("LoginRegistration/login")?>" class=""> 
-              <button  class="btn-sm btn waves-effect wawes-light px-3">
-                <div class="loginButtonText">Login</div>
-              </button>
-            </a> 
-          </div>
-          <div class="text-center">
-            <a href="<?php echo site_url("LoginRegistration/register")?>" class=""> 
-              <button  class="btn-sm btn btn-outline-white px-3">
-                <div class="loginButtonText">Sign Up</div>
-              </button>
-            </a> 
-          </div>       
+        <?php  if (empty($_SESSION['logged_in']) || $_SESSION['logged_in'] == false) {
+          echo
+            '<div class="text-center">
+              <a href="'.site_url("LoginRegistration/login").'" class="">
+                <button  class="btn-sm btn waves-effect wawes-light px-3">
+                  <div class="loginButtonText">Login</div>
+                </button>
+              </a>
+            </div>
+            <div class="text-center">
+              <a href="'.site_url("LoginRegistration/register").'" class="">
+                <button  class="btn-sm btn btn-outline-white px-3">
+                  <div class="loginButtonText">Sign Up</div>
+                </button>
+              </a>
+            </div>';
+          }
+          else {
+            echo
+            '<div class="text-center">
+              <a href="';
+              if ($_SESSION['admin']==false) {echo site_url('user/index');} else {echo site_url('user/admin/admin');}
+            echo '" class="">
+                <button  class="btn-sm btn btn-outline-white px-3">
+                  <div class="loginButtonText">';
+            if ($_SESSION['admin']==false) {echo 'Dashboard';} else {echo 'Admin';}
+            echo '</div>
+                </button>
+              </a>
+            </div>';
 
+          }
+          ?>
       </div>
     </div>
   </nav>

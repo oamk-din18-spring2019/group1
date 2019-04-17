@@ -16,20 +16,13 @@ class User extends CI_Controller
     }
     public function index()
     {
-      $data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
+      //$data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
       $data['page'] = 'user/dashboard';
       $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
       $data["categories"] = $this->User_model->getCategories();
       $this->load->view('user/profile/headerProfile');
       $this->load->view('user/dashboard', $data);
       $this->load->view('user/profile/footerProfile');
-    }
-
-    public function chat($username){
-      $data['username'] = $username;
-      $currentUser = $_SESSION['username'];
-      $data['idChat'] = $this->User_model->openConvo($currentUser, $username);
-      $this->load->view('user/chat/chat_screen', $data);
     }
 
      # Search engine
@@ -101,8 +94,16 @@ class User extends CI_Controller
         'education'=> $this->input->post('education'),
         'history'=> $this->input->post('history')
       );
+      print_r($insert_data);
+      $idUser=$_SESSION['idUser'];
+      foreach ($insert_data as $key => $value){
+        if ($key!='idUser'){
+        $this->User_model->setOpinionsToNull($key,$idUser);
+        }
+      }
+     // $categoriesArray=$this->User_model->setOpinionsToNull($key,$idUser);
       $this->User_model->addPreferredCategories($insert_data);
-      redirect('User/index');
+       redirect('User/index');
     }
     public function showPreferredCategories()
     {
@@ -118,6 +119,9 @@ class User extends CI_Controller
       $config['max_width']            = 2024;
       $config['max_height']           = 2024;
 
+      // Get name of old picture
+      $oldPicture=$this->User_model->getUserInfo($_SESSION['idUser'])->picture;
+
       $this->load->library('upload', $config);
       echo($this->upload->data('file_name'));
 
@@ -125,6 +129,8 @@ class User extends CI_Controller
       {
         echo "success!";
         $_SESSION['image']=$this->User_model->setUpPicture($_SESSION['username'],$this->upload->data('file_name'));
+        // Delete old picture
+        $this->User_model->deleteOldPicture($oldPicture);
         redirect('user/profile/profile');
       }
       else
@@ -200,4 +206,18 @@ class User extends CI_Controller
       redirect(site_url('user/others_profile?username=').$this->User_model->getUsername($id));
     }
 
+    //chat-related functions
+    public function allConversations($currentUser){
+      $data['test'] = array_unique($this->User_model->showConversations($currentUser));
+      $this->load->view('user/chat/chat_list', $data);
+    }
+    public function chat($username){
+      $data['username'] = $username;
+      $currentUser = $_SESSION['username'];
+      $data['idChat'] = $this->User_model->openConversation($currentUser, $username);
+      $this->load->view('user/chat/chat_screen', $data);
+    }
+    public function social(){
+      $this->load->view('user/chat/messenger');;
+    }
 }
