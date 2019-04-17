@@ -280,4 +280,14 @@ class User_model extends CI_Model{
       if ($this->db->get()->row('username')!=NULL) {$exists=true;}
       return $exists;
     }
+    public function findOpponents($idMotion,$idUser){
+       $agree=$this->db->query("SELECT if(agree=0 or agree=1,agree,null) 
+       as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+       left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and motions.idMotion=$idMotion;")->row('agree');
+    //    return $agree;
+        return $this->db->query("SELECT username from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+        left join users on users.idUser=opinions.idUser 
+        where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
+
+    }
 }
