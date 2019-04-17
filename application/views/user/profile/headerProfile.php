@@ -44,6 +44,9 @@
       <li class="nav-item">
         <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/following'); ?>">Following</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/social'); ?>">Social</a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">

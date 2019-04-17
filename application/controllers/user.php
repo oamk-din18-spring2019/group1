@@ -218,6 +218,8 @@ class User extends CI_Controller
       $this->load->view('user/chat/chat_screen', $data);
     }
     public function social(){
-      $this->load->view('user/chat/messenger');;
+      $this -> load -> view ('user/profile/headerProfile');
+      $this-> load -> view('user/chat/messenger');
+      $this -> load -> view ('user/profile/footerProfile');
     }
 }
