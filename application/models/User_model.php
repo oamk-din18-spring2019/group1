@@ -198,7 +198,8 @@ class User_model extends CI_Model{
     {
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
-      public function findCategoryQuestion($category,$idUser){
+    
+    public function findCategoryQuestion($category,$idUser){
         //
         // This system returns random question from motions
         // $numberOfRows=$this->db->get()->row('COUNT(*)');
