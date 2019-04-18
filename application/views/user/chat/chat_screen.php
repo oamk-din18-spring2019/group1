@@ -34,10 +34,10 @@
 
       <div class="text-center flex-grow-1 border border-dark rounded-bottom text-white black">
         <div class="row justify-content-center h-100">
-          <div class="col-1 my-auto">
+          <div id="avatar_col" class="col-1 my-auto">
             <?php
             $userPicture=$this->User_model->getPictureName($username);
-            echo '<img src="';
+            echo '<img id="avatar" src="';
             if(!is_null($userPicture)&&$userPicture!=''){
               echo base_url("./images/").$this->User_model->getPictureName($username);
             }
@@ -54,6 +54,15 @@
         </div>
       </div>
 
+      <script type="text/javascript">
+      var screen_width = screen.width;
+      if (screen_width<991) {
+        document.getElementById("avatar_col").classList.remove('col-1');
+        document.getElementById("avatar_col").classList.add('col-auto');
+        document.getElementById("avatar").style.width = "10vh";
+        document.getElementById("avatar").style.height = "10vh";
+      }
+      </script>
     </div>
   </div>
 
