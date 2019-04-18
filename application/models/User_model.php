@@ -180,6 +180,9 @@ class User_model extends CI_Model{
         $this->db->where('username',$name);
         return $this->db->get()->row('idUser');
     }
+    public function getRating($username){
+        return $this->db->query("select ratingPoint from users where username='$username'")->result()[0]->ratingPoint;
+    }
 
     //cookie-related functions
     public function addCookie($username, $key){
@@ -288,6 +291,14 @@ class User_model extends CI_Model{
         return $this->db->query("SELECT username from motions  left join  opinions on opinions.idMotion=motions.idMotion 
         left join users on users.idUser=opinions.idUser 
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
+    }
 
+    //function for rating users
+    public function rate($username, $up){
+        //$up=true will upvote while false will downvote
+        $point = $this->db->query("select ratingPoint from users where username='$username'")->result()[0]->ratingPoint;
+        $point = $up=='up' ? $point+1 : $point-1;
+        $this->db->query("update users set ratingPoint= $point where username = '$username'");
+        //return $this->db->affected_rows() == 1 ? 'point updated' : 'point not'.$point;
     }
 }
