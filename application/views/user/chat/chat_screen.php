@@ -44,7 +44,7 @@
             else {
               echo base_url("./images/empty-avatar.jpg");
             }
-            echo '" class="mr-3 z-depth-0 rounded-circle" alt="avatar image" style="width:100%; height:100%;">';
+            echo '" class="mr-3 z-depth-0 rounded-circle" alt="avatar image" style="width:9vh; height:9vh;">';
             ?>
           </div>
           <div class="col-auto my-auto">
@@ -59,8 +59,6 @@
       if (screen_width<991) {
         document.getElementById("avatar_col").classList.remove('col-1');
         document.getElementById("avatar_col").classList.add('col-auto');
-        document.getElementById("avatar").style.width = "10vh";
-        document.getElementById("avatar").style.height = "10vh";
       }
       </script>
     </div>
