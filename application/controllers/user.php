@@ -60,6 +60,7 @@ class User extends CI_Controller
     }
 
     function profile() {
+      $data['rating'] = $this->User_model->getRating($username);
       $this -> load -> view ('user/profile/headerProfile');
       $this -> load -> view('user/profile/profile');
       $this -> load -> view ('user/profile/footerProfile');
@@ -222,9 +223,15 @@ class User extends CI_Controller
       }
     }
     public function social($username=null){
-      $data=$username;
+      $data['username']=$username;
       $this -> load -> view ('user/profile/headerProfile');
       $this->load->view('user/chat/messenger', $data);
       $this -> load -> view ('user/profile/footerProfile');
+    }
+
+    //rating functions
+    public function showRating($username){
+      $data['rating'] = $this->User_model->getRating($username);
+      $this->load->view('test', $data);
     }
 }
