@@ -26,7 +26,26 @@
     <i class="far fa-comments" style="font-size:300%;"></i>
 
   </div>
-  <div class="container-fluid my-2">
+  <div class="container-fluid my-2 d-none d-none d-lg-block">
+
+    <?php
+    foreach($test as $user){
+        $userPicture=$this->User_model->getPictureName($user);
+        echo '<div class="card my-2 p-1">';
+        echo '<a target=chatScreen href='.site_url('user/chat').'/'.$user.' >';
+        echo '<img src="';
+        if(!is_null($userPicture)&&$userPicture!=''){
+          echo base_url("./images/").$this->User_model->getPictureName($user);
+        }
+        else {
+          echo base_url("./images/empty-avatar.jpg");
+        }
+        echo '" class="mr-3 z-depth-0 rounded-circle" alt="avatar image" style="width:25px; height:25px;">';
+        echo $user.'</a></div>';
+    }
+    ?>
+  </div>
+  <div class="container-fluid my-2 d-none d-block d-lg-none">
 
     <?php
     foreach($test as $user){
