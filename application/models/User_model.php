@@ -288,6 +288,25 @@ class User_model extends CI_Model{
         return $this->db->query("SELECT username from motions  left join  opinions on opinions.idMotion=motions.idMotion 
         left join users on users.idUser=opinions.idUser 
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
-
     }
+    public function getTimeDifference($username){
+       
+    }
+     public function getStatistics($username,$idUser){
+        $this->db->select('DoR');
+        $this->db->from('users');
+        $this->db->where('username',$username);
+        $DoR=$this->db->get()->row('DoR');
+        
+        $following=array();
+        $statistics=array();
+        $statistics['time']=$this->db->query("SELECT DATEDIFF( CURRENT_DATE(),'$DoR') as date")->row('date');
+        $following=$this->db->query("select following from users where username='$username'")->result_array();
+        $statistics['following']= sizeof(explode(",",$following[0]['following']))-1;
+        $statistics['numberOfAnsweredOpinions']= $this->db->query("SELECT count(motions.idMotion) as mot from motions  
+        left join  opinions on opinions.idMotion=motions.idMotion where opinions.idUser=$idUser and agree is not null;")->row('mot');
+        return $statistics;
+
+     }
+
 }

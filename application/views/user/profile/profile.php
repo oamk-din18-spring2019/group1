@@ -38,7 +38,7 @@ Hello  -->
                 <div class="card-body text-center">
                     <h5 class="card-title">Achievements</h5>
                     All achievments you have
-                    <br> <br><a href="#" class="btn btn-primary text-center">Let's go!</a>
+                    <br> <br><a href="<?php echo site_url("user/achievements") ?>" class="btn btn-primary text-center">Let's go!</a>
 
                 </div>
 
