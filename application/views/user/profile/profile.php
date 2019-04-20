@@ -1,7 +1,7 @@
 
 <!-- Your profile is here
 Hello  -->
-<div class="container mt-4">
+<div class="container ">
     <div class="row">
     <div class="col-md-1"></div>
         <div class="col-md-4 col-sm-4">
@@ -20,7 +20,7 @@ Hello  -->
     </div>
 </div>
 <hr>
-<div class="container ">
+<div class="container mb-3">
     <div class="card-group ">
         <div class="col-md-4">
             <div class="card ">
@@ -50,7 +50,7 @@ Hello  -->
                 <div class="card-body text-center">
                     <h5 class="card-title">Settings</h5>
                     Change your life here!
-                    <br> <br> <a href="<?php echo site_url("user/settings") ?>" class="btn btn-primary text-center">Inexpressible!</a>
+                    <br> <br> <a href="<?php echo site_url("user/settings") ?>" class="btn btn-primary text-center ">Inexpressible!</a>
                 </div>
 
             </div>

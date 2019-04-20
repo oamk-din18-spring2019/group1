@@ -290,17 +290,17 @@ class User_model extends CI_Model{
         left join users on users.idUser=opinions.idUser 
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
     }
-    public function getTimeDifference($username){
-       
-    }
      public function getStatistics($username,$idUser){
         $this->db->select('DoR');
         $this->db->from('users');
         $this->db->where('username',$username);
         $DoR=$this->db->get()->row('DoR');
-        
         $following=array();
         $statistics=array();
+        $chosenCategories = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+        $numberOfChosenCategories = count((array_filter($chosenCategories[0])));
+        // $numberOfChosenCategories is a variable with a number on categories with 1s AND the userId, so, it shows number of chosen categories + 1
+        $statistics['numberOfChosenCategories']=$numberOfChosenCategories - 1;
         $statistics['time']=$this->db->query("SELECT DATEDIFF( CURRENT_DATE(),'$DoR') as date")->row('date');
         $following=$this->db->query("select following from users where username='$username'")->result_array();
         $statistics['following']= sizeof(explode(",",$following[0]['following']))-1;

@@ -60,7 +60,6 @@ class User extends CI_Controller
     }
 
     function profile() {
-      $data['rating'] = $this->User_model->getRating($username);
       $this -> load -> view ('user/profile/headerProfile');
       $this -> load -> view('user/profile/profile');
       $this -> load -> view ('user/profile/footerProfile');
@@ -106,15 +105,6 @@ class User extends CI_Controller
       $this->User_model->addPreferredCategories($insert_data);
        redirect('User/index');
     }
-
-    public function chosenCategoriesCounter()
-    {
-      $chosenCategories = $this->User_model->getPreferredCategories($_SESSION['idUser']);
-      $numberOfChosenCategories = count((array_filter($chosenCategories[0])));
-      // $numberOfChosenCategories is a variable with a number on categories with 1s AND the userId, so, it shows number of chosen categories + 1
-      echo $numberOfChosenCategories - 1;
-    }
-
     public function showPreferredCategories()
     {
       $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
