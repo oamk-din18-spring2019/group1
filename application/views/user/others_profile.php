@@ -43,8 +43,9 @@
                 <?php echo $data['username'] ?> <br>
                 Date of registration:
                 <?php echo $data['DoR'] ?>
-
             </h2>
+            <a href="<?php echo site_url('user/rate').'/'.$data['username'].'/up' ?>">Upvote</a>
+            <a href="<?php echo site_url('user/rate').'/'.$data['username'].'/down' ?>">Downvote</a>
         </div>
     </div>
 </div>

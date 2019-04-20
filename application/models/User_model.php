@@ -294,11 +294,18 @@ class User_model extends CI_Model{
     }
 
     //function for rating users
-    public function rate($username, $up){
+    public function rate($voter, $username, $up){
         //$up=true will upvote while false will downvote
         $point = $this->db->query("select ratingPoint from users where username='$username'")->result()[0]->ratingPoint;
         $point = $up=='up' ? $point+1 : $point-1;
         $this->db->query("update users set ratingPoint= $point where username = '$username'");
         //return $this->db->affected_rows() == 1 ? 'point updated' : 'point not'.$point;
+        $this->db->query(" delete from rating where voted='$username' and votedBy='$voter' "); //delete the previous history
+        $this->db->query("insert into rating (voted, votedBy, up) values ('$username', '$voter', '$up')");
+    }
+    public function changeRating(){
+
     }
 }
+
+
