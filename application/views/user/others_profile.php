@@ -43,8 +43,14 @@
                 <?php echo $data['username'] ?> <br>
                 Date of registration:
                 <?php echo $data['DoR'] ?>
-
             </h2>
+            <?php
+              $rated =  $this->User_model->checkRating($_GET['username'], $_SESSION['username']);
+              $showUpButton = $rated == 'up' ? 'none' : 'inline-block';
+              $showDownButton = $rated == 'down' ? 'none' : 'inline-block';
+            ?>
+            <a style="display: <?php echo $showUpButton; ?>;" href="<?php echo site_url('user/rate').'/'.$data['username'].'/up' ?>">Upvote</a>
+            <a style="display: <?php echo $showDownButton; ?>;" href="<?php echo site_url('user/rate').'/'.$data['username'].'/down' ?>">Downvote</a>
         </div>
     </div>
 </div>

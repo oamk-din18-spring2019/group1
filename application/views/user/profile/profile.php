@@ -14,7 +14,8 @@ Hello  -->
                 <?php echo $_SESSION["username"] ?> <br>
                 Date of registration:
                 <?php echo $_SESSION['time'] ?>
-
+                Rating points:
+                <?php echo $this->User_model->getRating($_SESSION['username']); ?>
             </h2>
         </div>
     </div>

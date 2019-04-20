@@ -180,6 +180,9 @@ class User_model extends CI_Model{
         $this->db->where('username',$name);
         return $this->db->get()->row('idUser');
     }
+    public function getRating($username){
+        return $this->db->query("select ratingPoint from users where username='$username'")->result()[0]->ratingPoint;
+    }
 
     //cookie-related functions
     public function addCookie($username, $key){
@@ -290,6 +293,20 @@ class User_model extends CI_Model{
         left join users on users.idUser=opinions.idUser 
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
     }
+
+    //function for rating users
+    public function rate($voter, $username, $up){
+        $point = $this->db->query("select ratingPoint from users where username='$username'")->result()[0]->ratingPoint;
+        $point = $up=='up' ? $point+1 : $point-1;
+        $this->db->query("update users set ratingPoint= $point where username = '$username'");
+        $this->db->query(" delete from rating where voted='$username' and votedBy='$voter' "); //delete the previous rating
+        $this->db->query("insert into rating (voted, votedBy, up) values ('$username', '$voter', '$up')");
+    }
+    public function checkRating($username, $voter){
+        $result = $this->db->query("select up from rating where voted='$username' and votedBy='$voter'")->result_array();
+        return empty($result) ? null : $result[0]['up'];
+    }
+  
      public function getStatistics($username,$idUser){
         $this->db->select('DoR');
         $this->db->from('users');
@@ -311,3 +328,5 @@ class User_model extends CI_Model{
      }
 
 }
+
+

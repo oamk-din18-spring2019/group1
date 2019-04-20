@@ -60,6 +60,8 @@ class User extends CI_Controller
     }
 
     function profile() {
+      //$data['rating'] = $this->User_model->getRating($username);
+
       $this -> load -> view ('user/profile/headerProfile');
       $this -> load -> view('user/profile/profile');
       $this -> load -> view ('user/profile/footerProfile');
@@ -236,8 +238,9 @@ class User extends CI_Controller
     }
 
     //rating functions
-    public function showRating($username){
-      $data['rating'] = $this->User_model->getRating($username);
-      $this->load->view('test', $data);
+    public function rate($username, $up='up'){
+      $data['rating'] = $this->User_model->rate($_SESSION['username'], $username, $up);
+      $data['rated'] = $this->User_model->checkRating($username, $_SESSION['username']);
+      redirect(site_url('user/others_profile?username=').$username);
     }
 }
