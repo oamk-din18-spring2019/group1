@@ -12,9 +12,10 @@
             We provide a platform for arguing on different topics
           </h4>
           <a href="#best-features"><button  class="btn btn-outline-white waves-effect waves-light text-white">
-          Read more <br><i class="fas fa-x fa-angle-double-down"></i>
+          Read more 
           </button>
-          </a> 
+          </a>
+          <br><i class="fas fa-2x fa-angle-double-down text-white mt-3"></i>
         </div>
       </div>
     </div>
