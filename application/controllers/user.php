@@ -232,6 +232,7 @@ class User extends CI_Controller
     //rating functions
     public function rate($username, $up='up'){
       $data['rating'] = $this->User_model->rate($_SESSION['username'], $username, $up);
-      $this->load->view('test', $data);
+      $data['rated'] = $this->User_model->checkRating($username, $_SESSION['username']);
+      redirect(site_url('user/others_profile?username=').$username);
     }
 }
