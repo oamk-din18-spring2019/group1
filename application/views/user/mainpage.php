@@ -11,16 +11,15 @@
           <h4 class="white-text my-4">
             We provide a platform for arguing on different topics
           </h4>
-          <button class="btn btn-outline-white waves-effect waves-light">
-            Read more <i class="fa fa-book"></i>
+          <a href="#best-features"><button  class="btn btn-outline-white waves-effect waves-light text-white">
+          Read more <br><i class="fas fa-x fa-angle-double-down"></i>
           </button>
-
+          </a> 
         </div>
       </div>
     </div>
   </div>
 </div>
-  
   <main class="mt-5 ">
     <section id="best-features" class="">
               <div class="container ">

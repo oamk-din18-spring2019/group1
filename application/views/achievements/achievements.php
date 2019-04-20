@@ -33,4 +33,16 @@
             </div>
         </div>
         </div>
+        <div class="row pt-3">
+        <div class="col-md-4">
+            <div class="card">
+                <i class="fas fa-check fa-5x text-center mt-4"></i>
+                <div class="card-body text-center">
+                    <h2 class="card-title">  <?php echo ($statistics['numberOfChosenCategories']) ?>  categories <br></h2>
+                   were chosen by you
+                </div>
+
+            </div>
+        </div>
+        </div>
 </div>

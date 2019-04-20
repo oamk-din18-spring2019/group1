@@ -34,7 +34,7 @@
                 ?>"
                 class="btn btn-sm mt-2" style="color:black;">
               </form>
-              <a target=_blank href="<?php echo site_url('user/social').'/'.$_GET['username'] ?>">Open conversation</a>
+              <a class="btn btn-sm btn-info"target=_blank href="<?php echo site_url('user/social').'/'.$_GET['username'] ?>">Open conversation  <i class="far fa-envelope"></i></a>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6 text-left mt-4">
