@@ -61,6 +61,7 @@ class User extends CI_Controller
 
     function profile() {
       //$data['rating'] = $this->User_model->getRating($username);
+
       $this -> load -> view ('user/profile/headerProfile');
       $this -> load -> view('user/profile/profile');
       $this -> load -> view ('user/profile/footerProfile');
@@ -226,6 +227,13 @@ class User extends CI_Controller
       $data['username']=$username;
       $this -> load -> view ('user/profile/headerProfile');
       $this->load->view('user/chat/messenger', $data);
+      $this -> load -> view ('user/profile/footerProfile');
+    }
+
+    public function achievements(){
+      $data['statistics']= $this->User_model->getStatistics($_SESSION['username'],$_SESSION['idUser']);
+      $this -> load -> view ('user/profile/headerProfile');
+      $this->load->view('achievements/achievements',$data);
       $this -> load -> view ('user/profile/footerProfile');
     }
 

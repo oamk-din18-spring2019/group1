@@ -19,15 +19,17 @@
       margin:0px;
       padding: 0px;
     }
+
   </style>
 </head>
 <body>
+
   <div class="border-bottom border-dark rounded-bottom rounded-left text-center p-2">
     <i class="far fa-comments" style="font-size:300%;"></i>
 
   </div>
-  <div class="container-fluid my-2">
 
+  <div id="chat_list_big" class="container-fluid my-2 ">
     <?php
     foreach($test as $user){
         $userPicture=$this->User_model->getPictureName($user);
@@ -45,4 +47,37 @@
     }
     ?>
   </div>
+
+  <div id="chat_list_small" class="container-fluid my-2 ">
+    <?php
+    foreach($test as $user){
+        $userPicture=$this->User_model->getPictureName($user);
+        echo '<div class="card my-2 p-1">';
+        echo '<a href='.site_url('user/chat').'/'.$user.' >';
+        echo '<img src="';
+        if(!is_null($userPicture)&&$userPicture!=''){
+          echo base_url("./images/").$this->User_model->getPictureName($user);
+        }
+        else {
+          echo base_url("./images/empty-avatar.jpg");
+        }
+        echo '" class="mr-3 z-depth-0 rounded-circle" alt="avatar image" style="width:25px; height:25px;">';
+        echo $user.'</a></div>';
+    }
+    ?>
+  </div>
+
+  <script type="text/javascript">
+    var screen_width = screen.width;
+    if (screen_width<991) {
+      // Hide chat list for big devices
+      document.getElementById("chat_list_small").style.display = "block";
+      document.getElementById("chat_list_big").style.display = "none";
+    }
+    else {
+      // Hide chat list for small devices
+      document.getElementById("chat_list_small").style.display = "none";
+      document.getElementById("chat_list_big").style.display = "block";
+    }
+  </script>
 </body>

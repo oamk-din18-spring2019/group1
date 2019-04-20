@@ -201,7 +201,8 @@ class User_model extends CI_Model{
     {
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
-      public function findCategoryQuestion($category,$idUser){
+    
+    public function findCategoryQuestion($category,$idUser){
         //
         // This system returns random question from motions
         // $numberOfRows=$this->db->get()->row('COUNT(*)');
@@ -305,6 +306,27 @@ class User_model extends CI_Model{
         $result = $this->db->query("select up from rating where voted='$username' and votedBy='$voter'")->result_array();
         return empty($result) ? null : $result[0]['up'];
     }
+  
+     public function getStatistics($username,$idUser){
+        $this->db->select('DoR');
+        $this->db->from('users');
+        $this->db->where('username',$username);
+        $DoR=$this->db->get()->row('DoR');
+        $following=array();
+        $statistics=array();
+        $chosenCategories = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+        $numberOfChosenCategories = count((array_filter($chosenCategories[0])));
+        // $numberOfChosenCategories is a variable with a number on categories with 1s AND the userId, so, it shows number of chosen categories + 1
+        $statistics['numberOfChosenCategories']=$numberOfChosenCategories - 1;
+        $statistics['time']=$this->db->query("SELECT DATEDIFF( CURRENT_DATE(),'$DoR') as date")->row('date');
+        $following=$this->db->query("select following from users where username='$username'")->result_array();
+        $statistics['following']= sizeof(explode(",",$following[0]['following']))-1;
+        $statistics['numberOfAnsweredOpinions']= $this->db->query("SELECT count(motions.idMotion) as mot from motions  
+        left join  opinions on opinions.idMotion=motions.idMotion where opinions.idUser=$idUser and agree is not null;")->row('mot');
+        return $statistics;
+
+     }
+
 }
 
 

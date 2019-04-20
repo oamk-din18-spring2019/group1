@@ -2,7 +2,7 @@
 
 <?php
 // echo "Your question is " . print_r($question); 
-if( $question)
+if ($question)
 {
     echo '<div class="container px-5 ">';
         echo '<div class="row">';
@@ -35,14 +35,14 @@ if( $question)
     // echo '</div>';
 
 } else {
-    echo " <h2>You answered all the questions</h2>";
+ //   echo " <h2 class='container'>You answered all the questions</h2>";
 }
 
 // echo '<div class="container px-5>';
     echo '<div class="row">';
         echo '<div class="col-9 text-center mx-auto mb-4">';
             if ($answeredMotions){
-                echo "<h2 class='text-left'>Your answers:</h2> <br> ";
+                echo "<h2 class='text-left pt-2'>Your opinions:</h2> <br> ";
                 echo "<hr>";
                 for ($i=0;$i<count($answeredMotions);$i++){
                     echo '<h4><strong>'.$answeredMotions[$i]['content'].':</strong></h4> ';
