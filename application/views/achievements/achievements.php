@@ -44,5 +44,15 @@
 
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="card">
+                <i class="fas fa-star fa-5x text-center mt-4"></i>
+                <div class="card-body text-center">
+                    <h2 class="card-title">  <?php echo ($statistics['rating']) ?>  points <br></h2>
+                   you got
+                </div>
+
+            </div>
+        </div>
         </div>
 </div>

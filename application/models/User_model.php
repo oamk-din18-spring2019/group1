@@ -314,6 +314,7 @@ class User_model extends CI_Model{
         $DoR=$this->db->get()->row('DoR');
         $following=array();
         $statistics=array();
+        $statistics['rating']=$this->User_model->getRating($_SESSION['username']);
         $chosenCategories = $this->User_model->getPreferredCategories($_SESSION['idUser']);
         $numberOfChosenCategories = count((array_filter($chosenCategories[0])));
         // $numberOfChosenCategories is a variable with a number on categories with 1s AND the userId, so, it shows number of chosen categories + 1
