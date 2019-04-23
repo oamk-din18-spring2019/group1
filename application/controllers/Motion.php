@@ -11,14 +11,26 @@ class Motion extends CI_Controller{
     }
     public function answerTheQuestion($category){
         $data['category']=$category;
+        $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+        $data["categories"] = $this->User_model->getCategories();
         $data['question'] = $this-> User_model->findCategoryQuestion($category,$_SESSION['idUser']);
         $data['answeredMotions']=$this-> User_model->showAnsweredMotions($category,$_SESSION['idUser']);
         // $this -> load -> view ('templates/navbarDashboard');
-        $this-> load-> view('user/profile/headerProfile');
-        $this-> load-> view('user/argument/answer',$data);
-        $this-> load-> view('user/profile/footerProfile');
-
+        $this->load->view('user/profile/headerProfile');
+        $this->load->view('user/categories', $data);
+        $this->load->view('user/argument/answer',$data);
+        $this->load->view('user/profile/footerProfile');
       }
+    public function answeredMotions($category)
+    {
+      $data['answeredMotions']=$this-> User_model->showAnsweredMotions($category,$_SESSION['idUser']);
+      $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+      $data["categories"] = $this->User_model->getCategories();
+      $this->load->view('user/profile/headerProfile');
+      $this->load->view('user/categories', $data);
+      $this->load->view('user/answeredMotions', $data);
+      $this->load->view('user/profile/footerProfile');
+    }
     public function getAnswer($answer){
     $opinion=$this->input->post('defaultExampleRadios');
      $this->User_model->addOpinion($answer,$_SESSION['idUser'],$opinion);

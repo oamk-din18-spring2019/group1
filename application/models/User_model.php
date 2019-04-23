@@ -294,6 +294,13 @@ class User_model extends CI_Model{
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
     }
 
+
+    public function addNews($news)
+    {
+        $this->db->insert('news', $news);
+        
+    }
+
     //function for rating users
     public function rate($voter, $username, $up){
         $point = $this->db->query("select ratingPoint from users where username='$username'")->result()[0]->ratingPoint;
@@ -327,6 +334,8 @@ class User_model extends CI_Model{
         return $statistics;
 
      }
+
+
 
 }
 
