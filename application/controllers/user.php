@@ -61,7 +61,10 @@ class User extends CI_Controller
     }
 
     function profile() {
-      $data['rating'] = $this->User_model->getRating($username);
+      //$data['rating'] = $this->User_model->getRating($username);
+      // $username=$_SESSION['username'];
+      // $idUser=$_SESSION['idUser'];
+      // $this->User_model-> getStatistics($username,$idUser);
       $this -> load -> view ('user/profile/headerProfile');
       $this -> load -> view('user/profile/profile');
       $this -> load -> view ('user/profile/footerProfile');
@@ -107,15 +110,6 @@ class User extends CI_Controller
       $this->User_model->addPreferredCategories($insert_data);
        redirect('User/index');
     }
-
-    public function chosenCategoriesCounter()
-    {
-      $chosenCategories = $this->User_model->getPreferredCategories($_SESSION['idUser']);
-      $numberOfChosenCategories = count((array_filter($chosenCategories[0])));
-      // $numberOfChosenCategories is a variable with a number on categories with 1s AND the userId, so, it shows number of chosen categories + 1
-      echo $numberOfChosenCategories - 1;
-    }
-
     public function showPreferredCategories()
     {
       $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
@@ -239,10 +233,18 @@ class User extends CI_Controller
       $this -> load -> view ('user/profile/footerProfile');
     }
 
+    public function achievements(){
+      $data['statistics']= $this->User_model->getStatistics($_SESSION['username'],$_SESSION['idUser']);
+      $this -> load -> view ('user/profile/headerProfile');
+      $this->load->view('achievements/achievements',$data);
+      $this -> load -> view ('user/profile/footerProfile');
+    }
+
     //rating functions
-    public function showRating($username){
-      $data['rating'] = $this->User_model->getRating($username);
-      $this->load->view('test', $data);
+    public function rate($username, $up='up'){
+      $data['rating'] = $this->User_model->rate($_SESSION['username'], $username, $up);
+      $data['rated'] = $this->User_model->checkRating($username, $_SESSION['username']);
+      redirect(site_url('user/others_profile?username=').$username);
     }
     public function addNews($news)
     {

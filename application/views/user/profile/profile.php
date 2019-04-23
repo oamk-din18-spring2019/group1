@@ -1,7 +1,7 @@
 
 <!-- Your profile is here
 Hello  -->
-<div class="container mt-4">
+<div class="container ">
     <div class="row">
     <div class="col-md-1"></div>
         <div class="col-md-4 col-sm-4">
@@ -9,25 +9,31 @@ Hello  -->
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6 text-left mt-4">
-            <h2>
-                Username:
-                <?php echo $_SESSION["username"] ?> <br>
-                Date of registration:
-                <?php echo $_SESSION['time'] ?>
-
+           
+            
+                <h1><strong><?php echo $_SESSION["username"] ?></strong></h1>  
+               <br>
+               <h2>
+                <?php 
+                
+                ?>
+               <i class="far fa-calendar-check my-3"></i>
+                <?php echo $_SESSION['time'] ?><br>
+                <i class="fas fa-star my-3"></i>
+                <?php echo $this->User_model->getRating($_SESSION['username']); ?>
             </h2>
         </div>
     </div>
 </div>
 <hr>
-<div class="container ">
+<div class="container mb-3">
     <div class="card-group ">
         <div class="col-md-4">
             <div class="card ">
                 <i class="fas fa-user-friends fa-5x text-center mt-4"></i>
                 <div class="card-body text-center">
-                    <h5 class="card-title">Friend</h5>
-                    Find friends here
+                    <h5 class="card-title">Connections</h5>
+                    Find people you want to connect here
                     <br> <br><a href="<?php echo site_url('user/search'); ?>" class="btn btn-primary text-center">Interesting!</a>
                 </div>
             </div>
@@ -36,9 +42,9 @@ Hello  -->
             <div class="card ">
                 <i class="fas fas fa-trophy fa-5x text-center mt-4"></i>
                 <div class="card-body text-center">
-                    <h5 class="card-title">Achievements</h5>
-                    All achievments you have
-                    <br> <br><a href="#" class="btn btn-primary text-center">Let's go!</a>
+                    <h5 class="card-title">Statistics</h5>
+                    Statistics we have about you
+                    <br> <br><a href="<?php echo site_url("user/achievements") ?>" class="btn btn-primary text-center">Let's go!</a>
 
                 </div>
 
@@ -50,7 +56,7 @@ Hello  -->
                 <div class="card-body text-center">
                     <h5 class="card-title">Settings</h5>
                     Change your life here!
-                    <br> <br> <a href="<?php echo site_url("user/settings") ?>" class="btn btn-primary text-center">Inexpressible!</a>
+                    <br> <br> <a href="<?php echo site_url("user/settings") ?>" class="btn btn-primary text-center ">Inexpressible!</a>
                 </div>
 
             </div>

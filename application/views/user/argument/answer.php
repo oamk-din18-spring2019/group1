@@ -2,7 +2,7 @@
 
 <?php
 // echo "Your question is " . print_r($question); 
-if( $question)
+if ($question)
 {
     // echo '<div class="container px-5 ">';
     //     echo '<div class="row">';
@@ -41,5 +41,6 @@ if( $question)
 // echo '<div class="container px-5>';
     // echo '<div class="row">';
        
+
 
 ?>

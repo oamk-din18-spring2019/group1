@@ -42,7 +42,7 @@
         <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/search'); ?>">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/following'); ?>">Following</a>
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/following'); ?>">Connections</a>
       </li>
       <li class="nav-item">
         <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/social'); ?>">Social</a>

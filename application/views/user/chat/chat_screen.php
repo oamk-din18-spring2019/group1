@@ -34,17 +34,17 @@
 
       <div class="text-center flex-grow-1 border border-dark rounded-bottom text-white black">
         <div class="row justify-content-center h-100">
-          <div class="col-1 my-auto">
+          <div id="avatar_col" class="col-1 my-auto">
             <?php
             $userPicture=$this->User_model->getPictureName($username);
-            echo '<img src="';
+            echo '<img id="avatar" src="';
             if(!is_null($userPicture)&&$userPicture!=''){
               echo base_url("./images/").$this->User_model->getPictureName($username);
             }
             else {
               echo base_url("./images/empty-avatar.jpg");
             }
-            echo '" class="mr-3 z-depth-0 rounded-circle" alt="avatar image" style="width:100%; height:100%;">';
+            echo '" class="mr-3 z-depth-0 rounded-circle" alt="avatar image" style="width:9vh; height:9vh;">';
             ?>
           </div>
           <div class="col-auto my-auto">
@@ -54,6 +54,13 @@
         </div>
       </div>
 
+      <script type="text/javascript">
+      var screen_width = screen.width;
+      if (screen_width<991) {
+        document.getElementById("avatar_col").classList.remove('col-1');
+        document.getElementById("avatar_col").classList.add('col-auto');
+      }
+      </script>
     </div>
   </div>
 
