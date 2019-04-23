@@ -19,7 +19,7 @@ Hello  -->
                     echo "<i class='fas fa-user-graduate my-3'></i> Usual user <br>";
                 }
                 if($this->User_model->getRating($_SESSION['username'])<0){
-                    echo "<i class='far fa-angry'></i> Agressive user <br>";
+                    echo "<i class='far fa-angry my-3'></i> Agressive user <br>";
                 }
                 if($this->User_model->getRating($_SESSION['username'])>4 and $this->User_model->getRating($_SESSION['username'])<10){
                     echo "<i class='fas fa-user-tie my-3'></i> Polite user <br>";
