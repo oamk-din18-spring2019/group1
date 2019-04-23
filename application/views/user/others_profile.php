@@ -42,10 +42,24 @@
                 <strong> <?php echo $data['username'] ?></strong>
                
                 </h1>
-                <h2>
+                <h3>
+                <?php 
+                if($this->User_model->getRating($data['username'])>=0 and $this->User_model->getRating($data['username'])<4){
+                    echo "<i class='fas fa-user-graduate my-3'></i> Usual user <br>";
+                }
+                if($this->User_model->getRating($data['username'])<0){
+                    echo "<i class='far fa-angry'></i> Agressive user <br>";
+                }
+                if($this->User_model->getRating($data['username'])>4 and $this->User_model->getRating($data['username'])<10){
+                    echo "<i class='fas fa-user-tie my-3'></i> Polite user <br>";
+                }
+                if($this->User_model->getRating($data['username'])>=10){
+                    echo "<i class='fas fa-user-astronaut my-3'></i> Cosmically polite user <br>";
+                }
+                ?>
                 <i class="far fa-calendar-check my-3"></i>
                 <?php echo $data['DoR'] ?>
-                </h2>
+                </h3>
                 
                 
             

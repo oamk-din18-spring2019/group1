@@ -49,11 +49,6 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item">
-        <a class="nav-link waves-effect wawes-light ">1
-          <i class="fas fa-envelope"></i>
-        </a>
-      </li>
       <li class="nav-item avatar dropdown">
         <a class="nav-link dropdown-toggle waves-effect wawes-light" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
