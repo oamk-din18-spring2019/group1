@@ -11,7 +11,7 @@
   <!-- Bootstrap core CSS -->
   <link href="<?php echo base_url('bst/css/bootstrap.min.css')?>" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href=" <?php echo base_url('bst/css/mdb.min.css')?>" rel="stylesheet">
+  <link href="<?php echo base_url('bst/css/mdb.min.css')?>" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="<?php echo base_url('bst/css/style.css')?>" rel="stylesheet">
 
@@ -24,7 +24,8 @@
 <nav class="w-100 mb-1 navbar navbar-expand-lg navbar-dark black lighten-1">
   <!-- <a class="navbar-brand font-weight-bolder" href="<?php echo site_url('user/index'); ?>">Project D</a> -->
   <a href="<?php echo site_url('user/index'); ?>">
-    <img src="<?php echo base_url('./images/projectDLogo.png'); ?>" width="50" height="50" alt="" >
+    <!-- <img src="<?php echo base_url('./images/projectDLogo.png'); ?>" width="50" height="50" alt="" > -->
+    <h4><strong class="text-white mr-3">ProjectD</strong></h4>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
     aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
