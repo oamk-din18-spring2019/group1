@@ -42,7 +42,6 @@
   </style>
 
   <script>
-  //console.log('<?php //echo $_GET['idChat'] ?>')
   $(document).ready(function(e){
       function displayChat(){
           $.ajax({
@@ -110,7 +109,7 @@
     </div>
 
     <div class="" id="chatBox" style="height:89%">
-      <div class="my-auto" id="chatDisplay" style="width: 100%; height: 100%; overflow-y: scroll; background-color:white;"></div>
+      <div class="my-auto" id="chatDisplay" style="width: 100%; height: 100%; overflow-y: scroll; background-color:white;">Your messages are being loaded...</div>
     </div>
 
 </body>
