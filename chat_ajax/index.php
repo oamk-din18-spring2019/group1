@@ -42,14 +42,13 @@
   </style>
 
   <script>
-  //console.log('<?php //echo $_GET['idChat'] ?>')
   $(document).ready(function(e){
       function displayChat(){
           $.ajax({
               url:'displayChat.php?idChat=<?php echo $_GET['idChat'] ?>&username=<?php echo $_GET['username'] ?>',
               type: 'GET',
               success: function(data){
-                  $("#chatDisplay").html(data);
+                $("#chatDisplay").html(data == '' ? "You haven't had any messages with this person yet. Start by saying Hi!" : data );
               }
           });
       }
@@ -110,7 +109,7 @@
     </div>
 
     <div class="" id="chatBox" style="height:89%">
-      <div class="my-auto" id="chatDisplay" style="width: 100%; height: 100%; overflow-y: scroll; background-color:white;"></div>
+      <div class="my-auto" id="chatDisplay" style="width: 100%; height: 100%; overflow-y: scroll; background-color:white;">Your messages are being loaded...</div>
     </div>
 
 </body>
