@@ -293,8 +293,6 @@ class User_model extends CI_Model{
         left join users on users.idUser=opinions.idUser 
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
     }
-
-
     public function addNews($news)
     {
         $this->db->insert('news', $news);
@@ -332,6 +330,17 @@ class User_model extends CI_Model{
         $statistics['numberOfAnsweredOpinions']= $this->db->query("SELECT count(motions.idMotion) as mot from motions  
         left join  opinions on opinions.idMotion=motions.idMotion where opinions.idUser=$idUser and agree is not null;")->row('mot');
         return $statistics;
+
+     }
+     public function changeTheOpinion($idMotion,$idUser){
+         $opinion=$this->db->query("  SELECT if(agree=0 or agree=1,agree,null) 
+         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+         left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and motions.idMotion=$idMotion ;")->row('agree');
+        if($opinion==1){
+            $this->db->query("UPDATE opinions SET Agree = 0 WHERE opinions.idMotion=$idMotion and opinions.idUser=$idUser");
+        } else {
+            $this->db->query("UPDATE opinions SET Agree = 1 WHERE opinions.idMotion=$idMotion and opinions.idUser=$idUser");
+        }
 
      }
 

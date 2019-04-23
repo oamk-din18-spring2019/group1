@@ -50,7 +50,7 @@
                 if($this->User_model->getRating($data['username'])<0){
                     echo "<i class='far fa-angry'></i> Agressive user <br>";
                 }
-                if($this->User_model->getRating($data['username'])>4 and $this->User_model->getRating($data['username'])<10){
+                if($this->User_model->getRating($data['username'])>=4 and $this->User_model->getRating($data['username'])<10){
                     echo "<i class='fas fa-user-tie my-3'></i> Polite user <br>";
                 }
                 if($this->User_model->getRating($data['username'])>=10){
