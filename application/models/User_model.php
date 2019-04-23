@@ -196,11 +196,11 @@ class User_model extends CI_Model
         $this->db->$this->db->insert('categories', $interests);
         return $this->db->affected_rows();
     }
-    public function getIdUser($name)
+    public function getIdUser($username)
     {
         $this->db->select('idUser');
         $this->db->from('users');
-        $this->db->where('username', $name);
+        $this->db->where('username',$username);
         return $this->db->get()->row('idUser');
     }
     public function getRating($username)
@@ -374,6 +374,7 @@ class User_model extends CI_Model
         $statistics['numberOfAnsweredOpinions']= $this->db->query("SELECT count(motions.idMotion) as mot from motions
         left join  opinions on opinions.idMotion=motions.idMotion where opinions.idUser=$idUser and agree is not null;")->row('mot');
         return $statistics;
+
     }
   
     public function changeTheOpinion($idMotion, $idUser)
