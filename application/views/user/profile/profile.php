@@ -9,12 +9,17 @@ Hello  -->
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6 text-left mt-4">
-            <h2>
-                Username:
-                <?php echo $_SESSION["username"] ?> <br>
-                Date of registration:
-                <?php echo $_SESSION['time'] ?>
-                Rating points:
+           
+            
+                <h1><strong><?php echo $_SESSION["username"] ?></strong></h1>  
+               <br>
+               <h2>
+                <?php 
+                
+                ?>
+               <i class="far fa-calendar-check my-3"></i>
+                <?php echo $_SESSION['time'] ?><br>
+                <i class="fas fa-star my-3"></i>
                 <?php echo $this->User_model->getRating($_SESSION['username']); ?>
             </h2>
         </div>
@@ -27,8 +32,8 @@ Hello  -->
             <div class="card ">
                 <i class="fas fa-user-friends fa-5x text-center mt-4"></i>
                 <div class="card-body text-center">
-                    <h5 class="card-title">Friend</h5>
-                    Find friends here
+                    <h5 class="card-title">Connections</h5>
+                    Find people you want to connect here
                     <br> <br><a href="<?php echo site_url('user/search'); ?>" class="btn btn-primary text-center">Interesting!</a>
                 </div>
             </div>
@@ -37,8 +42,8 @@ Hello  -->
             <div class="card ">
                 <i class="fas fas fa-trophy fa-5x text-center mt-4"></i>
                 <div class="card-body text-center">
-                    <h5 class="card-title">Achievements</h5>
-                    All achievments you have
+                    <h5 class="card-title">Statistics</h5>
+                    Statistics we have about you
                     <br> <br><a href="<?php echo site_url("user/achievements") ?>" class="btn btn-primary text-center">Let's go!</a>
 
                 </div>
