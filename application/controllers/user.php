@@ -233,10 +233,21 @@ class User extends CI_Controller
     }
 
     public function achievements(){
+      $data['selectedAchievements']= $this->User_model->getSelectedAchievements($_SESSION['username']);
       $data['statistics']= $this->User_model->getStatistics($_SESSION['username'],$_SESSION['idUser']);
       $this -> load -> view ('user/profile/headerProfile');
       $this->load->view('achievements/achievements',$data);
       $this -> load -> view ('user/profile/footerProfile');
+    }
+
+    public function saveAchievements() {
+      $data_array= array();
+      foreach ($this->input->post() as $key => $value) {
+        if ($key != "username") {array_push($data_array, $key);}
+      }
+      $update_data = implode(", ",$data_array);
+      $this->User_model->updateSelectedAchievements($update_data);
+      redirect('user/achievements');
     }
 
     //rating functions
