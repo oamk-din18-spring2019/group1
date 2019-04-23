@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h4>Following:</h4>
+  <h4>You are connected with:</h4>
     <?php
     $following=$this->User_model->getFollowing($_SESSION['username']);
     if ($following!=NULL && isset($following[1])) {
@@ -19,7 +19,7 @@
       }}
     }
     else {
-      echo 'You are not following anybody.';
+      echo 'You have not connections.';
     }
     ?>
 

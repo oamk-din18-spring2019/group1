@@ -17,10 +17,10 @@
               <div class="row justify-content-center">
                 <div class="col-auto border border-dark rounded-pill rgba-stylish-light ">
                   <?php if($this->User_model->checkIfFollowing($data['idUser'])) {
-                    echo '<i class="fas fa-check"></i>&nbsp;Following';
+                    echo '<i class="fas fa-check"></i>&nbsp;Connected';
                   }
                   else {
-                    echo '<i class="fas fa-times"></i>&nbsp;Not following';
+                    echo '<i class="fas fa-times"></i>&nbsp;Not connected';
                   }
                   ?>
                 </div>

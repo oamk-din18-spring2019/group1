@@ -5,7 +5,7 @@
             <div class="card">
                 <i class="fas fa-stopwatch fa-5x text-center mt-4"></i>
                 <div class="card-body text-center">
-                    <h2 class="card-title"> <?php if($statistics['time']==1){echo $timeWithUs.' day';} else {echo $statistics['time'].' days';} ?> </h2>
+                    <h2 class="card-title"> <?php if($statistics['time']==1){echo $statistics['time'].' day';} else {echo $statistics['time'].' days';} ?> </h2>
                     You have spent with us
                 </div>
 

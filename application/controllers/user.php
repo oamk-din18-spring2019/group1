@@ -61,7 +61,9 @@ class User extends CI_Controller
 
     function profile() {
       //$data['rating'] = $this->User_model->getRating($username);
-
+      // $username=$_SESSION['username'];
+      // $idUser=$_SESSION['idUser'];
+      // $this->User_model-> getStatistics($username,$idUser);
       $this -> load -> view ('user/profile/headerProfile');
       $this -> load -> view('user/profile/profile');
       $this -> load -> view ('user/profile/footerProfile');
