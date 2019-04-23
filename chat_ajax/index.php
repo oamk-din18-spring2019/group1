@@ -49,7 +49,7 @@
               url:'displayChat.php?idChat=<?php echo $_GET['idChat'] ?>&username=<?php echo $_GET['username'] ?>',
               type: 'GET',
               success: function(data){
-                  $("#chatDisplay").html(data);
+                $("#chatDisplay").html(data == '' ? "You haven't had any messages with this person yet. Start by saying Hi!" : data );
               }
           });
       }
