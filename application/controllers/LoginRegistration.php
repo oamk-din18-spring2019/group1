@@ -29,7 +29,7 @@ class LoginRegistration extends CI_Controller
             redirect('user');
         }
         else{
-            //if not, load the main page
+            //if none of the above, load the demonstration page
             $data['page'] = 'user/mainpage';
             $this->load->view('templates/content', $data);
         }
@@ -92,6 +92,7 @@ class LoginRegistration extends CI_Controller
     //function for entering the system
         $givenUsername = $this->input->post('username');
         $givenPassword = $this->input->post('password');
+
         $db_password = $this->User_model->getPassword($givenUsername);
         $active = $this->User_model->getActive($givenUsername);
         $admin = $this->User_model->getAdmin($givenUsername);
@@ -107,7 +108,9 @@ class LoginRegistration extends CI_Controller
             //check if user wants to automatically log in
             if ($this->input->post('rememberMe') == 'on'){
                 $veriKey = $this->generateKey();
-                $this->input->set_cookie('username', $_SESSION['username'], 365*24*60*60);
+                
+                //set the cookie duration to be 1 year
+                $this->input->set_cookie('username', $_SESSION['username'], 365*24*60*60); 
                 $this->input->set_cookie('verification', $veriKey, 365*24*60*60);
                 $this->User_model->addCookie($_SESSION['username'], $veriKey);
             }
@@ -142,12 +145,12 @@ class LoginRegistration extends CI_Controller
         redirect(site_url("LoginRegistration/index"));
     }
 
-    public function generateKey(){
+    public function generateKey($length = 10){
         //this will be a 10-character long string for cookie verification
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $key = '';
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < $length; $i++) {
             $key .= $characters[rand(0, $charactersLength - 1)];
         }
         return $key;
