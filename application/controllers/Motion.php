@@ -46,7 +46,9 @@ class Motion extends CI_Controller{
       $this-> load-> view('user/profile/headerProfile');
         $this-> load-> view('user/argument/listOfOpponents',$data);
         $this-> load-> view('user/profile/footerProfile');
-      
-
+    }
+    public function changeTheOpinion($idMotion){
+      $this->User_model->changeTheOpinion($idMotion,$_SESSION['idUser']);
+      header("Location: ".$_SERVER['HTTP_REFERER']);
     }
 }

@@ -9,11 +9,11 @@
                         // echo '<h4><strong>'.$answeredMotions[$i]['content'].':</strong></h4> ';
                         if ($answeredMotions[$i]['agree']==1){
                                 echo '<li>';
-                                    echo '<input type="button"> <i class="fas fa-check"></i> </input> <a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">'.$answeredMotions[$i]['content'].'</a>';
+                                    echo '<a href="'.site_url('motion/changeTheOpinion/').$answeredMotions[$i]['idMotion'].'"><i class="fas fa-1x fa-check"></i></a> </input> <a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">'.$answeredMotions[$i]['content'].'</a>';
                                 echo '</li>';
                         } else {
                                 echo '<li>';
-                                    echo '<input type="button"> <i class="fas fa-times"></i> </input> <a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'"> '.$answeredMotions[$i]['content'].'</a>';
+                                    echo '<a href="'.site_url('motion/changeTheOpinion/').$answeredMotions[$i]['idMotion'].'"> <i class="fas fa-1x fa-times"></i></a> </input> <a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'"> '.$answeredMotions[$i]['content'].'</a>';
                                 echo '</li>';
                         }
                     };
