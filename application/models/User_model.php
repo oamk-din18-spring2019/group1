@@ -49,6 +49,15 @@ class User_model extends CI_Model
         return explode(', ', $user->following);
     }
 
+    public function getSelectedAchievements($name)
+    {
+      $this->db->select('selectedAchievements');
+      $this->db->from('users');
+      $this->db->where('username',$name);
+      $user=$this->db->get()->row();
+      return explode(', ',$user->selectedAchievements);
+    }
+
     public function friends()
     {
         return $this->db->query('select username from projectd.users')->result_array();
@@ -220,8 +229,8 @@ class User_model extends CI_Model
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
 
-    public function findCategoryQuestion($category, $idUser)
-    {
+
+    public function findCategoryQuestion($category,$idUser){
         //
         // This system returns random question from motions
         // $numberOfRows=$this->db->get()->row('COUNT(*)');
@@ -245,7 +254,6 @@ class User_model extends CI_Model
     public function  setOpinionsToNull($category, $idUser)
     {
         $categoriesArray = array();
-
         $users = array();
         $users = $this->db->query("select idUser from users")->result_array();
         $firstUserId = $users[0]['idUser'];
@@ -258,6 +266,7 @@ class User_model extends CI_Model
         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
         left join users on users.idUser=opinions.idUser where category='$category'")->result_array();
         }
+
 
 
         for ($i = 0; $i < count($categoriesArray); $i++) {
@@ -302,6 +311,7 @@ class User_model extends CI_Model
         $this->db->update('users', $update_data);
     }
 
+
     public function checkIfUsernameExists($name)
     {
         $exists = false;
@@ -321,6 +331,7 @@ class User_model extends CI_Model
         //    return $agree;
         return $this->db->query("SELECT username from motions  left join  opinions on opinions.idMotion=motions.idMotion 
         left join users on users.idUser=opinions.idUser 
+
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
     }
     public function addNews($news)
@@ -343,8 +354,8 @@ class User_model extends CI_Model
         return empty($result) ? null : $result[0]['up'];
     }
 
-    public function getStatistics($username, $idUser)
-    {
+
+     public function getStatistics($username,$idUser){
         $this->db->select('DoR');
         $this->db->from('users');
         $this->db->where('username', $username);
@@ -355,14 +366,16 @@ class User_model extends CI_Model
         $chosenCategories = $this->User_model->getPreferredCategories($_SESSION['idUser']);
         $numberOfChosenCategories = count((array_filter($chosenCategories[0])));
         // $numberOfChosenCategories is a variable with a number on categories with 1s AND the userId, so, it shows number of chosen categories + 1
-        $statistics['numberOfChosenCategories'] = $numberOfChosenCategories - 1;
-        $statistics['time'] = $this->db->query("SELECT DATEDIFF( CURRENT_DATE(),'$DoR') as date")->row('date');
-        $following = $this->db->query("select following from users where username='$username'")->result_array();
-        $statistics['following'] = sizeof(explode(",", $following[0]['following'])) - 1;
-        $statistics['numberOfAnsweredOpinions'] = $this->db->query("SELECT count(motions.idMotion) as mot from motions  
+
+        $statistics['numberOfChosenCategories']=$numberOfChosenCategories - 1;
+        $statistics['time']=$this->db->query("SELECT DATEDIFF( CURRENT_DATE(),'$DoR') as date")->row('date');
+        $following=$this->db->query("select following from users where username='$username'")->result_array();
+        $statistics['following']= sizeof(explode(",",$following[0]['following']))-1;
+        $statistics['numberOfAnsweredOpinions']= $this->db->query("SELECT count(motions.idMotion) as mot from motions
         left join  opinions on opinions.idMotion=motions.idMotion where opinions.idUser=$idUser and agree is not null;")->row('mot');
         return $statistics;
     }
+  
     public function changeTheOpinion($idMotion, $idUser)
     {
         $opinion = $this->db->query("  SELECT if(agree=0 or agree=1,agree,null) 
@@ -373,5 +386,12 @@ class User_model extends CI_Model
         } else {
             $this->db->query("UPDATE opinions SET Agree = 1 WHERE opinions.idMotion=$idMotion and opinions.idUser=$idUser");
         }
-    }
+     }
+
+     public function updateSelectedAchievements($string) {
+       $update_data= array("selectedAchievements"=>$string);
+       $this->db->where('username', $_SESSION['username']);
+       $this->db->update('users',$update_data);
+     }
+  
 }
