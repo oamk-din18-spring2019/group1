@@ -12,21 +12,32 @@ Hello  -->
            
             
                 <h1><strong><?php echo $_SESSION["username"] ?></strong></h1>  
-               <br>
-               <h2>
+               
+               <h3>
                 <?php 
-                
+                if($this->User_model->getRating($_SESSION['username'])>=0 and $this->User_model->getRating($_SESSION['username'])<4){
+                    echo "<i class='fas fa-user-graduate my-3'></i> Usual user <br>";
+                }
+                if($this->User_model->getRating($_SESSION['username'])<0){
+                    echo "<i class='far fa-angry'></i> Agressive user <br>";
+                }
+                if($this->User_model->getRating($_SESSION['username'])>4 and $this->User_model->getRating($_SESSION['username'])<10){
+                    echo "<i class='fas fa-user-tie my-3'></i> Polite user <br>";
+                }
+                if($this->User_model->getRating($_SESSION['username'])>=10){
+                    echo "<i class='fas fa-user-astronaut my-3'></i> Cosmically polite user <br>";
+                }
                 ?>
                <i class="far fa-calendar-check my-3"></i>
                 <?php echo $_SESSION['time'] ?><br>
                 <i class="fas fa-star my-3"></i>
                 <?php echo $this->User_model->getRating($_SESSION['username']); ?>
-            </h2>
+            </h3>
         </div>
     </div>
 </div>
 <hr>
-<div class="container mb-3">
+<div class="container my-3">
     <div class="card-group ">
         <div class="col-md-4">
             <div class="card ">
