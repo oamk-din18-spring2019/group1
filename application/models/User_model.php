@@ -291,4 +291,10 @@ class User_model extends CI_Model{
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
 
     }
+
+    public function addNews($news)
+    {
+        $this->db->insert('news', $news);
+        
+    }
 }

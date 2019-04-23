@@ -21,6 +21,7 @@ class User extends CI_Controller
       $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
       $data["categories"] = $this->User_model->getCategories();
       $this->load->view('user/profile/headerProfile');
+      $this->load->view('user/categories', $data);
       $this->load->view('user/dashboard', $data);
       $this->load->view('user/profile/footerProfile');
     }
@@ -242,5 +243,13 @@ class User extends CI_Controller
     public function showRating($username){
       $data['rating'] = $this->User_model->getRating($username);
       $this->load->view('test', $data);
+    }
+    public function addNews($news)
+    {
+      
+    }
+    public function showNews()
+    {
+      
     }
 }
