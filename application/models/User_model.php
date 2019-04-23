@@ -182,11 +182,11 @@ class User_model extends CI_Model{
         $this->db->insert('categories', $interests);
         return $this->db->affected_rows();
     }
-    public function getIdUser($name)
+    public function getIdUser($username)
     {
         $this->db->select('idUser');
         $this->db->from('users');
-        $this->db->where('username',$name);
+        $this->db->where('username',$username);
         return $this->db->get()->row('idUser');
     }
     public function getRating($username){
@@ -305,7 +305,7 @@ class User_model extends CI_Model{
     public function addNews($news)
     {
         $this->db->insert('news', $news);
-        
+
     }
 
     //function for rating users
@@ -342,8 +342,8 @@ class User_model extends CI_Model{
 
      }
      public function changeTheOpinion($idMotion,$idUser){
-         $opinion=$this->db->query("  SELECT if(agree=0 or agree=1,agree,null) 
-         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+         $opinion=$this->db->query("  SELECT if(agree=0 or agree=1,agree,null)
+         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion
          left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and motions.idMotion=$idMotion ;")->row('agree');
         if($opinion==1){
             $this->db->query("UPDATE opinions SET Agree = 0 WHERE opinions.idMotion=$idMotion and opinions.idUser=$idUser");
