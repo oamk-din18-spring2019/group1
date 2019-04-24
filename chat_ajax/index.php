@@ -86,7 +86,7 @@
     <div class="text-center flex-grow-1">
         <form class="h-100" id="myChatForm" action="" method="get">
           <div class="d-flex flex-row h-100">
-            <textarea class="w-85 my-auto" name="message" id="message" cols="30" rows="2" id="message" placeholder="Enter your message"></textarea>
+            <textarea class="w-85 my-auto" name="message" id="message" cols="30" rows="2" id="message" placeholder="Enter your message" style="resize: none"></textarea>
             <script>
                 addEventListener('keypress', e => {
                     if(e.keyCode === 13 && !e.shiftKey) $('#sendMessageBtn').click();
