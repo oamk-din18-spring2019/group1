@@ -69,7 +69,8 @@ class LoginRegistration extends CI_Controller
                 $insert_data = array(
                     "username" => $this->input->post('un'),
                     "email" => $this->input->post('em'),
-                    "passwd" => $hashedPassword
+                    "passwd" => $hashedPassword,
+                    "DoR" => date("Y-m-d")
                 );
                 $result = $this->User_model->add_user($insert_data);
                 if ($result == 1)
