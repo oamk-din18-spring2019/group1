@@ -8,12 +8,12 @@ class User_model extends CI_Model
 
     public function getUsersTable()
     {
-        return $this->db->query('select * from projectd.users')->result_array();
+        return $this->db->query('select * from users')->result_array();
     }
 
     public function getUserInfo($id)
     {
-        return $this->db->query('select * from projectd.users where idUser=' . $id)->row();
+        return $this->db->query('select * from users where idUser=' . $id)->row();
     }
 
     public function getUsername($id)
@@ -60,15 +60,15 @@ class User_model extends CI_Model
 
     public function friends()
     {
-        return $this->db->query('select username from projectd.users')->result_array();
+        return $this->db->query('select username from users')->result_array();
     }
     public function activeFriends()
     {
-        return $this->db->query('select username from projectd.users')->result_array();
+        return $this->db->query('select username from users')->result_array();
     }
     public function profile($username)
     {
-        $query = $this->db->get_where('projectd.users', array('username' => $username));
+        $query = $this->db->get_where('users', array('username' => $username));
         return $query->row_array();
     }
     public function add_user($insert_data)
@@ -103,18 +103,18 @@ class User_model extends CI_Model
     public function openConversation($username1, $username2)
     {
         //check if the conversation exists or not
-        $check = $this->db->get_where('projectd.conversations', array('username1' => $username1, 'username2' => $username2));
+        $check = $this->db->get_where('conversations', array('username1' => $username1, 'username2' => $username2));
         if ($check->row_array() == null) {
-            $check = $this->db->get_where('projectd.conversations', array('username1' => $username2, 'username2' => $username1));
+            $check = $this->db->get_where('conversations', array('username1' => $username2, 'username2' => $username1));
             if ($check->row_array() == null) {
-                $this->db->insert('projectd.conversations', array('username1' => $username1, 'username2' => $username2));
+                $this->db->insert('conversations', array('username1' => $username1, 'username2' => $username2));
             }
-            $check = $this->db->get_where('projectd.conversations', array('username1' => $username2, 'username2' => $username1))->row_array();
+            $check = $this->db->get_where('conversations', array('username1' => $username2, 'username2' => $username1))->row_array();
             $this->addConversation('c' . $check['idChat']);
             //returns id of the conversation
             return 'c' . $check['idChat'];
         }
-        $check = $this->db->get_where('projectd.conversations', array('username1' => $username1, 'username2' => $username2))->row_array();
+        $check = $this->db->get_where('conversations', array('username1' => $username1, 'username2' => $username2))->row_array();
         $this->addConversation('c' . $check['idChat']);
         return 'c' . $check['idChat'];
     }
@@ -211,16 +211,16 @@ class User_model extends CI_Model
     //cookie-related functions
     public function addCookie($username, $key)
     {
-        $this->db->insert('projectd.sessions', array('username' => $username, 'verification' => $key));
+        $this->db->insert('sessions', array('username' => $username, 'verification' => $key));
     }
     public function removeCookie($username)
     {
-        $this->db->query("delete from projectd.sessions where username='$username'");
+        $this->db->query("delete from sessions where username='$username'");
     }
     public function verifyCookie($username, $key)
     {
         if ($username === null || $key === null) return false;
-        $result = $this->db->query("select verification from projectd.sessions where username = '$username'");
+        $result = $this->db->query("select verification from sessions where username = '$username'");
         return $result->result()[0]->verification === $key ? true : false;
     }
 
