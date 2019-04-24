@@ -14,6 +14,17 @@
               }
             ?>
               " alt="avatar">
+
+              <?php if ($_GET['username']===$_SESSION['username']) {
+                // Show this div when you enter your own page
+                echo '
+                <div class="row justify-content-center p-4">
+                <h4>This is your own profile in another person\'s view</h2>
+                </div>
+                ';} 
+                ?>
+
+
               <div class="" <?php if ($_GET['username']===$_SESSION['username']) {echo "hidden";} ?>>
                 <div class="row justify-content-center">
                   <div class="col-auto border border-dark rounded-pill rgba-stylish-light ">
@@ -70,12 +81,15 @@
               $showUpButton = $rated == 'up' ? 'none' : 'inline-block';
               $showDownButton = $rated == 'down' ? 'none' : 'inline-block';
             ?>
-            <hr>
 
-            <h2 class="mt-3 text-info"> Rate the person</h2>
+            <div class="" <?php if ($_GET['username']===$_SESSION['username']) {echo "hidden";} ?>  >
+              <hr>
+              <h2 class="mt-3 text-info"> Rate the person</h2>
+              <a style="display: <?php echo $showUpButton; ?>;" href="<?php echo site_url('user/rate').'/'.$data['username'].'/up' ?>"><i class="far mx-2 fa-3x fa-thumbs-up"></i></a>
+              <a style="display: <?php echo $showDownButton; ?>;" href="<?php echo site_url('user/rate').'/'.$data['username'].'/down' ?>"><i class="far fa-3x fa-thumbs-down"></i></a>
+            </div>
 
-            <a style="display: <?php echo $showUpButton; ?>;" href="<?php echo site_url('user/rate').'/'.$data['username'].'/up' ?>"><i class="far mx-2 fa-3x fa-thumbs-up"></i></a>
-            <a style="display: <?php echo $showDownButton; ?>;" href="<?php echo site_url('user/rate').'/'.$data['username'].'/down' ?>"><i class="far fa-3x fa-thumbs-down"></i></a>
+
             <hr>
             <h2 class="m-2">
               <i class="fas fa-trophy"></i>

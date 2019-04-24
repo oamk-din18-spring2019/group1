@@ -65,8 +65,10 @@ class User extends CI_Controller
       // $username=$_SESSION['username'];
       // $idUser=$_SESSION['idUser'];
       // $this->User_model-> getStatistics($username,$idUser);
+      $data['selectedAchievements']=$this->User_model->getSelectedAchievements($_SESSION['username']);
+      $data['statistics']= $this->User_model->getStatistics($_SESSION['username'],$this->User_model->getIdUser($_SESSION['username']));
       $this -> load -> view ('user/profile/headerProfile');
-      $this -> load -> view('user/profile/profile');
+      $this -> load -> view('user/profile/profile',$data);
       $this -> load -> view ('user/profile/footerProfile');
     }
 
@@ -250,7 +252,7 @@ class User extends CI_Controller
       }
       $update_data = implode(", ",$data_array);
       $this->User_model->updateSelectedAchievements($update_data);
-      redirect('user/others_profile?username='.$_SESSION['username']);
+      redirect('user/profile');
     }
 
     //rating functions
