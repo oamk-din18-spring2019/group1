@@ -329,7 +329,7 @@ class User_model extends CI_Model
        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
        left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and motions.idMotion=$idMotion;")->row('agree');
         //    return $agree;
-        return $this->db->query("SELECT username from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+        return $this->db->query("SELECT username, picture from motions  left join  opinions on opinions.idMotion=motions.idMotion 
         left join users on users.idUser=opinions.idUser 
 
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
