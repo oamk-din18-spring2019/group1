@@ -21,7 +21,7 @@
     <div class="d-flex flex-column-reverse h-100">
 
       <div style="height:90%;">
-        <div id="chatScreen" class="no-gutters" style="width:100%; height:100%"></div>
+        <div id="chatScreen" class="no-gutters" style="width:100%; height:100%">Loading...</div>
         <script type=text/JavaScript>
             document.getElementById('chatScreen').innerHTML='<object class="w-100 h-100" type="text/html" data=<?php echo base_url('chat_ajax').'?idChat='.$idChat.'&username='.$_SESSION['username'] ?> ></object>'
             window.onload = () =>{
