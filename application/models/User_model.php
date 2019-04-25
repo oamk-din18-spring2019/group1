@@ -355,6 +355,16 @@ class User_model extends CI_Model
             }
         }
     }
+    public function showAllMotions(){
+        return $this->db->query("select * from motions order by category")->result_array();     
+    }
+    public function getMotion($idMotion){
+        return $this->db->query("select * from motions where idMotion=$idMotion")->result_array();  
+    }
+    public function updateMotion($idMotion,$content,$category){
+        $this->db->query("UPDATE motions SET idMotion = $idMotion, content = '$content', category ='$category' WHERE motions.idMotion = $idMotion");
+
+    }
     public function checkRating($username, $voter)
     {
         $result = $this->db->query("select up from rating where voted='$username' and votedBy='$voter'")->result_array();
