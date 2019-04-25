@@ -67,6 +67,7 @@ class User extends CI_Controller
       // $this->User_model-> getStatistics($username,$idUser);
       $data['selectedAchievements']=$this->User_model->getSelectedAchievements($_SESSION['username']);
       $data['statistics']= $this->User_model->getStatistics($_SESSION['username'],$this->User_model->getIdUser($_SESSION['username']));
+      $data['motto']= $this->User_model->getUserInfo($_SESSION['idUser'])->motto;
       $this -> load -> view ('user/profile/headerProfile');
       $this -> load -> view('user/profile/profile',$data);
       $this -> load -> view ('user/profile/footerProfile');
@@ -290,5 +291,11 @@ header("Location: ".$_SERVER['HTTP_REFERER']);
     public function showNews()
     {
 
+    }
+
+    public function changeMotto() {
+      $motto=$_POST['motto'];
+      $this->User_model->changeMotto($motto);
+      redirect('user/profile');
     }
 }
