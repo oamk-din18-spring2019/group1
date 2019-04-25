@@ -266,9 +266,6 @@ class User_model extends CI_Model
         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
         left join users on users.idUser=opinions.idUser where category='$category'")->result_array();
         }
-
-
-
         for ($i = 0; $i < count($categoriesArray); $i++) {
             $motion = $categoriesArray[$i]['idMotion'];
             $categoriesArray[$i]['agree'] = null;
@@ -347,6 +344,16 @@ class User_model extends CI_Model
         $this->db->query("update users set ratingPoint= $point where username = '$username'");
         $this->db->query(" delete from rating where voted='$username' and votedBy='$voter' "); //delete the previous rating
         $this->db->query("insert into rating (voted, votedBy, up) values ('$username', '$voter', '$up')");
+    }
+    public function addMotion($description,$category){
+        $this->db->query("INSERT INTO motions (idMotion,content,category) VALUES (NULL, '$description', '$category')");
+        $idMotion=$this->db->query("select idMotion from motions where content='$description' and category='$category'")->row('idMotion');
+        $users=$this->db->query("select idUser from users")->result_array();
+        for($i=0;$i<count($users);$i++){
+            foreach ($users[$i] as $value){
+                $this->db->query("INSERT INTO `opinions` (`id`, `idMotion`, `idUser`, `Agree`) VALUES (NULL, $idMotion, $value, null)");
+            }
+        }
     }
     public function checkRating($username, $voter)
     {

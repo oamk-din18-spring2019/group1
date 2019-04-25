@@ -161,7 +161,29 @@ class User extends CI_Controller
         redirect(site_url('user/profile'));
       }
     }
+    public function changeAddMotion(){
+      if ($_SESSION['admin']==true) {
+        $id=$_SESSION['idUser'];
+        $data['categories']=$this->User_model->getPreferredCategories($id);
+        //$this->User_model->addMotion();
+        $this -> load -> view ('user/admin/adminHeader');
+        $this -> load -> view('user/admin/changeAddMotion',$data);
+        $this -> load -> view ('user/admin/adminFooter');
+      }
+      else{
+        redirect(site_url('user/profile'));
+      }
+    }
+public function addMotionProcedure(){
+  print_r( $this->input->post());
+echo $this->input->post('category');
+echo $this->input->post('motionDescription');
+$motionDesc=$this->input->post('motionDescription');
+$category=$this->input->post('category');
+print_r($this->User_model->addMotion($motionDesc,$category));
+header("Location: ".$_SERVER['HTTP_REFERER']);
 
+}
     public function ban() {
       if ($_SESSION['admin']==true) {
         $this -> load -> view ('user/admin/adminHeader');

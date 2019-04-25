@@ -46,7 +46,7 @@
           Add questionaire or sth
         </div>
         <div class="col">
-          <a href="#" class="btn btn-primary" style="">Button</a>
+          <a href="<?php echo site_url('user/changeAddMotion')?>" class='btn btn-primary' >Button</a>
         </div>
       </div>
     </div>
