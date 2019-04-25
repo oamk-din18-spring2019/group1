@@ -6,6 +6,7 @@ Hello  -->
     <div class="col-md-1"></div>
         <div class="col-md-4 col-sm-4 text-center">
             <img class="img-fluid rounded z-depth-1 mt-5 mb-5" style="" src="<?php if(isset($_SESSION['image'])&&($_SESSION['image']!='')){ echo base_url("./images/".$_SESSION['image']) ;} else{echo base_url("./images/empty-avatar.jpg");} ?>" alt="avatar">
+
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6 text-left mt-4">
@@ -33,6 +34,15 @@ Hello  -->
                 <i class="fas fa-star my-3"></i>
                 <?php echo $this->User_model->getRating($_SESSION['username']); ?>
             </h3>
+
+            <hr>
+            <h2 class="m-2">
+              <i class="far fa-comment-alt"></i>
+              Motto
+            </h2>
+            <?php echo '<div class="px-2">'.$motto;
+            if ($motto=='Motto hasn\'t been added yet.') {echo '<br>You can add your motto in Settings';}
+            echo '</div>'; ?>
 
             <hr>
             <h2 class="m-2">
