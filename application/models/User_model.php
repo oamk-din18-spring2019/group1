@@ -258,12 +258,12 @@ class User_model extends CI_Model
         $users = $this->db->query("select idUser from users")->result_array();
         $firstUserId = $users[0]['idUser'];
         if (isset($users[1])) {
-            $categoriesArray = $this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null) 
-        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+            $categoriesArray = $this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null)
+        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion
         left join users on users.idUser=opinions.idUser where category='$category' and opinions.idUser=$firstUserId;")->result_array();
         } else {
-            $categoriesArray = $this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null) 
-        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+            $categoriesArray = $this->db->query("SELECT motions.idMotion,opinions.idUser,if(agree=0 or agree=1,agree,null)
+        as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion
         left join users on users.idUser=opinions.idUser where category='$category'")->result_array();
         }
 
@@ -325,12 +325,12 @@ class User_model extends CI_Model
     }
     public function findOpponents($idMotion, $idUser)
     {
-        $agree = $this->db->query("SELECT if(agree=0 or agree=1,agree,null) 
-       as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+        $agree = $this->db->query("SELECT if(agree=0 or agree=1,agree,null)
+       as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion
        left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and motions.idMotion=$idMotion;")->row('agree');
         //    return $agree;
-        return $this->db->query("SELECT username, picture from motions  left join  opinions on opinions.idMotion=motions.idMotion 
-        left join users on users.idUser=opinions.idUser 
+        return $this->db->query("SELECT * from motions  left join  opinions on opinions.idMotion=motions.idMotion
+        left join users on users.idUser=opinions.idUser
 
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
     }
@@ -376,11 +376,11 @@ class User_model extends CI_Model
         return $statistics;
 
     }
-  
+
     public function changeTheOpinion($idMotion, $idUser)
     {
-        $opinion = $this->db->query("  SELECT if(agree=0 or agree=1,agree,null) 
-         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion 
+        $opinion = $this->db->query("  SELECT if(agree=0 or agree=1,agree,null)
+         as agree from motions  left join  opinions on opinions.idMotion=motions.idMotion
          left join users on users.idUser=opinions.idUser where opinions.idUser=$idUser and motions.idMotion=$idMotion ;")->row('agree');
         if ($opinion == 1) {
             $this->db->query("UPDATE opinions SET Agree = 0 WHERE opinions.idMotion=$idMotion and opinions.idUser=$idUser");
@@ -394,5 +394,10 @@ class User_model extends CI_Model
        $this->db->where('username', $_SESSION['username']);
        $this->db->update('users',$update_data);
      }
-  
+
+     public function changeMotto($text) {
+       $update_data= array("motto"=>$text);
+       $this->db->where('username', $_SESSION['username']);
+       $this->db->update('users',$update_data);
+     }
 }
