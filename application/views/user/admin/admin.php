@@ -20,7 +20,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          Ban Users
+          Ban/Delete Users
         </div>
         <!--Title
         <h4 class="card-title">Card title</h4>

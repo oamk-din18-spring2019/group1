@@ -242,6 +242,10 @@ redirect(site_url('user/changeAddMotion'),$data);
       $this->db->update('users',$update_data);
       redirect('user/ban');
     }
+    public function deleteUser($idUser){
+      $this->User_model->deleteUser($idUser);
+      redirect('user/ban');
+    }
 
     public function following() {
       $followingList=$this->User_model->getFollowing($_SESSION['username']);
