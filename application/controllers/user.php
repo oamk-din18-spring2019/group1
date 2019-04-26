@@ -176,6 +176,10 @@ class User extends CI_Controller
         redirect(site_url('user/profile'));
       }
     }
+    public function deleteMotion($idMotion){
+      $this->User_model->deleteMotion($idMotion);
+      header("Location: ".$_SERVER['HTTP_REFERER']);
+    }
     public function updateMotion($idMotion){
       if ($_SESSION['admin']==true) {
       $data['categories']=$this->User_model->getPreferredCategories($_SESSION['idUser']);

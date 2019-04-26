@@ -43,7 +43,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          Add questionaire or sth
+          Change/add motions
         </div>
         <div class="col">
           <a href="<?php echo site_url('user/changeAddMotion')?>" class='btn btn-primary' >Button</a>

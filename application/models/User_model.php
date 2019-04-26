@@ -346,7 +346,7 @@ class User_model extends CI_Model
         $this->db->query("insert into rating (voted, votedBy, up) values ('$username', '$voter', '$up')");
     }
     public function addMotion($description,$category){
-        $this->db->query("INSERT INTO motions (idMotion,content,category) VALUES (NULL, '$description', '$category')");
+        $this->db->query("INSERT INTO motions (idMotion,content,category) VALUES (NULL, '$description','$category')");
         $idMotion=$this->db->query("select idMotion from motions where content='$description' and category='$category'")->row('idMotion');
         $users=$this->db->query("select idUser from users")->result_array();
         for($i=0;$i<count($users);$i++){
@@ -363,7 +363,9 @@ class User_model extends CI_Model
     }
     public function updateMotion($idMotion,$content,$category){
         $this->db->query("UPDATE motions SET idMotion = $idMotion, content = '$content', category ='$category' WHERE motions.idMotion = $idMotion");
-
+    }
+    public function deleteMotion($idMotion){
+        $this->db->query("DELETE FROM motions WHERE motions.idMotion = $idMotion");
     }
     public function checkRating($username, $voter)
     {

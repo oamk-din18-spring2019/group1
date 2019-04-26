@@ -35,7 +35,7 @@
         <h2>Add new motion</h2> 
     <form method="post" action="<?php echo site_url('user/addMotionProcedure')?>">
 <select id="mounth" name="category" class="">
-    <option value="hide">-- Choose category --</option>
+    <option value="culture">-- Choose category --</option>
     <?php for ($i=0;$i<count($categories);$i++){
     foreach ($categories[$i] as $cat => $value ){
         if ($cat!='idUser')
@@ -46,8 +46,10 @@
 ?>
 </select> 
 <br>
+<div class="col-md-4 my-2 bg-light border-left rounded"><strong>Note!</strong> If you want to add/change the motion don't use ' please </div>
 <textarea type="text" col="10" cols="30" name="motionDescription"> </textarea> <br>
 <button type="submit" class="btn btn-success">Submit</button>
     </form>
+  
 <!-- </div> -->
 </div>

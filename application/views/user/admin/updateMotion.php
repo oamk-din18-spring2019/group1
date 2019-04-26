@@ -20,5 +20,7 @@
 </select> </h2>
 </label> <br>
 <button type="submit" class="btn btn-success">Submit</button>
+<div class="col-md-4 my-2 bg-light border-left rounded"><strong>Note!</strong> If you want to add/change the motion don't use '' please </div>
 </form>
+
 </div>
