@@ -18,7 +18,9 @@
               echo '" class="z-depth-0" alt="avatar image" style="width:100px; height:100px;"></div><div class="my-auto col"><h4>';
               echo $data->username;
               if ($data->username==$_SESSION['username']) {echo ' (yourself)';}
-              echo '</h4><i class="far fa-comment-alt pr-2"></i>'.$data->motto.'</div></div></a>';
+              echo '</h4><i class="far fa-comment-alt pr-2"></i>';
+              if ($data->motto!="") {echo $data->motto;} else {echo 'This person is shy so he/she hasn\'t added any motto yet.';}
+              echo '</div></div></a>';
             }
         }
         else

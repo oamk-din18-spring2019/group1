@@ -188,12 +188,12 @@ class User_model extends CI_Model
     }
     public function addPreferredCategories($insertdata)
     {
-        $this->db->insert('categories', $insertdata);
+        $this->db->replace('categories', $insertdata);
         return $this->db->affected_rows();
     }
     public function addInterest($interests)
     {
-        $this->db->$this->db->insert('categories', $interests);
+        $this->db->replace('categories', $interests);
         return $this->db->affected_rows();
     }
     public function getIdUser($username)
@@ -269,7 +269,10 @@ class User_model extends CI_Model
         for ($i = 0; $i < count($categoriesArray); $i++) {
             $motion = $categoriesArray[$i]['idMotion'];
             $categoriesArray[$i]['agree'] = null;
-            $this->db->query("INSERT INTO `opinions` (`id`, `idMotion`, `idUser`, `Agree`) VALUES (NULL, '$motion', '$idUser', null)");
+            // The following if is to check if the opinion has already existed or not
+            if (empty($this->db->query("SELECT * FROM `opinions` WHERE `idUser`='$idUser' AND `idMotion`='$motion'")->result_array())) {
+              $this->db->query("INSERT INTO `opinions` (`id`, `idMotion`, `idUser`, `Agree`) VALUES (NULL, '$motion', '$idUser', null)");
+            }
         }
         return $firstUserId;
     }
@@ -356,10 +359,10 @@ class User_model extends CI_Model
         }
     }
     public function showAllMotions(){
-        return $this->db->query("select * from motions order by category")->result_array();     
+        return $this->db->query("select * from motions order by category")->result_array();
     }
     public function getMotion($idMotion){
-        return $this->db->query("select * from motions where idMotion=$idMotion")->result_array();  
+        return $this->db->query("select * from motions where idMotion=$idMotion")->result_array();
     }
     public function updateMotion($idMotion,$content,$category){
         $this->db->query("UPDATE motions SET idMotion = $idMotion, content = '$content', category ='$category' WHERE motions.idMotion = $idMotion");

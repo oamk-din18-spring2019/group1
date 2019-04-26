@@ -1,11 +1,11 @@
 <div class="container mt-4">
-  <h4>You are connected with:</h4>
     <?php
 
     if ($following!=NULL && isset($following[0])) {
       foreach ($following as $value) {
         if ($value=="") {} else {
         echo '<div class="container">';
+        echo '<h4>You are connected with:</h4>';
         echo '<a style="" href="' . site_url('user/others_profile?username=') . $value->username . '">';
 
         echo '<div class="card col-lg-10 my-3 p-0">
@@ -27,7 +27,9 @@
         echo '<div class="col-lg-12 text-center">';
         echo   '<h2  class="">' . $value->username . '</h2> ';
         echo '</div>';
-        echo '<div class="col-lg-12 text-center">'.$value->motto.'</div>
+        echo '<div class="col-lg-12 text-center">';
+        if ($value->motto!="") {echo $value->motto;} else {echo 'This person is shy so he/she hasn\'t added any motto yet.';}
+        echo '</div>
              </div>
              </div>
              </div>
@@ -48,7 +50,11 @@
       }}
     }
     else {
-      echo 'You have not connections.';
+      echo '<div class="container text-center">';
+      echo '<h2>You have no connections.</h2>';
+      echo '<img src="https://nakleikashop.ru/images/detailed/22/CAT-070.png" class="img-fluid w-25" alt="">';
+      echo '<h2 class="my-4">You will have one when you follow some one.</h2  >';
+      echo '</div>';
     }
     ?>
 

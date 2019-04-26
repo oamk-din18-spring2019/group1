@@ -1,7 +1,7 @@
-<div class="container mt-4">
+<div class="container my-4">
 
     <div class="row no-gutters">
-      <div class="card col-lg-4">
+      <div class="card col-lg-4 m-4">
         <div class="card-head rounded-top black white-text p-2 pl-4">
           <i class="fas fa-user-circle"></i><strong class="ml-2">Profile picture</strong>
         </div>
@@ -17,21 +17,8 @@
           </form>
         </div>
       </div>
-    </div>
-    <div class="row no-gutters">
-      <div class="card col-lg-4 mt-4">
-        <div class="card-head rounded-top black white-text p-2 pl-4">
-          <i class="fas fa-key"></i><strong class="ml-2">Password</strong>
-        </div>
-        <div class="card-body px-4 pt-2">
-          Change your password here:
-          <button><a href="<?php echo site_url('user/changePassword') ?>">Change password</a></button>
-        </div>
-      </div>
-    </div>
 
-    <div class="row no-gutters">
-      <div class="card col-lg-4 mt-4">
+      <div class="card col-lg-4 m-4">
         <div class="card-head rounded-top black white-text p-2 pl-4">
           <i class="far fa-comment-alt"></i><strong class="ml-2">Motto</strong>
         </div>
@@ -41,7 +28,28 @@
             <textarea class="w-100" name="motto" rows="4" cols="" maxlength="500" placeholder="Enter your new motto here" ></textarea><br>
             <input type="submit" name="" value="Change motto">
           </form>
+        </div>
+      </div>
+    </div>
 
+    <div class="row no-gutters">
+      <div class="card col-lg-4 m-4">
+        <div class="card-head rounded-top black white-text p-2 pl-4">
+          <i class="fas fa-key"></i><strong class="ml-2">Password</strong>
+        </div>
+        <div class="card-body px-4 pt-2">
+          Change your password here:
+          <button><a href="<?php echo site_url('user/changePassword') ?>">Change password</a></button>
+        </div>
+      </div>
+    
+      <div class="card col-lg-4 m-4">
+        <div class="card-head rounded-top black white-text p-2 pl-4">
+          <i class="fas fa-book"></i><strong class="ml-2">Preferred Categories</strong>
+        </div>
+        <div class="card-body px-4 pt-2">
+          Change your preferred categories here:
+          <button><a href="<?php echo site_url('user/getCategories') ?>">Change Preferred Categories</a></button>
         </div>
       </div>
     </div>
