@@ -136,6 +136,11 @@ class User_model extends CI_Model
             unlink("images/" . $picture);
         }
     }
+    public function deleteUser($idUser){
+        $this->db->query("DELETE FROM categories WHERE categories.idUser=$idUser");
+        $this->db->query("DELETE FROM opinions WHERE opinions.idUser=$idUser");
+        $this->db->query("DELETE FROM users WHERE users.idUser=$idUser");
+    }
 
     function addConversation($idChat)
     {

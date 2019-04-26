@@ -53,7 +53,7 @@ Hello  -->
             }
             echo '</div>'; ?>
         </div>
-        <div class="container mt-3">
+        <div class="container mt-2">
             <hr>
             <div class="row">
                 <div class="col-md-6 my-auto">
