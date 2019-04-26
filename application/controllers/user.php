@@ -244,8 +244,14 @@ redirect(site_url('user/changeAddMotion'),$data);
     }
 
     public function following() {
+      $followingList=$this->User_model->getFollowing($_SESSION['username']);
+      array_splice($followingList,0,1);
+      $data['following']=array();
+      foreach ($followingList as $key) {
+          array_push($data['following'],$this->User_model->getUserInfo($key));
+      }
       $this -> load -> view ('user/profile/headerProfile');
-      $this -> load -> view('user/following/following');
+      $this -> load -> view('user/following/following',$data);
       $this -> load -> view ('user/profile/footerProfile');
     }
 

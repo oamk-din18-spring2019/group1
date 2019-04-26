@@ -17,9 +17,7 @@ Hello  -->
                     <!-- <div class="col-1"></div> -->
                 </div>
             </div>
-
         </div>
-
         <!-- <div class="col-md-1"></div> -->
         <div class="col-md-6 text-left mt-4">
             <h1><strong><?php echo $_SESSION["username"] ?></strong></h1>
@@ -44,7 +42,6 @@ Hello  -->
                 <i class="fas fa-star my-3"></i>
                 <?php echo $this->User_model->getRating($_SESSION['username']); ?>
             </h3>
-
             <hr>
             <h2 class="m-2">
                 <i class="far fa-comment-alt"></i>
@@ -56,7 +53,6 @@ Hello  -->
             }
             echo '</div>'; ?>
         </div>
-      
         <div class="container mt-3">
             <hr>
             <div class="row">
