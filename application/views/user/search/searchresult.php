@@ -5,16 +5,20 @@
         if(count($cari)>0)
         {
             foreach ($cari as $data) {
-              echo '<a style="color: black;" href="'.site_url('user/others_profile?username=').$data->username.'">';
-              echo '<img src="';
+              echo '<a class="" style="color: black;" href="'.site_url('user/others_profile?username=').$data->username.'">';
+              echo '
+              <div class="col-lg-6 border border-dark rounded p-2 my-4 mx-lg-0 mx-auto row" >
+              <div class="col-4 text-center"><img src="';
               if(!is_null($data->picture)&&$data->picture!=''){
                 echo base_url("./images/").$this->User_model->getPictureName($data->username);
               }
               else {
                 echo base_url("./images/empty-avatar.jpg");
               }
-              echo '" class="mr-3 z-depth-0 " alt="avatar image" style="width:25px; height:25px;">';
-              echo $data->username."<br><br></a>";
+              echo '" class="z-depth-0" alt="avatar image" style="width:100px; height:100px;"></div><div class="my-auto col"><h4>';
+              echo $data->username;
+              if ($data->username==$_SESSION['username']) {echo ' (yourself)';}
+              echo '</h4><i class="far fa-comment-alt pr-2"></i>'.$data->motto.'</div></div></a>';
             }
         }
         else
