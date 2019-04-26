@@ -4,8 +4,9 @@ Hello  -->
 <div class="container ">
     <div class="row">
     <div class="col-md-1"></div>
-        <div class="col-md-4 col-sm-4 text-center m-auto">
-            <img class="img-fluid rounded z-depth-1 my-3" src="<?php if(isset($_SESSION['image'])&&($_SESSION['image']!='')){ echo base_url("./images/".$_SESSION['image']) ;} else{echo base_url("./images/empty-avatar.jpg");} ?>" alt="avatar">
+        <div class="col-md-4 col-sm-4 text-center">
+            <img class="img-fluid rounded z-depth-1 mt-5 mb-5" style="" src="<?php if(isset($_SESSION['image'])&&($_SESSION['image']!='')){ echo base_url("./images/".$_SESSION['image']) ;} else{echo base_url("./images/empty-avatar.jpg");} ?>" alt="avatar">
+
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-6 text-left mt-4">

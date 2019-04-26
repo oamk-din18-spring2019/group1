@@ -1,4 +1,4 @@
-<div class="container mt-2">
+<div class="container mt-2 text-center">
   <h2>Your possible opponents:</h2>
   <?php if (isset($opponents[0])) {
     foreach ($opponents as $value) {
@@ -33,7 +33,14 @@
       </div> </div> </a>';
     }
   } else {
-    echo "<h2>Unfortunately there is no opponent for you :(</h2>";
+  
+    echo "<h2 class='text-center'>Unfortunately there is no opponent for you :(</h2>";
+    echo '<div class="col-md-12 text-center">';
+    echo '<div class="col-md-5 mx-auto my-3">';
+    echo '<img src="https://nakleikashop.ru/images/detailed/22/CAT-070.png" class="img-fluid " alt="">';
+    echo "</div>";
+    echo "<h2 class='text-center'>But we are working on it!</h2>";
+    echo '</div>';
   }
   ?>
 </div>
