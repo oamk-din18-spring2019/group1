@@ -162,7 +162,60 @@ class User extends CI_Controller
         redirect(site_url('user/profile'));
       }
     }
+    public function changeAddMotion(){
+      if ($_SESSION['admin']==true) {
+        $id=$_SESSION['idUser'];
+        $data['categories']=$this->User_model->getPreferredCategories($id);
+        $data['motions']=$this->User_model->showAllMotions();
+        //$this->User_model->addMotion();
+        $this -> load -> view ('user/admin/adminHeader');
+        $this -> load -> view('user/admin/changeAddMotion',$data);
+        $this -> load -> view ('user/admin/adminFooter');
+      }
+      else{
+        redirect(site_url('user/profile'));
+      }
+    }
+    public function deleteMotion($idMotion){
+      $this->User_model->deleteMotion($idMotion);
+      header("Location: ".$_SERVER['HTTP_REFERER']);
+    }
+    public function updateMotion($idMotion){
+      if ($_SESSION['admin']==true) {
+      $data['categories']=$this->User_model->getPreferredCategories($_SESSION['idUser']);
+      $data['motion']=$this->User_model->getMotion($idMotion);
+      $this -> load -> view ('user/admin/adminHeader');
+      $this -> load -> view('user/admin/updateMotion',$data);
+      $this -> load -> view ('user/admin/adminFooter');
+      } else {
+        redirect(site_url('user/profile'));
+      }
+    }
+    public function updateMotionProcedure(){
+      if ($_SESSION['admin']==true) {
+      $idMotion=$this->input->post('id');
+      $content=$this->input->post('content');
+      $category=$this->input->post('category');
+      $this->User_model->updateMotion($idMotion,$content,$category);
+      redirect(site_url('user/changeAddMotion'));
+      } else {
+        redirect(site_url('user/profile'));
+      }
 
+    }
+public function addMotionProcedure(){
+  print_r( $this->input->post());
+echo $this->input->post('category');
+echo $this->input->post('motionDescription');
+$motionDesc=$this->input->post('motionDescription');
+$category=$this->input->post('category');
+if($this->User_model->addMotion($motionDesc,$category))
+{
+$data['message']="New motion has been added";
+};
+redirect(site_url('user/changeAddMotion'),$data);
+
+}
     public function ban() {
       if ($_SESSION['admin']==true) {
         $this -> load -> view ('user/admin/adminHeader');
