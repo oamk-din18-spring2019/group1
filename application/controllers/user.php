@@ -122,8 +122,8 @@ class User extends CI_Controller
     $config['max_size']             = 5000;
     $config['max_width']            = 1500;
     $config['max_height']           = 1500;
-    $config['min_width']            = 1000;
-    $config['min_height']           = 1000;
+    //$config['min_width']            = 1000;
+    //$config['min_height']           = 1000;
 
     // Get name of old picture
     $oldPicture=$this->User_model->getUserInfo($_SESSION['idUser'])->picture;
@@ -139,7 +139,7 @@ class User extends CI_Controller
     }
     else
     {
-      $data['messageSettings']="The file should be more then 1000 px height and width and less then 1500 px height and width <br> the best size is 1024/1024";
+      $data['messageSettings']="The file should be less then 1500 px height and width <br> the best size is 1024/1024";
       $this -> load -> view ('user/profile/headerProfile');
       $this -> load -> view("settings/settings",$data);
       $this -> load -> view ('user/profile/footerProfile');

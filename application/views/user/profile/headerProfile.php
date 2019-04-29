@@ -54,7 +54,6 @@
           class="rounded-circle z-depth-0 " alt="avatar image" style="width:25px; height:25px;">
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
-          <a class="dropdown-item" href="#">Some Action</a>
           <a class="dropdown-item" href="<?php echo site_url('user/settings'); ?>">Settings</a>
           <a class="dropdown-item" href="<?php echo site_url('LoginRegistration/logout') ?>">Log out</a>
         </div>
