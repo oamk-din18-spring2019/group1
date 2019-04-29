@@ -43,38 +43,37 @@
 
   <script>
   $(document).ready(function(e){
-      function displayChat(){
-          $.ajax({
-              url:'displayChat.php?idChat=<?php echo $_GET['idChat'] ?>&username=<?php echo $_GET['username'] ?>',
-              type: 'GET',
-              success: function(data){
-                $("#chatDisplay").html(data == '' ? "You haven't had any messages with this person yet. Start by saying Hi!" : data );
-              }
-          });
-      }
-      displayChat();
-      setInterval(function(){displayChat();},1000);
-
-      $('#sendMessageBtn').click(function(e){
-          var message = $("#message").val();
-          var username = '<?php echo $_GET['username'] ?>';
-          var idChat = '<?php echo $_GET['idChat'] ?>'
-          $("#myChatForm")[0].reset();
-          $.ajax({
-              url:'sendChat.php',
-              type:'GET',
-              data:{
-                  umessage:message,
-                  username:username,
-                  idChat: idChat,
-              }
-          });
-          // Auto scroll down when enter a new maessage
-          setTimeout(function(){
-            var scrollbar = document.getElementById('chatDisplay');
-            scrollbar.scrollTop = scrollbar.scrollHeight; }, 2000
-          );
+    function displayChat(){
+      $.ajax({
+          url:'displayChat.php?idChat=<?php echo $_GET['idChat'] ?>&username=<?php echo $_GET['username'] ?>',
+          type: 'GET',
+          success: function(data){
+            $("#chatDisplay").html(data == '' ? "You haven't had any messages with this person yet. Start by saying Hi!" : data );
+          }
       });
+    }
+    setInterval(function(){displayChat();},500);
+
+    $('#sendMessageBtn').click(function(e){
+      var message = $("#message").val();
+      var username = '<?php echo $_GET['username'] ?>';
+      var idChat = '<?php echo $_GET['idChat'] ?>'
+      $("#myChatForm")[0].reset();
+      $.ajax({
+          url:'sendChat.php',
+          type:'GET',
+          data:{
+              umessage:message,
+              username:username,
+              idChat: idChat,
+          }
+      });
+      // Auto scroll down when enter a new maessage
+      setTimeout(function(){
+        var scrollbar = document.getElementById('chatDisplay');
+        scrollbar.scrollTop = scrollbar.scrollHeight; }, 2000
+      );
+    });
   });
   </script>
 </head>

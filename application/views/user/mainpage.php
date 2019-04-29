@@ -79,10 +79,10 @@
    
     <script>
       //set the effect of how text appear
-       let join = document.getElementById('test');
-       let mottos = Array.from(document.getElementsByClassName('test'));
-       window.onscroll = () =>{
-         let i = 0;
+      let join = document.getElementById('test');
+      let mottos = Array.from(document.getElementsByClassName('test'));
+      window.onscroll = () =>{
+        let i = 0;
         if(this.scrollY + 925 >= join.offsetTop){
           var itv = setInterval( () => {
             if(i<3){
@@ -93,7 +93,7 @@
             }
           } ,800)
         }
-       }
+      }
     </script>
     <div class="text-center"><a  href="<?php echo site_url("LoginRegistration/register")?>" class=""> 
       <button  class="btn btn-lg btn-success waves-effect rounded loginButton ">

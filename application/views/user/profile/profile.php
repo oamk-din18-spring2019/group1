@@ -10,18 +10,15 @@ Hello  -->
                         <div class="col-9">
                             <img class="img-fluid text-right rounded z-depth-0 mt-5 mb-5" style="" src="<?php if (isset($_SESSION['image']) && ($_SESSION['image'] != '')) {
                                                                                                             echo base_url("./images/" . $_SESSION['image']);
-                                                                                                        } else {
-                                                                                                            echo base_url("./images/empty-avatar.jpg");
-                                                                       } ?>" alt="avatar"></div>
+                                                                                                            } else {
+                                                                                                            echo base_url("./images/empty-avatar.jpg");} ?>" alt="avatar">
+                        </div>
                     </div>
-                    <!-- <div class="col-1"></div> -->
                 </div>
             </div>
         </div>
-        <!-- <div class="col-md-1"></div> -->
         <div class="col-md-6 text-left mt-4">
             <h1><strong><?php echo $_SESSION["username"] ?></strong></h1>
-
             <h3>
                 <?php
                 if ($this->User_model->getRating($_SESSION['username']) >= 0 and $this->User_model->getRating($_SESSION['username']) < 4) {
@@ -138,7 +135,7 @@ Hello  -->
                             <b><?php echo ($statistics['following']); ?>&nbsp;people</b>
                         </div>
                         <div class="col-7 my-auto ">
-                            Are stalked by this person
+                            Are followed by this person
                         </div>
                     </div>
 

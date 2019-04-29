@@ -76,34 +76,12 @@
                 <!-- Sign up button -->
                 <button id="signUp" class="btn btn-success btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" disabled>Sign up</button>
             </form>
-            <!-- Social register -->
-            <!--
-            <p>or sign up with:</p>
-
-            <a type="button" class="btn-floating btn-fb btn-sm">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a type="button" class="btn-floating btn-tw btn-sm">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a type="button" class="btn-floating btn-li btn-sm">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a type="button" class="btn-floating btn-git btn-sm">
-                <i class="fab fa-github"></i>
-            </a>
-            -->
-
             <hr>
 
             <!-- Terms of service -->
             <p>By clicking
                 <em>Sign up</em> you agree to our
                 <a href="" target="_blank" style="color:#2d72e2;"><strong>terms of service</strong></a>
-
-
-                <!-- Form -->
-
         </div>
 
     </div>
@@ -133,7 +111,6 @@
                 document.getElementById("materialRegisterFormPasswordHelpBlock").className = "col-md-4 text-center text-white bg-danger";
                 document.getElementById("materialRegisterFormPasswordHelpBlock").innerHTML = "                        The password has to be at least 8 characters long with at least 1 digit";
             }
-        }
-        
+        }        
     </script>
     </div>
