@@ -174,9 +174,6 @@
                     This person got
                 </div>
             </div>
-
-
-
     </div>
 </div>
 <hr>
