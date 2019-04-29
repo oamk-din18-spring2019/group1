@@ -16,8 +16,6 @@
   <link href="<?php echo base_url('bst/css/style.css')?>" rel="stylesheet">
 </head>
 <body>
-
-  <!-- Start your project here-->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
       <a href="#" class="navbar-brand text-weight-bolder">Project D</a>

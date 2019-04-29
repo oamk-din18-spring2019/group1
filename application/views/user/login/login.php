@@ -55,10 +55,10 @@
         <label  class="custom-control-label" for="customCheck1">Remember me</label> 
       </div>
       <?php 
-                if(isset($message)){
-                   echo $message;
-                };
-                ?>
+        if(isset($message)){
+            echo $message;
+        };
+      ?>
       <div class="d-flex justify-content-around">
       
         <div>
@@ -77,22 +77,6 @@
       <p>Not a member?
         <a href="<?php echo site_url('LoginRegistration/register'); ?>" style="color:#2d72e2;">Sign Up</a>
       </p>
-
-      <!-- Social login
-      <p>or sign in with:</p>
-      <a type="button" class="btn-floating btn-fb btn-sm">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a type="button" class="btn-floating btn-tw btn-sm">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a type="button" class="btn-floating btn-li btn-sm">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-      <a type="button" class="btn-floating btn-git btn-sm">
-        <i class="fab fa-github"></i>
-      </a>
-      -->
     </form>
   </div>
     <!-- Form -->

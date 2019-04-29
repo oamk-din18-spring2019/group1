@@ -1,25 +1,4 @@
  <footer class=" font-small  mt-0">
-    <!-- <div class="text-black">
-      <div class="container ">
-        <div class="row py-4 d-flex align-items-center">
-          <div class="col-md-6 col-lg-5 text-center text-md-left mb-0 mb-md-0">
-            <h6 class="mb-0 white "> Get connected with us on social networks!</h6>
-          </div>
-          <div class="col-md-6 col-lg-7 text-center text-md-right">
-            <a href="" class="fb-ic ml-0">
-              <i class="fab fa-facebook-f  mr-4"></i>
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="" class=" ml-0">
-              <i class="fab fa-instagram  mr-4"></i>
-            </a>
-            <a href="" class="fb-ic ml-0">
-              <i class="fab fa-github  mr-4"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class=" pt-2 " >
     <div class="container mt-5 mb-0 text-center text-md-left ">
       <div class="row mt-3">
@@ -62,7 +41,6 @@
     </div>
     </div>
   </footer>
-  <!-- /Start your project here-->
   <!-- SCRIPTS -->
   <!-- JQuery -->
   <script type="text/javascript" src="<?php echo base_url('bst/js/jquery-3.3.1.min.js')?>"></script>

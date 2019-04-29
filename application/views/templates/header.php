@@ -17,8 +17,6 @@
 </head>
 
 <body>
-
-  <!-- Start your project here-->
   <nav class=" nav1 navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
     <div class="container">
       <a href="#" class="navbar-brand">Project D</a>

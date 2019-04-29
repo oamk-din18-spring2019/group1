@@ -31,8 +31,7 @@
 </table>
 </div>
 <div class="container">
-    <!-- <div class="row"> -->
-        <h2>Add new motion</h2> 
+    <h2>Add new motion</h2> 
     <form method="post" action="<?php echo site_url('user/addMotionProcedure')?>">
 <select id="mounth" name="category" class="">
     <option value="culture">-- Choose category --</option>
@@ -51,5 +50,4 @@
 <button type="submit" class="btn btn-success">Submit</button>
     </form>
   
-<!-- </div> -->
 </div>

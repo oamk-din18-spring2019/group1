@@ -1,6 +1,5 @@
 <hr>
     <h3>Search results</h3>
-
         <?php
         if(count($cari)>0)
         {
