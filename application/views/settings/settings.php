@@ -9,7 +9,7 @@
             Change you profile picture here :
 
             <?php echo form_open_multipart('user/do_upload');?>
-
+          
             <input id="uploadedImage" type="file" name="userfile" size="20" onchange="checkFileDetails()" /><br><br>
             <div id="warningSize"class='text-center text-white bg-danger rounded my-2' hidden>The image is too big</div>
             <div id="warningPortrait"class='text-center text-white bg-danger rounded my-2' hidden>The file should not be a portrait</div>

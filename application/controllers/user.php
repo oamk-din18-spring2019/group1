@@ -2,31 +2,31 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller
 {
-  public function __construct()
-  {
-    parent::__construct();
-    $this->load->model('User_model');
-    $this->load->model('Search_model');
-    if (empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == false){
-      header('location:access_denied');
+    public function __construct()
+    {
+      parent::__construct();
+      $this->load->model('User_model');
+      $this->load->model('Search_model');
+      if (empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == false){
+        header('location:access_denied');
+      }
     }
-  }
-
-  function access_denied(){
-    redirect("LoginRegistration/login");
-  }
-
-  public function index()
-  {
-    $data['page'] = 'user/dashboard';
-    $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
-    $data["categories"] = $this->User_model->getCategories();
-    $this->load->view('user/profile/headerProfile');
-    $this->load->view('user/categories', $data);
-    $this->load->view('user/dashboard', $data);
-    $this->load->view('user/profile/footerProfile');
-  }
-
+    function access_denied(){
+      redirect("LoginRegistration/login");
+    }
+    public function index()
+    {
+      //$data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
+      $data['page'] = 'user/dashboard';
+      $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+      $data["categories"] = $this->User_model->getCategories();
+      $data["allNews"] = $this->User_model->showNews();
+      
+      $this->load->view('user/profile/headerProfile');
+      $this->load->view('user/categories', $data);
+      $this->load->view('user/dashboard', $data);
+      $this->load->view('user/profile/footerProfile');
+    }
     # Search engine
   public function search()
   {
@@ -146,16 +146,25 @@ class User extends CI_Controller
     }
   }
 
-  public function admin() {
-    if ($_SESSION['admin']==true) {
-      $this -> load -> view ('user/admin/adminHeader');
-      $this -> load -> view('user/admin/admin');
-      $this -> load -> view ('user/admin/adminFooter');
+    public function adminDashboard()
+    {
+      $data["allNews"] = $this->User_model->showNews();
+      
+      $this->load->view('user/admin/adminHeader');
+      $this->load->view('user/admin/adminDashboard', $data);
+      $this->load->view('user/admin/adminFooter');
     }
-    else{
-      redirect(site_url('user/profile'));
-    }
-  }
+
+    public function admin() {
+      if ($_SESSION['admin']==true) {
+        $this -> load -> view ('user/admin/adminHeader');
+        $this -> load -> view('user/admin/admin');
+        $this -> load -> view ('user/admin/adminFooter');
+      }
+      else{
+        redirect(site_url('user/profile'));
+      }
+
   public function changeAddMotion(){
     if ($_SESSION['admin']==true) {
       $id=$_SESSION['idUser'];
@@ -267,8 +276,7 @@ class User extends CI_Controller
     $id=$_POST['id'];
     if ($this->User_model->checkIfFollowing($id)) {
       $this->User_model->unfollow($id);
-    }
-    else {
+    } else {
       $this->User_model->follow($id);
     }
     redirect(site_url('user/others_profile?username=').$this->User_model->getUsername($id));
@@ -322,19 +330,31 @@ class User extends CI_Controller
     $data['rated'] = $this->User_model->checkRating($username, $_SESSION['username']);
     redirect(site_url('user/others_profile?username=').$username);
   }
-  
-  public function addNews($news)
-  {
-
-  }
-  public function showNews()
-  {
-
-  }
-
+      
   public function changeMotto() {
     $motto=$_POST['motto'];
     $this->User_model->changeMotto($motto);
     redirect('user/profile');
   }
+  public function addNews()
+  {
+      $config['upload_path']          = './images/news';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 5000;
+      $config['max_width']            = 2048;
+      $config['max_height']           = 2048;
+
+      $this->load->library('upload', $config);
+      echo($this->upload->data('file_name'));
+      
+      // if ( $this->upload->do_upload('picture') )
+      // {
+        $news['title'] = $this->input->post('title');
+        $news['content'] = $this->input->post('content');
+        // $news['picture'] = $this->input->post('picture');
+        $this->User_model->addNews($news);
+      // }
+      redirect('user/adminDashboard');
+   }
+
 }
