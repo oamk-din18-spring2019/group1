@@ -164,7 +164,7 @@ class User extends CI_Controller
       else{
         redirect(site_url('user/profile'));
       }
-
+    }
   public function changeAddMotion(){
     if ($_SESSION['admin']==true) {
       $id=$_SESSION['idUser'];
