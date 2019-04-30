@@ -158,16 +158,7 @@ class User extends CI_Controller
     $this->load->view('user/admin/adminDashboard', $data);
     $this->load->view('user/admin/adminFooter');
   }
-  public function admin() {
-    if ($_SESSION['admin']==true) {
-      $this -> load -> view ('user/admin/adminHeader');
-      $this -> load -> view('user/admin/admin');
-      $this -> load -> view ('user/admin/adminFooter');
-    } else {
-      redirect(site_url('user/profile'));
-    }
-  }
-
+  
     public function admin() {
       if ($_SESSION['admin']==true) {
         $this -> load -> view ('user/admin/adminHeader');
@@ -351,23 +342,23 @@ class User extends CI_Controller
   }
   public function addNews()
   {
-      $config['upload_path']          = './images/news';
-      $config['allowed_types']        = 'gif|jpg|png';
-      $config['max_size']             = 5000;
-      $config['max_width']            = 2048;
-      $config['max_height']           = 2048;
-
-      $this->load->library('upload', $config);
-      echo($this->upload->data('file_name'));
-      
-      // if ( $this->upload->do_upload('picture') )
-      // {
-        $news['title'] = $this->input->post('title');
-        $news['content'] = $this->input->post('content');
-        // $news['picture'] = $this->input->post('picture');
-        $this->User_model->addNews($news);
-      // }
-      redirect('user/adminDashboard');
-   }
+    $config['upload_path']          = './images/news';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['max_size']             = 5000;
+    $config['max_width']            = 2048;
+    $config['max_height']           = 2048;
+    $this->load->library('upload', $config);
+    echo($this->upload->data('file_name'));
+    $news['title'] = $this->input->post('title');
+    $news['content'] = $this->input->post('content');
+    $this->User_model->addNews($news);
+    redirect('user/adminDashboard');
+  }
+   
+  public function deleteNews($id)
+  {
+    $this->User_model->deleteNews($id);
+    redirect('user/adminDashboard');
+  }
 
 }

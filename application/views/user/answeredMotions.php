@@ -9,11 +9,11 @@
                 for ($i=0;$i<count($answeredMotions);$i++){
                     if ($answeredMotions[$i]['agree']==1){
                             echo '<li>';
-                                echo '<h5><a href="'.site_url('motion/changeTheOpinion/').$answeredMotions[$i]['idMotion'].'"><i class="fas fa-1x fa-check"></i></a> </input> <a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">'.$answeredMotions[$i]['content'].'</a> </h5>';
+                                echo '<h5><a href="'.site_url('motion/changeTheOpinion/').$answeredMotions[$i]['idMotion'].'"><i class="fas fa-1x fa-check"></i></a> <a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'">'.$answeredMotions[$i]['content'].'</a> </h5>';
                             echo '</li>';
                     } else {
                             echo '<li>';
-                                echo '<h5><a href="'.site_url('motion/changeTheOpinion/').$answeredMotions[$i]['idMotion'].'"> <i class="fas  fa-times"></i></a> </input> <a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'"> '.$answeredMotions[$i]['content'].'</a></h5>';
+                                echo '<h5><a href="'.site_url('motion/changeTheOpinion/').$answeredMotions[$i]['idMotion'].'"> <i class="fas fa-times"></i></a> </input> <a href="'.site_url('motion/listOfOpponents/').$answeredMotions[$i]['idMotion'].'"> '.$answeredMotions[$i]['content'].'</a></h5>';
                             echo '</li>';
                     }
                 };

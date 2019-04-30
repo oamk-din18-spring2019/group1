@@ -4,7 +4,7 @@
             <div class="sticky-top py-2 ">
                 <ul class="border-right border-dark list-unstyled">
                     <ul class="mb-2 list-unstyled">
-                        <li> <h5 class="mb-2"> <strong>Categories</strong> </h5> </li>
+                        <li> <h5 class="mb-2"> <strong>Unanswered</strong> </h5> </li>
                         <ul class="list-unstyled">
                             <?php
                                 for ($i=0;$i<count($unansweredCategories);$i++)
