@@ -40,10 +40,10 @@
         <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('user/search'); ?>">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/following'); ?>">Connections</a>
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/following'); ?>">Follow</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/social'); ?>">Social</a>
+        <a class="nav-link waves-effect wawes-light" href="<?php echo site_url('/user/social'); ?>">Chat</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">

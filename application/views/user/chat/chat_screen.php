@@ -33,23 +33,30 @@
       </div>
 
       <div class="text-center flex-grow-1 border border-dark rounded-bottom text-white black">
-        <div class="row justify-content-center h-100">
-          <div id="avatar_col" class="col-1 my-auto">
-            <?php
-            $userPicture=$this->User_model->getPictureName($username);
-            echo '<img id="avatar" src="';
-            if(!is_null($userPicture)&&$userPicture!=''){
-              echo base_url("./images/").$this->User_model->getPictureName($username);
-            }
-            else {
-              echo base_url("./images/empty-avatar.jpg");
-            }
-            echo '" class="mr-3 z-depth-0 rounded-circle" alt="avatar image" style="width:9vh; height:9vh;">';
-            ?>
+        <div class="row h-100">
+          <div class="col-11 my-auto">
+              <div class="row justify-content-center h-100">
+                  <div id="avatar_col" class="col-1 my-auto">
+                    <?php
+                    $userPicture=$this->User_model->getPictureName($username);
+                    echo '<img id="avatar" src="';
+                    if(!is_null($userPicture)&&$userPicture!=''){
+                      echo base_url("./images/").$this->User_model->getPictureName($username);
+                    }
+                    else {
+                      echo base_url("./images/empty-avatar.jpg");
+                    }
+                    echo '" class="mr-3 z-depth-0 rounded-circle" alt="avatar image" style="width:9vh; height:9vh;">';
+                    ?>
+                  </div>
+                  <div class="col-auto my-auto">
+                    <div class="row">Debating with&nbsp; <strong><?php echo $username?></strong></div>
+                    <div class="row">ID conversation:&nbsp;<?php echo $idChat ?></div>
+                  </div>
+              </div>
           </div>
-          <div class="col-auto my-auto">
-            <div class="row">Debating with&nbsp; <strong><?php echo $username?></strong></div>
-            <div class="row">ID conversation:&nbsp;<?php echo $idChat ?></div>
+          <div class="col-1 m-auto">
+            <a id="deletelink" class="black text-white" href="" title="Delete this conversation" onclick="deleteConfirm()"><i class="far fa-2x fa-times-circle"></i></a>
           </div>
         </div>
       </div>
@@ -59,6 +66,20 @@
       if (screen_width<991) {
         document.getElementById("avatar_col").classList.remove('col-1');
         document.getElementById("avatar_col").classList.add('col-auto');
+      }
+      function deleteConfirm() {
+        var r1=confirm("Are you sure to delete the conversation with <?php echo $username; ?>?");
+        if (r1==true) {
+          var r2=confirm("Are you really sure to delete the conversation with <?php echo $username; ?>?\nThe action cannot be undone.");
+        }
+        if (r2==true) {
+          document.getElementById('deletelink').href="<?php echo site_url('user/deleteConversation?idChat=').$idChat; ?>";
+          window.parent.location.reload(true);
+      }
+      }
+      var screen_width = screen.width;
+      if (screen_width<991) {
+        document.getElementById("submitBtn").hidden = "true";
       }
       </script>
     </div>
