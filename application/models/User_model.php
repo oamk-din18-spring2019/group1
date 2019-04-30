@@ -294,11 +294,16 @@ class User_model extends CI_Model{
         where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
     }
 
-
     public function addNews($news)
     {
-        $this->db->insert('news', $news);
-        
+        // $this->db->insert('news', $news);
+        // $this->db->query("INSERT news INTO title = '$news', content = '$news' , picture = '$image' ");
+        $this->db->insert("news", $news);
+    }
+
+    public function showNews()
+    {
+        return $this->db->query('SELECT * FROM news')->result_array();
     }
 
     //function for rating users
@@ -332,7 +337,6 @@ class User_model extends CI_Model{
         $statistics['numberOfAnsweredOpinions']= $this->db->query("SELECT count(motions.idMotion) as mot from motions  
         left join  opinions on opinions.idMotion=motions.idMotion where opinions.idUser=$idUser and agree is not null;")->row('mot');
         return $statistics;
-
      }
 
 

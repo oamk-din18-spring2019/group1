@@ -20,10 +20,17 @@ class User extends CI_Controller
       $data['page'] = 'user/dashboard';
       $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
       $data["categories"] = $this->User_model->getCategories();
+      $data["allNews"] = $this->User_model->showNews();
+      
       $this->load->view('user/profile/headerProfile');
       $this->load->view('user/categories', $data);
       $this->load->view('user/dashboard', $data);
       $this->load->view('user/profile/footerProfile');
+      
+      // $this->load->view('user/profile/headerProfile');
+      // $this->load->view('user/categories', $data);
+      // $this->load->view('user/dashboard', $data);
+      // $this->load->view('user/profile/footerProfile');
     }
 
      # Search engine
@@ -147,6 +154,15 @@ class User extends CI_Controller
       }
     }
 
+    public function adminDashboard()
+    {
+      $data["allNews"] = $this->User_model->showNews();
+      
+      $this->load->view('user/admin/adminHeader');
+      $this->load->view('user/admin/adminDashboard', $data);
+      $this->load->view('user/admin/adminFooter');
+    }
+
     public function admin() {
       if ($_SESSION['admin']==true) {
         $this -> load -> view ('user/admin/adminHeader');
@@ -246,12 +262,25 @@ class User extends CI_Controller
       $data['rated'] = $this->User_model->checkRating($username, $_SESSION['username']);
       redirect(site_url('user/others_profile?username=').$username);
     }
-    public function addNews($news)
+    public function addNews()
     {
+      $config['upload_path']          = './images/news';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $config['max_size']             = 5000;
+      $config['max_width']            = 2048;
+      $config['max_height']           = 2048;
+
+      $this->load->library('upload', $config);
+      echo($this->upload->data('file_name'));
       
+      // if ( $this->upload->do_upload('picture') )
+      // {
+        $news['title'] = $this->input->post('title');
+        $news['content'] = $this->input->post('content');
+        // $news['picture'] = $this->input->post('picture');
+        $this->User_model->addNews($news);
+      // }
+      redirect('user/adminDashboard');
     }
-    public function showNews()
-    {
-      
-    }
+  
 }

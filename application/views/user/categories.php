@@ -20,7 +20,7 @@
                                 }
                                 foreach ($chosenCategories as $value) 
                                 {
-                                        echo ' <h6 class=""> <li> <a class="text-capitalize" href="' . site_url('Motion/answerTheQuestion/') . $value . '">' . $value . '</a> </h6> </li>';
+                                    echo ' <h6 class=""> <li> <a class="text-capitalize" href="' . site_url('Motion/answerTheQuestion/') . $value . '">' . $value . '</a> </h6> </li>';
                                 }
                             ?>
                         </ul>
