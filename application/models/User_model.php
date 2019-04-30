@@ -140,6 +140,18 @@ class User_model extends CI_Model
         $this->db->query("DELETE FROM categories WHERE categories.idUser=$idUser");
         $this->db->query("DELETE FROM opinions WHERE opinions.idUser=$idUser");
         $this->db->query("DELETE FROM users WHERE users.idUser=$idUser");
+         $username=$this->db->query("select username from users where idUser=$idUser")->row('username');
+          $idChats=$this->db->query("select idChat FROM conversations WHERE username1='$username' or username2='$username'")->result_array();
+        for ($i=0;$i<count($idChats);$i++){
+
+                $this->db->query("DELETE from conversations where idChat=".$idChats[$i]['idChat']." ");
+                $this->db->query("Drop table c".$idChats[$i]['idChat']."");
+            
+        }
+    
+
+        
+
     }
 
     function addConversation($idChat)
