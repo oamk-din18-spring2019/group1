@@ -69,7 +69,8 @@ class LoginRegistration extends CI_Controller
                 $insert_data = array(
                     "username" => $this->input->post('un'),
                     "email" => $this->input->post('em'),
-                    "passwd" => $hashedPassword
+                    "passwd" => $hashedPassword,
+                    "DoR" => date("Y-m-d")
                 );
                 $result = $this->User_model->add_user($insert_data);
                 if ($result == 1)
@@ -142,12 +143,12 @@ class LoginRegistration extends CI_Controller
         redirect(site_url("LoginRegistration/index"));
     }
 
-    public function generateKey(){
+    public function generateKey($length = 10){
         //this will be a 10-character long string for cookie verification
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $key = '';
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < $length; $i++) {
             $key .= $characters[rand(0, $charactersLength - 1)];
         }
         return $key;

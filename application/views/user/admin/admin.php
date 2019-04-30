@@ -20,7 +20,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          Ban Users
+          Ban/Delete Users
         </div>
         <!--Title
         <h4 class="card-title">Card title</h4>
@@ -43,10 +43,10 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          Add questionaire or sth
+          Change/add motions
         </div>
         <div class="col">
-          <a href="#" class="btn btn-primary" style="">Button</a>
+          <a href="<?php echo site_url('user/changeAddMotion')?>" class='btn btn-primary' >Button</a>
         </div>
       </div>
     </div>

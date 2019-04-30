@@ -42,40 +42,38 @@
   </style>
 
   <script>
-  //console.log('<?php //echo $_GET['idChat'] ?>')
   $(document).ready(function(e){
-      function displayChat(){
-          $.ajax({
-              url:'displayChat.php?idChat=<?php echo $_GET['idChat'] ?>&username=<?php echo $_GET['username'] ?>',
-              type: 'GET',
-              success: function(data){
-                  $("#chatDisplay").html(data);
-              }
-          });
-      }
-      displayChat();
-      setInterval(function(){displayChat();},1000);
-
-      $('#sendMessageBtn').click(function(e){
-          var message = $("#message").val();
-          var username = '<?php echo $_GET['username'] ?>';
-          var idChat = '<?php echo $_GET['idChat'] ?>'
-          $("#myChatForm")[0].reset();
-          $.ajax({
-              url:'sendChat.php',
-              type:'GET',
-              data:{
-                  umessage:message,
-                  username:username,
-                  idChat: idChat,
-              }
-          });
-          // Auto scroll down when enter a new maessage
-          setTimeout(function(){
-            var scrollbar = document.getElementById('chatDisplay');
-            scrollbar.scrollTop = scrollbar.scrollHeight; }, 2000
-          );
+    function displayChat(){
+      $.ajax({
+          url:'displayChat.php?idChat=<?php echo $_GET['idChat'] ?>&username=<?php echo $_GET['username'] ?>',
+          type: 'GET',
+          success: function(data){
+            $("#chatDisplay").html(data == '' ? "You haven't had any messages with this person yet. Start by saying Hi!" : data );
+          }
       });
+    }
+    setInterval(function(){displayChat();},500);
+
+    $('#sendMessageBtn').click(function(e){
+      var message = $("#message").val();
+      var username = '<?php echo $_GET['username'] ?>';
+      var idChat = '<?php echo $_GET['idChat'] ?>'
+      $("#myChatForm")[0].reset();
+      $.ajax({
+          url:'sendChat.php',
+          type:'GET',
+          data:{
+              umessage:message,
+              username:username,
+              idChat: idChat,
+          }
+      });
+      // Auto scroll down when enter a new maessage
+      setTimeout(function(){
+        var scrollbar = document.getElementById('chatDisplay');
+        scrollbar.scrollTop = scrollbar.scrollHeight; }, 2000
+      );
+    });
   });
   </script>
 </head>
@@ -87,7 +85,7 @@
     <div class="text-center flex-grow-1">
         <form class="h-100" id="myChatForm" action="" method="get">
           <div class="d-flex flex-row h-100">
-            <textarea class="w-85 my-auto" name="message" id="message" cols="30" rows="2" id="message" placeholder="Enter your message"></textarea>
+            <textarea class="w-85 my-auto" name="message" id="message" cols="30" rows="2" id="message" placeholder="Enter your message" style="resize: none"></textarea>
             <script>
                 addEventListener('keypress', e => {
                     if(e.keyCode === 13 && !e.shiftKey) $('#sendMessageBtn').click();
@@ -110,7 +108,7 @@
     </div>
 
     <div class="" id="chatBox" style="height:89%">
-      <div class="my-auto" id="chatDisplay" style="width: 100%; height: 100%; overflow-y: scroll; background-color:white;"></div>
+      <div class="my-auto" id="chatDisplay" style="width: 100%; height: 100%; overflow-y: scroll; background-color:white;">Your messages are being loaded...</div>
     </div>
 
 </body>

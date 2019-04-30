@@ -7,6 +7,9 @@
       <div class="col-1" style="background-color:black; color:white;">
         <b>Status</b>
       </div>
+      <div class="col-1" style="background-color:black; color:white;">
+        <b>Delete</b>
+      </div>
     </div>
     <?php
       $data= $this->User_model->getUsersTable();
@@ -27,6 +30,9 @@
               echo 'Banned';
             echo '</a></div>';
           }
+          echo '<div class="col-1" style="background-color:'.$background_color.';"><a href="'.site_url('user/deleteUser')."/".$key['idUser'].'" style="color: red;">';
+          echo 'Delete';
+        echo '</a></div>';
         echo '</div>';
       }
     ?>
