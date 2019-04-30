@@ -234,6 +234,15 @@ class User_model extends CI_Model
         return $this->db->query("select * from categories where idUser=$id")->result_array();
     }
 
+    public function answeredCategories($idUser)
+    {
+        return $this->db->query("SELECT DISTINCT motions.category from opinions right JOIN motions ON opinions.idMotion = motions.idMotion WHERE opinions.idUser=$idUser AND opinions.Agree is not null;")->result_array();
+    }
+
+    public function unansweredCategories($idUser)
+    {
+        return $this->db->query("SELECT DISTINCT motions.category from opinions right JOIN motions ON opinions.idMotion = motions.idMotion WHERE opinions.idUser=$idUser AND opinions.Agree is null;")->result_array();
+    }
 
     public function findCategoryQuestion($category,$idUser){
         // This system returns random question from motions

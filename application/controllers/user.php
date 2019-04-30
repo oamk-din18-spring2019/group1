@@ -2,32 +2,34 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller
 {
-    public function __construct()
-    {
-      parent::__construct();
-      $this->load->model('User_model');
-      $this->load->model('Search_model');
-      if (empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == false){
-        header('location:access_denied');
-      }
+  public function __construct()
+  {
+    parent::__construct();
+    $this->load->model('User_model');
+    $this->load->model('Search_model');
+    if (empty($_SESSION['logged_in']) && $_SESSION['logged_in'] == false){
+      header('location:access_denied');
     }
-    function access_denied(){
-      redirect("LoginRegistration/login");
-    }
-    public function index()
-    {
-      //$data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
-      $data['page'] = 'user/dashboard';
-      $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
-      $data["categories"] = $this->User_model->getCategories();
-      $data["allNews"] = $this->User_model->showNews();
-      
-      $this->load->view('user/profile/headerProfile');
-      $this->load->view('user/categories', $data);
-      $this->load->view('user/dashboard', $data);
-      $this->load->view('user/profile/footerProfile');
-    }
-    # Search engine
+  }
+  function access_denied(){
+    redirect("LoginRegistration/login");
+  }
+  public function index()
+  {
+    //$data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
+    $data['page'] = 'user/dashboard';
+    $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+    $data["categories"] = $this->User_model->getCategories();
+    $data["allNews"] = $this->User_model->showNews();
+    $data["answeredCategories"] = $this->User_model->answeredCategories($_SESSION['idUser']);
+    $data["unansweredCategories"] = $this->User_model->unansweredCategories($_SESSION['idUser']);
+    $this->load->view('user/profile/headerProfile');
+    $this->load->view('user/categories', $data);
+    $this->load->view('user/dashboard', $data); 
+    $this->load->view('user/profile/footerProfile');
+  }
+
+  # Search engine
   public function search()
   {
     $this->load->view('user/profile/headerProfile');
@@ -109,12 +111,14 @@ class User extends CI_Controller
     $this->User_model->addPreferredCategories($insert_data);
     redirect('User/index');
   }
-  public function showPreferredCategories()
-  {
-    $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
-    $data["categories"] = $this->User_model->getCategories();
-    $this->load->view('User/index', $data);
-  }
+  // public function showPreferredCategories()
+  // {
+  //   $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
+  //   $data["categories"] = $this->User_model->getCategories();
+  //   $data["answeredCategories"] = $this->User_model->answeredCategories($_SESSION['idUser']);
+  //   $data["unansweredCategories"] = $this->User_model->unansweredCategories($_SESSION['idUser']);
+  //   $this->load->view('User/categories', $data);
+  // }
   public function do_upload()
   {
     $config['upload_path']          = './images/';
@@ -146,25 +150,23 @@ class User extends CI_Controller
     }
   }
 
-    public function adminDashboard()
-    {
-      $data["allNews"] = $this->User_model->showNews();
-      
-      $this->load->view('user/admin/adminHeader');
-      $this->load->view('user/admin/adminDashboard', $data);
-      $this->load->view('user/admin/adminFooter');
+  public function adminDashboard()
+  {
+    $data["allNews"] = $this->User_model->showNews();
+    
+    $this->load->view('user/admin/adminHeader');
+    $this->load->view('user/admin/adminDashboard', $data);
+    $this->load->view('user/admin/adminFooter');
+  }
+  public function admin() {
+    if ($_SESSION['admin']==true) {
+      $this -> load -> view ('user/admin/adminHeader');
+      $this -> load -> view('user/admin/admin');
+      $this -> load -> view ('user/admin/adminFooter');
+    } else {
+      redirect(site_url('user/profile'));
     }
-
-    public function admin() {
-      if ($_SESSION['admin']==true) {
-        $this -> load -> view ('user/admin/adminHeader');
-        $this -> load -> view('user/admin/admin');
-        $this -> load -> view ('user/admin/adminFooter');
-      }
-      else{
-        redirect(site_url('user/profile'));
-      }
-
+  }
   public function changeAddMotion(){
     if ($_SESSION['admin']==true) {
       $id=$_SESSION['idUser'];

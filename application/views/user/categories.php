@@ -7,20 +7,9 @@
                         <li> <h5 class="mb-2"> <strong>Categories</strong> </h5> </li>
                         <ul class="list-unstyled">
                             <?php
-                                $chosenCategories = array();
-                                for ($i = 1; $i < count($categories); $i++) 
+                                for ($i=0;$i<count($unansweredCategories);$i++)
                                 {
-                                    for ($k = 0; $k < count($preferredCategories); $k++) 
-                                    {
-                                        if ($preferredCategories[0][$categories[$i]] == 1) 
-                                        {
-                                            array_push($chosenCategories, $categories[$i]);
-                                        }
-                                    }
-                                }
-                                foreach ($chosenCategories as $value) 
-                                {
-                                    echo ' <h6 class=""> <li> <a class="text-capitalize" href="' . site_url('Motion/answerTheQuestion/') . $value . '">' . $value . '</a> </h6> </li>';
+                                    echo ' <h6 class=""> <li> <a class="text-capitalize" href="' . site_url('Motion/answerTheQuestion/') . $unansweredCategories[$i]['category'] . '">'.$unansweredCategories[$i]['category'].'</a> </h6> </li>';
                                 }
                             ?>
                         </ul>
@@ -29,20 +18,9 @@
                         <li> <h5 class="mb-2"> <strong>Answered</strong> </h5> </li>
                         <ul class="list-unstyled">
                             <?php
-                                $chosenCategories = array();
-                                for ($i = 1; $i < count($categories); $i++) 
+                                for ($i=0;$i<count($answeredCategories);$i++)
                                 {
-                                    for ($k = 0; $k < count($preferredCategories); $k++) 
-                                    {
-                                        if ($preferredCategories[0][$categories[$i]] == 1) 
-                                        {
-                                            array_push($chosenCategories, $categories[$i]);
-                                        }
-                                    }
-                                }
-                                foreach ($chosenCategories as $value) 
-                                {
-                                    echo ' <h6 class=""> <li> <a class="text-capitalize" href="' . site_url('Motion/answeredMotions/') . $value . '">' . $value . '</a> </h6> </li>';
+                                    echo ' <h6 class=""> <li> <a class="text-capitalize" href="' . site_url('Motion/answeredMotions/') . $answeredCategories[$i]['category'] . '">'.$answeredCategories[$i]['category'].'</a> </h6> </li>';
                                 }
                             ?>
                         </ul>
