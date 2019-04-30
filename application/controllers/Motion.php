@@ -14,6 +14,8 @@ class Motion extends CI_Controller{
     $data['category']=$category;
     $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
     $data["categories"] = $this->User_model->getCategories();
+    $data["answeredCategories"] = $this->User_model->answeredCategories($_SESSION['idUser']);
+    $data["unansweredCategories"] = $this->User_model->unansweredCategories($_SESSION['idUser']);
     $data['question'] = $this-> User_model->findCategoryQuestion($category,$_SESSION['idUser']);
     $data['answeredMotions']=$this-> User_model->showAnsweredMotions($category,$_SESSION['idUser']);
     $this->load->view('user/profile/headerProfile');
@@ -27,6 +29,8 @@ class Motion extends CI_Controller{
     $data['answeredMotions']=$this-> User_model->showAnsweredMotions($category,$_SESSION['idUser']);
     $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
     $data["categories"] = $this->User_model->getCategories();
+    $data["answeredCategories"] = $this->User_model->answeredCategories($_SESSION['idUser']);
+    $data["unansweredCategories"] = $this->User_model->unansweredCategories($_SESSION['idUser']);
     $this->load->view('user/profile/headerProfile');
     $this->load->view('user/categories', $data);
     $this->load->view('user/answeredMotions', $data);
