@@ -148,10 +148,6 @@ class User_model extends CI_Model
                 $this->db->query("Drop table c".$idChats[$i]['idChat']."");
             
         }
-    
-
-        
-
     }
 
     function addConversation($idChat)
@@ -344,6 +340,12 @@ class User_model extends CI_Model
     public function showNews()
     {
         return $this->db->query('SELECT * FROM news')->result_array();
+    }
+
+    public function deleteNews($id)
+    {
+        $this->db->where("ID", $id);
+        $this->db->delete("news");
     }
   
     public function checkIfUsernameExists($name)

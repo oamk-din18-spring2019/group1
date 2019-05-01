@@ -154,15 +154,16 @@ class User extends CI_Controller
   {
     $data["allNews"] = $this->User_model->showNews();
     
-    $this->load->view('user/admin/adminHeader');
-    $this->load->view('user/admin/adminDashboard', $data);
-    $this->load->view('user/admin/adminFooter');
+    $this -> load -> view ('user/admin/adminHeader');
+    $this -> load -> view ('user/admin/adminDashboard', $data);
+    $this -> load -> view ('user/profile/footerProfile');
   }
+
   public function admin() {
     if ($_SESSION['admin']==true) {
       $this -> load -> view ('user/admin/adminHeader');
-      $this -> load -> view('user/admin/admin');
-      $this -> load -> view ('user/admin/adminFooter');
+      $this -> load -> view ('user/admin/admin');
+      $this -> load -> view ('user/profile/footerProfile');
     } else {
       redirect(site_url('user/profile'));
     }
@@ -175,8 +176,8 @@ class User extends CI_Controller
       $data['motions']=$this->User_model->showAllMotions();
 
       $this -> load -> view ('user/admin/adminHeader');
-      $this -> load -> view('user/admin/changeAddMotion',$data);
-      $this -> load -> view ('user/admin/adminFooter');
+      $this -> load -> view ('user/admin/changeAddMotion',$data);
+      $this -> load -> view ('user/profile/footerProfile');
     }
     else{
       redirect(site_url('user/profile'));
@@ -193,9 +194,9 @@ class User extends CI_Controller
     $data['categories']=$this->User_model->getPreferredCategories($_SESSION['idUser']);
     $data['motion']=$this->User_model->getMotion($idMotion);
     $this -> load -> view ('user/admin/adminHeader');
-    $this -> load -> view('user/admin/updateMotion',$data);
-    $this -> load -> view ('user/admin/adminFooter');
-    } else {
+    $this -> load -> view ('user/admin/updateMotion',$data);
+    $this -> load -> view ('user/profile/footerProfile');
+  } else {
       redirect(site_url('user/profile'));
     }
   }
@@ -225,7 +226,7 @@ class User extends CI_Controller
     if ($_SESSION['admin']==true) {
       $this -> load -> view ('user/admin/adminHeader');
       $this -> load -> view('user/admin/ban');
-      $this -> load -> view ('user/admin/adminFooter');
+      $this -> load -> view ('user/profile/footerProfile');
     }
     else{
       redirect(site_url('user/profile'));
@@ -341,26 +342,27 @@ class User extends CI_Controller
   }
   public function addNews()
   {
-      $config['upload_path']          = './images/news';
-      $config['allowed_types']        = 'gif|jpg|png';
-      $config['max_size']             = 5000;
-      $config['max_width']            = 2048;
-      $config['max_height']           = 2048;
-
-      $this->load->library('upload', $config);
-      echo($this->upload->data('file_name'));
-      
-      // if ( $this->upload->do_upload('picture') )
-      // {
-        $news['title'] = $this->input->post('title');
-        $news['content'] = $this->input->post('content');
-        // $news['picture'] = $this->input->post('picture');
-        $this->User_model->addNews($news);
-      // }
-      redirect('user/adminDashboard');
-   }
-   public function deleteConversation(){
+    $config['upload_path']          = './images/news';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['max_size']             = 5000;
+    $config['max_width']            = 2048;
+    $config['max_height']           = 2048;
+    $this->load->library('upload', $config);
+    echo($this->upload->data('file_name'));
+    $news['title'] = $this->input->post('title');
+    $news['content'] = $this->input->post('content');
+    $this->User_model->addNews($news);
+    redirect('user/adminDashboard');
+  }
+   
+  public function deleteNews($id)
+  {
+    $this->User_model->deleteNews($id);
+    redirect('user/adminDashboard');
+  }
+  
+  public function deleteConversation(){
      $idChat=substr($_GET['idChat'],1);
      $this->User_model->deleteConversation($idChat);
-   }
+  }
 }
