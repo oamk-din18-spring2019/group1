@@ -158,17 +158,17 @@ class User extends CI_Controller
     $this->load->view('user/admin/adminDashboard', $data);
     $this->load->view('user/admin/adminFooter');
   }
-  
-    public function admin() {
-      if ($_SESSION['admin']==true) {
-        $this -> load -> view ('user/admin/adminHeader');
-        $this -> load -> view('user/admin/admin');
-        $this -> load -> view ('user/admin/adminFooter');
-      }
-      else{
-        redirect(site_url('user/profile'));
-      }
+
+  public function admin() {
+    if ($_SESSION['admin']==true) {
+      $this -> load -> view ('user/admin/adminHeader');
+      $this -> load -> view('user/admin/admin');
+      $this -> load -> view ('user/admin/adminFooter');
+    } else {
+      redirect(site_url('user/profile'));
     }
+  }
+
   public function changeAddMotion(){
     if ($_SESSION['admin']==true) {
       $id=$_SESSION['idUser'];
@@ -360,5 +360,9 @@ class User extends CI_Controller
     $this->User_model->deleteNews($id);
     redirect('user/adminDashboard');
   }
-
+  
+  public function deleteConversation(){
+     $idChat=substr($_GET['idChat'],1);
+     $this->User_model->deleteConversation($idChat);
+  }
 }

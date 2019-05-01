@@ -174,6 +174,10 @@ class User_model extends CI_Model
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table($idChat, true);
     }
+    public function deleteConversation($idChat) {
+      $this->db->query("DROP TABLE c$idChat;");
+      $this->db->query("DELETE FROM conversations where idChat='$idChat';");
+    }
     public function showConversations($currentUser)
     {
         //show list of ongoing conversations
