@@ -154,16 +154,16 @@ class User extends CI_Controller
   {
     $data["allNews"] = $this->User_model->showNews();
     
-    $this->load->view('user/admin/adminHeader');
-    $this->load->view('user/admin/adminDashboard', $data);
-    $this->load->view('user/admin/adminFooter');
+    $this -> load -> view ('user/admin/adminHeader');
+    $this -> load -> view ('user/admin/adminDashboard', $data);
+    $this -> load -> view ('user/profile/footerProfile');
   }
 
   public function admin() {
     if ($_SESSION['admin']==true) {
       $this -> load -> view ('user/admin/adminHeader');
-      $this -> load -> view('user/admin/admin');
-      $this -> load -> view ('user/admin/adminFooter');
+      $this -> load -> view ('user/admin/admin');
+      $this -> load -> view ('user/profile/footerProfile');
     } else {
       redirect(site_url('user/profile'));
     }
@@ -176,8 +176,8 @@ class User extends CI_Controller
       $data['motions']=$this->User_model->showAllMotions();
 
       $this -> load -> view ('user/admin/adminHeader');
-      $this -> load -> view('user/admin/changeAddMotion',$data);
-      $this -> load -> view ('user/admin/adminFooter');
+      $this -> load -> view ('user/admin/changeAddMotion',$data);
+      $this -> load -> view ('user/profile/footerProfile');
     }
     else{
       redirect(site_url('user/profile'));
@@ -194,9 +194,9 @@ class User extends CI_Controller
     $data['categories']=$this->User_model->getPreferredCategories($_SESSION['idUser']);
     $data['motion']=$this->User_model->getMotion($idMotion);
     $this -> load -> view ('user/admin/adminHeader');
-    $this -> load -> view('user/admin/updateMotion',$data);
-    $this -> load -> view ('user/admin/adminFooter');
-    } else {
+    $this -> load -> view ('user/admin/updateMotion',$data);
+    $this -> load -> view ('user/profile/footerProfile');
+  } else {
       redirect(site_url('user/profile'));
     }
   }
@@ -226,7 +226,7 @@ class User extends CI_Controller
     if ($_SESSION['admin']==true) {
       $this -> load -> view ('user/admin/adminHeader');
       $this -> load -> view('user/admin/ban');
-      $this -> load -> view ('user/admin/adminFooter');
+      $this -> load -> view ('user/profile/footerProfile');
     }
     else{
       redirect(site_url('user/profile'));
