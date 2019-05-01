@@ -28,7 +28,7 @@
                         echo '<div class="card mt-2 rounded-0">';
                             echo '<div class="card-header ">';
                                 echo '<h5 class="card-title mb-0 float-left">'.$allNews[$i]['title'].'</h5>';
-                                echo '<a class="float-right" href="'.site_url("user/deleteNews").$allNews[$i]['ID']'"> <i class="fas fa-times"></i></a>';
+                                echo '<a class="float-right" href="'.site_url("user/deleteNews/").$allNews[$i]['id'].'"> <i class="fas fa-times"></i></a>';
                             echo '</div>';
                             echo '<div class="card-body px-3 py-2">';
                                 echo '<div class="card-text" id="'.$i.'" style="overflow:hidden; max-height: 40px;">';
