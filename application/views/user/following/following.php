@@ -1,4 +1,3 @@
-<?php print_r($following); ?>
 <div class="container mt-4">
   <?php
   if ($following!=NULL && isset($following[1])) {
