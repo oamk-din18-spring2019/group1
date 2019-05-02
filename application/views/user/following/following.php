@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <?php
-  if ($following!=NULL && isset($following[1])) {
+  if ($following!=NULL && isset($following[0])) {
     foreach ($following as $value) {
       if ($value=="") {} else {
       echo '<div class="container">';
