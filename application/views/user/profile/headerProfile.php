@@ -18,10 +18,10 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse shadow-none">
 <div class="container mt-0">
 <!--Navbar -->
-<nav class="w-100 mb-1 navbar navbar-expand-lg navbar-dark black lighten-1">
+<nav class="w-100 mb-1 navbar navbar-expand-lg navbar-dark black lighten-1 ">
   <a href="<?php echo site_url('user/index'); ?>">
     <h4><strong class="text-white mr-3">ProjectD</strong></h4>
   </a>
@@ -64,4 +64,4 @@
 </nav>
 </nav>
 <!--/.Navbar -->
-</div>
+<!-- </div> -->
