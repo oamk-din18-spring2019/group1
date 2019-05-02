@@ -9,10 +9,10 @@
             Change you profile picture here :
 
             <?php echo form_open_multipart('user/do_upload');?>
-          
+
             <input id="uploadedImage" type="file" name="userfile" size="20" onchange="checkFileDetails()" /><br><br>
             <div id="warningSize"class='text-center text-white bg-danger rounded my-2' hidden>The image is too big</div>
-            <div id="warningPortrait"class='text-center text-white bg-danger rounded my-2' hidden>The file should not be a portrait</div>
+            <div id="warningPortrait"class='text-center text-white bg-danger rounded my-2' hidden>The file should not be too portrait</div>
             <input id="imgSubmitBtn" type="submit" value="Upload" disabled />
             <?php if(isset($messageSettings)){ echo" <div class='text-center text-white bg-danger rounded my-2'>".$messageSettings." </div>";}?>
           </form>
@@ -112,19 +112,19 @@ function checkFileDetails() {
                               'Height: <b>' + h + '</b> <br />' +
                               'Type: <b>' + file.type + '</b> <br />' +
                               'Last Modified: <b>' + file.lastModifiedDate + '</b> <br />';*/
-                      if (h>w) {
-                        document.getElementById('warningPortrait').hidden=false;
-                        document.getElementById('imgSubmitBtn').disabled=true;
-                      } else {
-                        document.getElementById('warningPortrait').hidden=true;
-                        document.getElementById('imgSubmitBtn').disabled=false;
-                      }
+
                       if (h>1500 || w>1500) {
                         document.getElementById('warningSize').hidden=false;
                         document.getElementById('imgSubmitBtn').disabled=true;
                       } else {
                         document.getElementById('warningSize').hidden=true;
-                        document.getElementById('imgSubmitBtn').disabled=false;
+                        if (h>1.5*w) {
+                          document.getElementById('warningPortrait').hidden=false;
+                          document.getElementById('imgSubmitBtn').disabled=true;
+                        } else {
+                          document.getElementById('warningPortrait').hidden=true;
+                          document.getElementById('imgSubmitBtn').disabled=false;
+                        }
                       }
                   }
               };
