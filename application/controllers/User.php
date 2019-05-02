@@ -24,7 +24,7 @@ class User extends CI_Controller
     $data["unansweredCategories"] = $this->User_model->unansweredCategories($_SESSION['idUser']);
     $this->load->view('user/profile/headerProfile');
     $this->load->view('user/categories', $data);
-    $this->load->view('user/dashboard', $data); 
+    $this->load->view('user/dashboard', $data);
     $this->load->view('user/profile/footerProfile');
   }
 
@@ -142,7 +142,7 @@ class User extends CI_Controller
   public function adminDashboard()
   {
     $data["allNews"] = $this->User_model->showNews();
-    
+
     $this -> load -> view ('user/admin/adminHeader');
     $this -> load -> view ('user/admin/adminDashboard', $data);
     $this -> load -> view ('user/profile/footerProfile');
@@ -323,7 +323,7 @@ class User extends CI_Controller
     $data['rated'] = $this->User_model->checkRating($username, $_SESSION['username']);
     redirect(site_url('user/others_profile?username=').$username);
   }
-      
+
   public function changeMotto() {
     $motto=$_POST['motto'];
     $this->User_model->changeMotto($motto);
@@ -343,13 +343,13 @@ class User extends CI_Controller
     $this->User_model->addNews($news);
     redirect('user/adminDashboard');
   }
-   
+
   public function deleteNews($id)
   {
     $this->User_model->deleteNews($id);
     redirect('user/adminDashboard');
   }
-  
+
   public function deleteConversation(){
      $idChat=substr($_GET['idChat'],1);
      $this->User_model->deleteConversation($idChat);

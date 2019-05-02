@@ -146,7 +146,7 @@ class User_model extends CI_Model
 
                 $this->db->query("DELETE from conversations where idChat=".$idChats[$i]['idChat']." ");
                 $this->db->query("Drop table c".$idChats[$i]['idChat']."");
-            
+
         }
     }
 
@@ -324,7 +324,7 @@ class User_model extends CI_Model
     public function unfollow($id)
     {
         $following = $this->User_model->getFollowing($_SESSION['username']);
-        array_splice($following, array_search($id, $following));
+        array_splice($following, array_search($id, $following),1);
         $update_data = array(
             "following" => implode(", ", $following)
         );
@@ -335,7 +335,7 @@ class User_model extends CI_Model
     public function addNews($news)
     {
         $this->db->insert('news', $news);
-    } 
+    }
 
     public function showNews()
     {
@@ -347,7 +347,7 @@ class User_model extends CI_Model
         $this->db->where("ID", $id);
         $this->db->delete("news");
     }
-  
+
     public function checkIfUsernameExists($name)
     {
         $exists = false;
@@ -367,7 +367,7 @@ class User_model extends CI_Model
         return $this->db->query("SELECT * from motions  left join  opinions on opinions.idMotion=motions.idMotion
         left join users on users.idUser=opinions.idUser where opinions.idUser!=$idUser and motions.idMotion=$idMotion  and agree!=$agree;")->result_array();
     }
-    
+
     //function for rating users
     public function rate($voter, $username, $up)
     {
