@@ -1,5 +1,5 @@
 <?php
-        echo '<div class="col-9 col-lg-10 text-left mx-auto mt-2 mb-4">';
+        echo '<div class="col-9 col-lg-10 text-left mt-2 mb-4" id="main">';
             if ($answeredMotions)
             {
                 echo '<h2 class="">Answers</h2>';

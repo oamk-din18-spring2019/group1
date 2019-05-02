@@ -5,7 +5,7 @@
                         <label for="exampleFormControlTextarea3">Title</label>
                         <textarea class="form-control" id="titleNews" name="title" required rows="1" placeholder="Write the title"></textarea>
                         <label class="mt-2" for="exampleFormControlTextarea3">Content</label>
-                        <textarea class="form-control" id="contentNews" required name="content" rows="2" placeholder="Write the news"></textarea>
+                        <textarea class="form-control" id="contentNews" required name="content" rows="5" placeholder="Write the news"></textarea>
                         <!-- <div class="input-default-wrapper mt-3">
                             <span class="input-group-text mb-3" id="input1">Upload</span>
                             <input type="file" id="fileContent" name="picture" size="20" class="input-default-js">

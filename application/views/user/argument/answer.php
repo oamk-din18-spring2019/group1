@@ -1,7 +1,7 @@
 <?php
 if ($question)
 {
-    echo '<div class="col-9 col-lg-10 text-left mx-auto mt-2 mb-4">';
+    echo '<div class="col-9 col-lg-10 text-left  mt-2 mb-4" id="main">';
         echo "<h2 class=''>Motions on " . $category . "</h2> <br>";
         for ($i=0;$i<count($question);$i++){
             echo '<div class="card my-4">';

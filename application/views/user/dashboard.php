@@ -1,6 +1,6 @@
 <!-- Nav bar goes here -->
-        <div class="col-9 col-lg-10 text-left mx-auto mt-2 mb-4">
-            <h2>News feed</h2> <br>
+        <div class="col-11 col-sm-8 col-lg-9 text-left mt-2 mb-4" id="main">
+            <h2>News</h2> <br>
             <?php 
                 for ($i=0; $i<count($allNews); $i++)
                 {
