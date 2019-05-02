@@ -14,7 +14,7 @@
   <link href=" <?php echo base_url('bst/css/mdb.min.css')?>" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="<?php echo base_url('bst/css/style.css')?>" rel="stylesheet">
-
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/LetterD.svg/1200px-LetterD.svg.png">
 </head>
 
 <body>
@@ -46,7 +46,7 @@
           <img src="<?php if(isset($_SESSION['image'])&&($_SESSION['image']!='')){ echo base_url("./images/".$_SESSION['image']) ;} else{echo base_url("./images/empty-avatar.jpg");} ?>"
           class="rounded-circle z-depth-0 " alt="avatar image" style="width:25px; height:25px;">
         </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">  
+        <div class="dropdown-menu dropdown-menu-right dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-55">
           <a class="dropdown-item" href="<?php echo site_url('LoginRegistration/logout') ?>">Log out</a>
         </div>
       </li>

@@ -1,7 +1,7 @@
 <div class="container mt-4">
-  <h4>You are connected with:</h4>
   <?php
   if ($following!=NULL && isset($following[0])) {
+    echo '<h4>You are connected with:</h4>';
     foreach ($following as $value) {
       if ($value=="") {} else {
       echo '<div class="container">';

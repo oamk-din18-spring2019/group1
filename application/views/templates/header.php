@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Project D</title>
-  <!-- Font Awesome --> 
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
   <!-- Bootstrap core CSS -->
   <link href="<?php echo base_url('bst/css/bootstrap.min.css')?>" rel="stylesheet">
@@ -14,6 +14,7 @@
   <link href=" <?php echo base_url('bst/css/mdb.min.css')?>" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="<?php echo base_url('bst/css/style.css')?>" rel="stylesheet">
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/LetterD.svg/1200px-LetterD.svg.png">
 </head>
 
 <body>
@@ -35,7 +36,7 @@
           <li class="nav-item">
             <a href="#gallery" class="nav-link waves-effect wawes-light">About us</a>
           </li>
-         
+
         </ul>
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">

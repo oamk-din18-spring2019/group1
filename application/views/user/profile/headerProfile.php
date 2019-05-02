@@ -14,6 +14,7 @@
   <link href="<?php echo base_url('bst/css/mdb.min.css')?>" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="<?php echo base_url('bst/css/style.css')?>" rel="stylesheet">
+  <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/LetterD.svg/1200px-LetterD.svg.png">
 </head>
 
 <body>
