@@ -1,10 +1,10 @@
 <div class="container mt-4">
+  <h4>You are connected with:</h4>
   <?php
   if ($following!=NULL && isset($following[0])) {
     foreach ($following as $value) {
       if ($value=="") {} else {
       echo '<div class="container">';
-      echo '<h4>You are connected with:</h4>';
       echo '<a style="" href="' . site_url('user/others_profile?username=') . $value->username . '">';
 
       echo '<div class="card col-lg-10 my-3 p-0">
