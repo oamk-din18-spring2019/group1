@@ -16,6 +16,9 @@ class User extends CI_Controller
   }
   public function index()
   {
+    if ($_SESSION['admin']==true) {
+      redirect('user/admin');
+    } else {
     $data['page'] = 'user/dashboard';
     $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
     $data["categories"] = $this->User_model->getCategories();
@@ -26,6 +29,7 @@ class User extends CI_Controller
     $this->load->view('user/categories', $data);
     $this->load->view('user/dashboard', $data);
     $this->load->view('user/profile/footerProfile');
+    }
   }
 
   # Search engine
