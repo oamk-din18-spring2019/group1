@@ -16,7 +16,6 @@ class User extends CI_Controller
   }
   public function index()
   {
-    //$data['activeFriends'] = $this->User_model->activeFriends(); //TODO: modify so it actually shows active friends
     $data['page'] = 'user/dashboard';
     $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
     $data["categories"] = $this->User_model->getCategories();
@@ -111,14 +110,6 @@ class User extends CI_Controller
     $this->User_model->addPreferredCategories($insert_data);
     redirect('User/index');
   }
-  // public function showPreferredCategories()
-  // {
-  //   $data["preferredCategories"] = $this->User_model->getPreferredCategories($_SESSION['idUser']);
-  //   $data["categories"] = $this->User_model->getCategories();
-  //   $data["answeredCategories"] = $this->User_model->answeredCategories($_SESSION['idUser']);
-  //   $data["unansweredCategories"] = $this->User_model->unansweredCategories($_SESSION['idUser']);
-  //   $this->load->view('User/categories', $data);
-  // }
   public function do_upload()
   {
     $config['upload_path']          = './images/';
@@ -126,8 +117,6 @@ class User extends CI_Controller
     $config['max_size']             = 5000;
     $config['max_width']            = 1500;
     $config['max_height']           = 1500;
-    //$config['min_width']            = 1000;
-    //$config['min_height']           = 1000;
 
     // Get name of old picture
     $oldPicture=$this->User_model->getUserInfo($_SESSION['idUser'])->picture;
